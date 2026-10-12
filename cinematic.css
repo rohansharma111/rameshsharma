@@ -754,3 +754,42 @@ section { scroll-margin-top: 74px; }
     text-shadow: none !important;
   }
 }
+
+
+/* Phase 14 — biography cards: eliminate teal, add inner breathing room, stop page-wide clipping. */
+html { max-width: 100%; overflow-x: clip; }
+body { max-width: 100%; overflow-x: clip; }
+img, video, iframe { max-width: 100%; }
+.container { box-sizing: border-box; min-width: 0; }
+.biography, .biography__content, .biography__text, .biography__details { box-sizing: border-box; min-width: 0; max-width: 100%; }
+.biography__details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px !important;
+}
+.biography .detail-card {
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  padding: 18px 18px 20px !important;
+  border: 1px solid rgba(201,160,108,.38) !important;
+  border-left: 2px solid rgba(201,160,108,.72) !important;
+  background: linear-gradient(135deg, rgba(201,160,108,.065), rgba(17,16,13,.96) 72%) !important;
+  overflow-wrap: anywhere;
+}
+.biography .detail-card h4 {
+  margin: 0 0 9px !important;
+  color: var(--cinema-gold-light, #e6c79a) !important;
+}
+.biography .detail-card p {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: var(--cinema-muted, #b8b1a7) !important;
+  line-height: 1.7 !important;
+  overflow-wrap: anywhere;
+}
+@media screen and (max-width: 760px) {
+  .biography > .container { width: 100% !important; max-width: 100% !important; padding-inline: 22px !important; }
+  .biography__details { grid-template-columns: minmax(0,1fr) !important; gap: 0 !important; }
+  .biography .detail-card { padding: 16px 16px 18px !important; border-left-width: 2px !important; }
+}
