@@ -615,3 +615,31 @@ section { scroll-margin-top: 74px; }
   .filmography .film-card, .filmography .ad-card { padding: 17px 15px !important; }
   .tv-serials .serial-item { padding: 15px !important; }
 }
+
+
+/* Phase 10 — enforce real inner spacing in TV credit cards on narrow screens. */
+@media (max-width: 760px) {
+  .tv-serials .tv-grid,
+  .tv-serials .tv-category,
+  .tv-serials .tv-category .serial-list { min-width: 0 !important; width: 100% !important; }
+  .tv-serials .serial-list { padding-inline: 2px !important; }
+  .tv-serials .serial-item {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 17px 18px !important;
+    margin-inline: 0 !important;
+    overflow: hidden;
+    border-radius: 12px !important;
+  }
+  .tv-serials .serial-item h4,
+  .tv-serials .serial-item p {
+    display: block;
+    width: 100%;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    overflow-wrap: anywhere;
+  }
+}
