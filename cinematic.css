@@ -556,3 +556,62 @@ section { scroll-margin-top: 74px; }
   body.navigation-open { overflow: hidden; }
   body.navigation-open .header { background: rgba(8,8,7,.99) !important; }
 }
+
+
+/* Phase 9 — tighten the desktop rhythm and restore intentional accent color. */
+@media (min-width: 761px) {
+  .hero { min-height: min(820px, 100svh) !important; }
+  .hero__content { padding-top: 112px !important; padding-bottom: 70px !important; }
+  .film-reel { margin-top: 0; }
+  .directors-cut, .biography, .highlights, .timeline, .filmography, .tv-serials, .contact {
+    padding-block: clamp(58px, 6vw, 88px);
+  }
+  .tv-showcase { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); align-items: start; gap: 22px; }
+  .tv-showcase > .eyebrow { grid-column: 1 / -1; }
+  .tv-featured { display: contents; }
+  .tv-serials .featured-serial {
+    display: flex; flex-direction: column; min-width: 0; margin: 0 !important;
+    padding: 14px; gap: 16px; align-self: stretch;
+  }
+  .tv-serials .featured-serial__image { width: 100%; aspect-ratio: 3 / 4; height: auto; min-height: 0; overflow: hidden; }
+  .tv-serials .featured-serial__image img { width: 100%; height: 100%; object-fit: contain; }
+  .tv-serials .featured-serial__content { min-width: 0; padding: 0 2px 4px; overflow-wrap: anywhere; }
+  .tv-serials .featured-serial__content h3 { line-height: 1.1; }
+}
+@media (max-width: 760px) {
+  /* Keep the user's warm accent color, but give text breathing room. */
+  .filmography .film-type {
+    display: inline-flex !important; align-items: center; width: fit-content !important;
+    max-width: 100%; min-height: 28px; margin-top: 12px !important; padding: 5px 12px !important;
+    border: 1px solid rgba(222,126,91,.48) !important; border-radius: 999px !important;
+    background: rgba(222,126,91,.14) !important; color: #e7a184 !important;
+    font-size: 10px !important; line-height: 1.3; letter-spacing: .04em;
+  }
+  .filmography .film-card,
+  .filmography .ad-card {
+    padding: 19px 18px !important;
+    border: 1px solid rgba(201,160,108,.30) !important;
+    border-left: 2px solid rgba(201,160,108,.68) !important;
+    background: linear-gradient(135deg, rgba(201,160,108,.075), rgba(17,16,13,.96) 60%) !important;
+  }
+  .filmography .film-card h4,
+  .filmography .ad-card h4 { margin-bottom: 9px !important; color: var(--cinema-paper) !important; }
+  .tv-serials .serial-item {
+    padding: 16px 17px !important;
+    border: 1px solid rgba(222,126,91,.42) !important;
+    background: linear-gradient(115deg, rgba(119,62,39,.23), rgba(23,19,14,.98) 72%) !important;
+  }
+  .tv-serials .serial-item h4 { margin-bottom: 7px !important; color: #f0c5ad !important; }
+  .tv-serials .serial-item p { color: var(--cinema-muted) !important; }
+  .contact .social-link {
+    padding: 14px 16px !important;
+    border: 1px solid rgba(201,160,108,.34) !important;
+    background: linear-gradient(110deg, rgba(201,160,108,.07), rgba(17,16,13,.97) 65%) !important;
+    color: var(--cinema-paper) !important;
+  }
+  .contact .social-link:hover { border-color: rgba(222,126,91,.65) !important; background: rgba(119,62,39,.2) !important; }
+}
+@media (max-width: 420px) {
+  .filmography .film-card, .filmography .ad-card { padding: 17px 15px !important; }
+  .tv-serials .serial-item { padding: 15px !important; }
+}
