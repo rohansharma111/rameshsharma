@@ -413,3 +413,55 @@ section { scroll-margin-top: 74px; }
   .hero__text::before, .hero__title, .hero__subtitle, .hero__image { animation: none !important; }
   .directors-cut__visual img, .featured-img { transition: none !important; }
 }
+
+
+/* Phase 6 — phone-first composition fixes from the supplied mobile review.
+   Keep the layout editorial at small widths instead of shrinking desktop compositions. */
+@media (max-width: 760px) {
+  .container { width: calc(100% - 36px); max-width: 560px; }
+  .nav.container { width: calc(100% - 30px); }
+  .nav { min-height: 68px; gap: 12px; }
+  .nav__logo h3 { font-size: clamp(1.9rem, 7vw, 2.35rem); }
+  .nav__toggle { width: 42px; height: 42px; }
+  .hero { min-height: 0; min-height: auto; padding-top: 0; }
+  .hero__content { display: grid; grid-template-columns: minmax(0, 1fr) !important; gap: 30px; padding-top: 118px; padding-bottom: 52px; }
+  .hero__text { width: 100%; max-width: 540px; }
+  .hero__title { max-width: 100%; font-size: clamp(3.2rem, 13.5vw, 5rem); line-height: .86; letter-spacing: -.055em; }
+  .hero__tagline { font-size: clamp(1.45rem, 6.5vw, 1.8rem); line-height: 1.1; }
+  .hero__description { font-size: 13px; line-height: 1.8; }
+  .hero__image { width: min(76%, 300px); max-width: 300px; justify-self: center; margin: 0 auto; }
+  .hero__img { aspect-ratio: 4 / 4.6; max-height: 350px; }
+  .hero__image::after { right: -12px; }
+  .hero__buttons { display: grid; grid-template-columns: 1fr; width: min(100%, 360px); }
+  .hero__buttons .btn { width: 100%; min-height: 46px; justify-content: center; font-size: 9px; }
+  .film-reel { grid-template-columns: 1fr; padding: 20px 18px; }
+  .film-reel__item { min-height: 48px; }
+  .directors-cut__inner { grid-template-columns: minmax(0, 1fr) !important; }
+  .directors-cut__visual { min-height: 0; aspect-ratio: 4 / 3; }
+  .directors-cut__visual img { min-height: 0; height: 100%; }
+  .biography__text { grid-template-columns: minmax(0, 1fr) !important; }
+  .highlights__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .film-grid, .ad-grid { grid-template-columns: minmax(0, 1fr); }
+  .tv-featured { display: grid; grid-template-columns: minmax(0, 1fr) !important; gap: 18px; }
+  .featured-serial { display: grid; grid-template-columns: minmax(0, 1fr) !important; margin: 0 !important; }
+  .featured-serial__image { width: 100%; aspect-ratio: 4 / 3; min-height: 0; }
+  .featured-serial__image .featured-img { width: 100%; height: 100%; object-fit: contain; background: #100e0b; }
+  .featured-serial__content { padding: 17px 16px 19px; }
+  .featured-serial__content h3 { font-size: 1.55rem; }
+  .featured-serial__content p { font-size: 12px; line-height: 1.75; }
+  .tv-grid, .contact__content { grid-template-columns: minmax(0, 1fr) !important; }
+  .serial-item { padding: 15px 14px; }
+  .serial-item h4 { font-size: 1.25rem; line-height: 1.2; }
+  .serial-item p { font-size: 11px; }
+  .social-link { min-height: 48px; }
+  .footer p { font-size: 10px; }
+}
+@media (max-width: 390px) {
+  .hero__content { padding-top: 108px; }
+  .hero__title { font-size: clamp(2.85rem, 13.7vw, 3.5rem); }
+  .hero__image { width: min(82%, 270px); }
+  .highlights__grid { grid-template-columns: minmax(0, 1fr); }
+  .highlight-card { border-right: 0; border-bottom: 1px solid var(--cinema-line); }
+  .highlight-card:last-child { border-bottom: 0; }
+  .featured-serial__image { aspect-ratio: 4 / 3; }
+}
