@@ -15,6 +15,8 @@ function scrollToSection(sectionId) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // Mobile Navigation Toggle
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.querySelector('.nav__menu');
@@ -198,6 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Loading animation
     function showLoadingComplete() {
+        if (prefersReducedMotion) return;
         document.body.style.opacity = '0';
         document.body.style.transition = 'opacity 0.5s ease';
         
@@ -213,6 +216,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (!isClickInsideNav && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+                navToggle.setAttribute('aria-label', 'Open navigation menu');
                 
                 // Reset hamburger menu
                 const spans = navToggle.querySelectorAll('span');
@@ -257,13 +262,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize everything
     function init() {
         showLoadingComplete();
-        initScrollAnimations();
-        animateTimeline();
-        initCardEffects();
-        initSocialEffects();
-        
-        // Start typewriter effect after a delay
-        setTimeout(typewriterEffect, 1000);
+        if (!prefersReducedMotion) {
+            initScrollAnimations();
+            animateTimeline();
+            initCardEffects();
+            initSocialEffects();
+            // Start typewriter effect after a delay
+            setTimeout(typewriterEffect, 1000);
+        }
         
         // Initial scroll position check
         updateActiveNavLink();
@@ -296,6 +302,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Close mobile menu on resize
         if (window.innerWidth > 768 && navMenu) {
             navMenu.classList.remove('active');
+            if (navToggle) { navToggle.setAttribute('aria-expanded', 'false'); navToggle.setAttribute('aria-label', 'Open navigation menu'); }
             
             // Reset hamburger menu
             if (navToggle) {
