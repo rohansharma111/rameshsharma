@@ -44,7 +44,8 @@ a { color: inherit; }
 [hidden] { display: none !important; }
 
 /* The navigation behaves like discreet end credits, not a software dashboard. */
-.header { position: absolute; z-index: 50; inset: 0 0 auto; background: linear-gradient(180deg, rgba(5,5,4,.78), transparent); border: 0; }
+.header { position: absolute; z-index: 50; inset: 0 0 auto; background: linear-gradient(180deg, rgba(5,5,4,.78), transparent); border: 0; transition: background .3s ease, box-shadow .3s ease; }
+.header.is-scrolled { position: fixed; background: rgba(9, 10, 11, .96); box-shadow: 0 8px 28px rgba(0, 0, 0, .24); backdrop-filter: blur(12px); }
 .nav { min-height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 26px; }
 .nav__logo { flex: 0 0 auto; }
 .nav__logo h3 { margin: 0; color: #fff7ed; font: 400 clamp(2rem, 3vw, 2.8rem)/.85 var(--cinema-script); letter-spacing: .01em; }
@@ -208,7 +209,7 @@ section { scroll-margin-top: 74px; }
 /* Motion should feel like a camera settling into a shot, never like a loading screen. */
 @keyframes title-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes image-arrive { from { opacity: 0; transform: translate3d(12px, 0, 0) scale(1.018); } to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); } }
-.cinema-reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.65,.2,1); }
+.cinema-reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease var(--reveal-delay, 0ms), transform .7s cubic-bezier(.2,.65,.2,1) var(--reveal-delay, 0ms); }
 .cinema-reveal.is-in-view { opacity: 1; transform: translateY(0); }
 .cinema-gate { position: fixed; z-index: 1000; inset: 0; display: grid; place-items: center; pointer-events: none; background: var(--cinema-black); animation: gate-out .85s .12s cubic-bezier(.7,0,.3,1) forwards; }
 .cinema-gate::before { content: ""; position: absolute; inset: 12px; border: 1px solid rgba(231,201,158,.35); }
@@ -320,6 +321,8 @@ section { scroll-margin-top: 74px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .cinema-reveal { opacity: 1; transform: none; }
+  .header, .header.is-scrolled { transition: none; }
+  .featured-serial, .featured-serial:hover { transform: none; }
 }
 
 /* Phase 2 — editorial pacing and resilient archive artwork. */
