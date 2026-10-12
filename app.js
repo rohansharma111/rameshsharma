@@ -1,387 +1,197 @@
-// Portfolio Website JavaScript - Fixed Navigation
+// Cinematic portfolio interactions — lightweight, accessible, and progressive-enhancement first.
+(() => {
+  'use strict';
 
-// Global function for smooth scrolling to sections
-function scrollToSection(sectionId) {
-    const targetSection = document.getElementById(sectionId);
-    if (targetSection) {
-        const headerHeight = document.querySelector('.header').offsetHeight;
-        const targetPosition = targetSection.offsetTop - headerHeight;
-        
-        window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-        });
+  const onReady = (callback) => {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', callback, { once: true });
+    } else {
+      callback();
     }
-}
+  };
 
-document.addEventListener('DOMContentLoaded', function() {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // Mobile Navigation Toggle
+  onReady(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const header = document.querySelector('.header');
     const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.querySelector('.nav__menu');
-    const navLinks = document.querySelectorAll('.nav__link');
+    const navMenu = document.getElementById('primary-navigation');
+    const navLinks = Array.from(document.querySelectorAll('.nav__link'));
 
-    // Toggle mobile menu
-    if (navToggle) {
-        navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            navToggle.setAttribute('aria-expanded', navMenu.classList.contains('active') ? 'true' : 'false');
-            navToggle.setAttribute('aria-label', navMenu.classList.contains('active') ? 'Close navigation menu' : 'Open navigation menu');
-            
-            // Animate hamburger menu
-            const spans = navToggle.querySelectorAll('span');
-            if (navMenu.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
+    const closeMenu = () => {
+      if (!navToggle || !navMenu) return;
+      navMenu.classList.remove('active');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open navigation menu');
+      navToggle.querySelectorAll('span').forEach((span) => {
+        span.style.transform = '';
+        span.style.opacity = '';
+      });
+    };
+
+    const openMenu = () => {
+      if (!navToggle || !navMenu) return;
+      navMenu.classList.add('active');
+      navToggle.setAttribute('aria-expanded', 'true');
+      navToggle.setAttribute('aria-label', 'Close navigation menu');
+      const spans = navToggle.querySelectorAll('span');
+      if (spans[0]) spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+      if (spans[1]) spans[1].style.opacity = '0';
+      if (spans[2]) spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+    };
+
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', () => {
+        navMenu.classList.contains('active') ? closeMenu() : openMenu();
+      });
+
+      navLinks.forEach((link) => {
+        link.addEventListener('click', (event) => {
+          const target = document.querySelector(link.getAttribute('href'));
+          if (!target) return;
+          event.preventDefault();
+          closeMenu();
+          const headerOffset = header ? header.getBoundingClientRect().height : 0;
+          const top = window.scrollY + target.getBoundingClientRect().top - headerOffset - 8;
+          window.scrollTo({ top, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+          if (history.replaceState) history.replaceState(null, '', link.getAttribute('href'));
         });
+      });
+
+      document.addEventListener('click', (event) => {
+        if (navMenu.classList.contains('active') &&
+            !navMenu.contains(event.target) &&
+            !navToggle.contains(event.target)) closeMenu();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && navMenu.classList.contains('active')) {
+          closeMenu();
+          navToggle.focus();
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) closeMenu();
+      });
     }
 
-    // Close mobile menu when clicking on a link
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            navMenu.classList.remove('active');
-            if (navToggle) { navToggle.setAttribute('aria-expanded', 'false'); navToggle.setAttribute('aria-label', 'Open navigation menu'); }
-            
-            // Reset hamburger menu
-            if (navToggle) {
-                const spans = navToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
+    // Smooth-scroll buttons retain native behavior when motion is reduced.
+    document.querySelectorAll('[onclick*="scrollToSection"]').forEach((button) => {
+      button.removeAttribute('onclick');
+      button.addEventListener('click', () => {
+        const destination = button.classList.contains('btn--outline') ? 'contact' : 'filmography';
+        const target = document.getElementById(destination);
+        if (!target) return;
+        const offset = header ? header.getBoundingClientRect().height : 0;
+        window.scrollTo({
+          top: window.scrollY + target.getBoundingClientRect().top - offset - 8,
+          behavior: reducedMotion.matches ? 'auto' : 'smooth'
         });
+      });
     });
 
-    // Fixed smooth scrolling for navigation links
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href').substring(1); // Remove the #
-            scrollToSection(targetId);
-        });
-    });
+    // Header state and current chapter update in one throttled scroll pass.
+    let scrollPending = false;
+    const updateScrollState = () => {
+      if (header) header.classList.toggle('is-scrolled', window.scrollY > 24);
+      const marker = window.scrollY + (header ? header.getBoundingClientRect().height : 0) + 100;
+      let currentId = 'home';
+      document.querySelectorAll('main section[id]').forEach((section) => {
+        if (section.offsetTop <= marker) currentId = section.id;
+      });
+      navLinks.forEach((link) => {
+        const active = link.getAttribute('href') === '#' + currentId;
+        link.classList.toggle('active', active);
+        if (active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+      scrollPending = false;
+    };
 
-    // Active navigation link highlighting
-    function updateActiveNavLink() {
-        const sections = document.querySelectorAll('section[id]');
-        const scrollPos = window.scrollY + 120; // Offset for header
+    window.addEventListener('scroll', () => {
+      if (scrollPending) return;
+      scrollPending = true;
+      window.requestAnimationFrame(updateScrollState);
+    }, { passive: true });
+    window.addEventListener('resize', updateScrollState, { passive: true });
+    updateScrollState();
 
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-            const correspondingNavLink = document.querySelector(`a[href="#${sectionId}"]`);
-
-            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                // Remove active class from all nav links
-                navLinks.forEach(link => link.classList.remove('active'));
-                
-                // Add active class to current nav link
-                if (correspondingNavLink) {
-                    correspondingNavLink.classList.add('active');
-                }
-            }
-        });
-    }
-
-    // Header scroll effect
-    function handleHeaderScroll() {
-        const header = document.querySelector('.header');
-        const scrollY = window.scrollY;
-
-        if (scrollY > 50) {
-            header.style.background = 'rgba(9, 10, 11, 0.97)';
-            header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
-        } else {
-            header.style.background = 'rgba(9, 10, 11, 0.90)';
-            header.style.boxShadow = 'none';
-        }
-    }
-
-    // Scroll animations for elements
-    function handleScrollAnimations() {
-        const animatedElements = document.querySelectorAll('.highlight-card, .film-card, .ad-card, .serial-item, .timeline__item, .detail-card');
-        
-        animatedElements.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            const elementVisible = 150;
-            
-            if (elementTop < window.innerHeight - elementVisible) {
-                element.style.opacity = '1';
-                element.style.transform = 'translateY(0)';
-            }
-        });
-    }
-
-    // Initialize scroll animations
-    function initScrollAnimations() {
-        const animatedElements = document.querySelectorAll('.highlight-card, .film-card, .ad-card, .serial-item, .timeline__item, .detail-card');
-        
-        animatedElements.forEach(element => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(30px)';
-            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        });
-    }
-
-    // Timeline animation
-    function animateTimeline() {
-        const timelineItems = document.querySelectorAll('.timeline__item');
-        
-        timelineItems.forEach((item, index) => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateX(-50px)';
-            item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-        });
-    }
-
-    // Keep the tagline readable immediately; avoid artificial typing delays.
-    function typewriterEffect() {
-        const tagline = document.querySelector('.hero__tagline');
-        if (tagline) tagline.style.borderRight = 'none';
-    }
-
-    // Card hover effects
-    function initCardEffects() {
-        const cards = document.querySelectorAll('.highlight-card, .film-card, .ad-card');
-        
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) scale(1.02)';
-                this.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.4)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-                this.style.boxShadow = 'none';
-            });
-        });
-    }
-
-    // Social link effects
-    function initSocialEffects() {
-        const socialLinks = document.querySelectorAll('.social-link');
-        
-        socialLinks.forEach(link => {
-            link.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateX(10px) scale(1.05)';
-            });
-            
-            link.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateX(0) scale(1)';
-            });
-        });
-    }
-
-    // Avoid hiding the entire page during startup; the opening shot is decorative only.
-    function showLoadingComplete() {
-        document.body.style.opacity = '1';
-    }
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(e) {
-        if (navToggle && navMenu) {
-            const isClickInsideNav = navMenu.contains(e.target) || navToggle.contains(e.target);
-            
-            if (!isClickInsideNav && navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                navToggle.setAttribute('aria-expanded', 'false');
-                navToggle.setAttribute('aria-label', 'Open navigation menu');
-                
-                // Reset hamburger menu
-                const spans = navToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        }
-    });
-
-    // Add CSS for active nav link
-    const style = document.createElement('style');
-    style.textContent = `
-        .nav__link.active {
-            color: var(--cinema-gold-light, #e4b08d) !important;
-            position: relative;
-        }
-        
-        .nav__link.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--cinema-gold, #c46b4f);
-            border-radius: 1px;
-        }
-        
-        @media (max-width: 768px) {
-            .nav__link.active::after {
-                bottom: 0;
-            }
-        }
-    `;
-    document.head.appendChild(style);
-
-    // Accessible filmography category filters.
-    const filmFilters = document.querySelectorAll('[data-film-filter]');
-    const filmCategories = document.querySelectorAll('[data-film-category]');
-    const filmographyStatus = document.getElementById('filmography-status');
-    filmFilters.forEach(button => {
-        button.addEventListener('click', function() {
-            const selected = this.dataset.filmFilter;
-            let visibleCount = 0;
-            filmFilters.forEach(filter => {
-                const isActive = filter === this;
-                filter.classList.toggle('is-active', isActive);
-                filter.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-            });
-            filmCategories.forEach(category => {
-                const visible = selected === 'all' || category.dataset.filmCategory === selected;
-                category.hidden = !visible;
-                if (visible) visibleCount++;
-            });
-            if (filmographyStatus) {
-                filmographyStatus.textContent = selected === 'all'
-                    ? 'Showing all ' + visibleCount + ' categories'
-                    : 'Showing ' + visibleCount + ' ' + (visibleCount === 1 ? 'category' : 'categories');
-            }
-            // Reveal newly shown cards that are already inside the viewport.
-            handleScrollAnimations();
-        });
-    });
-
-    // Keep the copyright year current without manual edits.
-    const copyrightYear = document.getElementById('copyright-year');
-    if (copyrightYear) copyrightYear.textContent = new Date().getFullYear();
-
-    // Initialize everything
-    function init() {
-        showLoadingComplete();
-        if (!prefersReducedMotion) {
-            initScrollAnimations();
-            animateTimeline();
-            initCardEffects();
-            initSocialEffects();
-            // Keep opening copy fully available to screen readers and visitors immediately.
-            typewriterEffect();
-        }
-        
-        // Initial scroll position check
-        updateActiveNavLink();
-        handleHeaderScroll();
-        
-        // Trigger initial scroll animations
-        setTimeout(handleScrollAnimations, 500);
-    }
-
-    // Performance optimized scroll handler
-    let ticking = false;
-    
-    function requestTick() {
-        if (!ticking) {
-            requestAnimationFrame(function() {
-                updateActiveNavLink();
-                handleHeaderScroll();
-                handleScrollAnimations();
-                ticking = false;
-            });
-            ticking = true;
-        }
-    }
-    
-    // Scroll event listener
-    window.addEventListener('scroll', requestTick);
-
-    // Add resize handler for responsive behavior
-    window.addEventListener('resize', function() {
-        // Close mobile menu on resize
-        if (window.innerWidth > 768 && navMenu) {
-            navMenu.classList.remove('active');
-            if (navToggle) { navToggle.setAttribute('aria-expanded', 'false'); navToggle.setAttribute('aria-label', 'Open navigation menu'); }
-            
-            // Reset hamburger menu
-            if (navToggle) {
-                const spans = navToggle.querySelectorAll('span');
-                spans.forEach(span => {
-                    span.style.transform = 'none';
-                    span.style.opacity = '1';
-                });
-            }
-        }
-    });
-
-    // Initialize the application
-    init();
-
-    // Test navigation links after DOM is ready
-    setTimeout(() => {
-        console.log('Navigation links initialized');
-        navLinks.forEach(link => {
-            console.log('Nav link href:', link.getAttribute('href'));
-        });
-    }, 1000);
-});
-
-/* Cinematic reveal choreography: gentle chapter entrances, no scroll hijacking. */
-document.addEventListener('DOMContentLoaded', function initCinematicReveals() {
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const targets = document.querySelectorAll(
-        '.section__title, .directors-cut__visual, .directors-cut__copy, .featured-serial, .film-reel__item, .contact__info, .contact__social'
+    // Reveal content only when it can be observed; without support, content stays visible.
+    const revealTargets = document.querySelectorAll(
+      '.section__title, .directors-cut__visual, .directors-cut__copy, .featured-serial, ' +
+      '.film-reel__item, .highlight-card, .film-card, .ad-card, .timeline__item, ' +
+      '.detail-card, .contact__info, .contact__social'
     );
-    if (reducedMotion || !('IntersectionObserver' in window)) {
-        targets.forEach(element => element.classList.add('is-in-view'));
-        return;
-    }
-    targets.forEach((element, index) => {
+
+    if (!reducedMotion.matches && 'IntersectionObserver' in window) {
+      revealTargets.forEach((element, index) => {
         element.classList.add('cinema-reveal');
         if (element.matches('.film-reel__item, .featured-serial')) {
-            element.style.transitionDelay = (index % 3) * 90 + 'ms';
+          element.style.setProperty('--reveal-delay', (index % 3) * 80 + 'ms');
         }
-    });
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-in-view');
-                observer.unobserve(entry.target);
-            }
+      });
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in-view');
+            observer.unobserve(entry.target);
+          }
         });
-    }, { threshold: 0.14, rootMargin: '0px 0px -35px 0px' });
-    targets.forEach(element => observer.observe(element));
-});
+      }, { threshold: 0.12, rootMargin: '0px 0px -24px 0px' });
+      revealTargets.forEach((element) => revealObserver.observe(element));
+    } else {
+      revealTargets.forEach((element) => element.classList.add('is-in-view'));
+    }
 
+    // Accessible archive filters.
+    const filters = Array.from(document.querySelectorAll('[data-film-filter]'));
+    const categories = Array.from(document.querySelectorAll('[data-film-category]'));
+    const status = document.getElementById('filmography-status');
 
-/* Opening shot: a silent camera-gate reveal. It never captures input or delays navigation. */
-document.addEventListener('DOMContentLoaded', function startOpeningShot() {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (document.querySelector('.cinema-gate')) return;
-    const gate = document.createElement('div');
-    gate.className = 'cinema-gate';
-    gate.setAttribute('aria-hidden', 'true');
-    const mark = document.createElement('span');
-    mark.className = 'cinema-gate__mark';
-    mark.textContent = 'CAMERA ROLLING  ·  RAMESH R SHARMA';
-    gate.appendChild(mark);
-    document.body.appendChild(gate);
-    window.setTimeout(() => gate.remove(), 1400);
-});
-
-/* Television archive resilience: preserve a designed title frame if a remote poster fails. */
-document.addEventListener('DOMContentLoaded', function initPosterFallbacks() {
-    document.querySelectorAll('.featured-serial__image').forEach(frame => {
-        const image = frame.querySelector('img');
-        if (!image) return;
-        const markUnavailable = () => frame.classList.add('poster-unavailable');
-        image.addEventListener('error', markUnavailable, { once: true });
-        if (image.complete && image.naturalWidth === 0) markUnavailable();
+    filters.forEach((button) => {
+      button.addEventListener('click', () => {
+        const selected = button.dataset.filmFilter;
+        let visibleCount = 0;
+        filters.forEach((filter) => {
+          const active = filter === button;
+          filter.classList.toggle('is-active', active);
+          filter.setAttribute('aria-pressed', String(active));
+        });
+        categories.forEach((category) => {
+          const visible = selected === 'all' || category.dataset.filmCategory === selected;
+          category.hidden = !visible;
+          if (visible) visibleCount += 1;
+        });
+        if (status) {
+          status.textContent = selected === 'all'
+            ? 'Showing all ' + visibleCount + ' categories'
+            : 'Showing ' + visibleCount + ' ' + (visibleCount === 1 ? 'category' : 'categories');
+        }
+      });
     });
-});
+
+    // Keep remote artwork failures graceful and the year current.
+    document.querySelectorAll('.featured-serial__image').forEach((frame) => {
+      const image = frame.querySelector('img');
+      if (!image) return;
+      const markUnavailable = () => frame.classList.add('poster-unavailable');
+      image.addEventListener('error', markUnavailable, { once: true });
+      if (image.complete && image.naturalWidth === 0) markUnavailable();
+    });
+    const year = document.getElementById('copyright-year');
+    if (year) year.textContent = String(new Date().getFullYear());
+
+    // A short, silent camera-gate accent; it never blocks or hides the page.
+    if (!reducedMotion.matches && !document.querySelector('.cinema-gate')) {
+      const gate = document.createElement('div');
+      gate.className = 'cinema-gate';
+      gate.setAttribute('aria-hidden', 'true');
+      const mark = document.createElement('span');
+      mark.className = 'cinema-gate__mark';
+      mark.textContent = 'CAMERA ROLLING  ·  RAMESH R SHARMA';
+      gate.appendChild(mark);
+      document.body.appendChild(gate);
+      window.setTimeout(() => gate.remove(), 1100);
+    }
+  });
+})();
