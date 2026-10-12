@@ -118,20 +118,21 @@
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <!-- Header Navigation -->
     <header class="header">
-        <nav class="nav container">
+        <nav class="nav container" aria-label="Main navigation">
             <div class="nav__logo">
                 <h3>Ramesh R Sharma</h3>
             </div>
-            <ul class="nav__menu">
+            <ul class="nav__menu" id="primary-navigation">
                 <li><a href="#home" class="nav__link">Home</a></li>
                 <li><a href="#bio" class="nav__link">Biography</a></li>
                 <li><a href="#filmography" class="nav__link">Filmography</a></li>
                 <li><a href="#tv-serials" class="nav__link">TV Serials</a></li>
                 <li><a href="#contact" class="nav__link">Contact</a></li>
             </ul>
-            <button class="nav__toggle" id="nav-toggle">
+            <button class="nav__toggle" id="nav-toggle" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -139,11 +140,12 @@
         </nav>
     </header>
 
+    <main id="main-content">
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero" aria-labelledby="hero-title">
         <div class="hero__content container">
             <div class="hero__text">
-                <h1 class="hero__title">Ramesh R Sharma</h1>
+                <h1 id="hero-title" class="hero__title">Ramesh R Sharma</h1>
                 <h2 class="hero__subtitle">Film Director, Writer, Assistant Director</h2>
                 <p class="hero__tagline">From Assistant to Director - A Journey Through Indian Cinema</p>
                 <p class="hero__description">With decades of experience in Bollywood, connected to the legendary B.R. Films and having worked under B.R. Chopra and Ravi Chopra.</p>
@@ -153,7 +155,7 @@
                 </div>
             </div>
             <div class="hero__image">
-                <img src="https://res.cloudinary.com/dipuhwwmz/image/upload/v1766900320/IMG-20210510-WA0031_qj7vcw.jpg" alt="Ramesh R Sharma - Professional Portrait" class="hero__img">
+                <img src="https://res.cloudinary.com/dipuhwwmz/image/upload/v1766900320/IMG-20210510-WA0031_qj7vcw.jpg" alt="Ramesh R Sharma - Professional Portrait" class="hero__img" fetchpriority="high" decoding="async">
             </div>
         </div>
     </section>
@@ -194,7 +196,7 @@
                     </div>
                 </div>
                 <div class="biography__image">
-                    <img src="https://res.cloudinary.com/dipuhwwmz/image/upload/v1766901441/DSC08995_lnmion.jpg" alt="Behind the scenes of Bollywood film making" class="biography__img">
+                    <img src="https://res.cloudinary.com/dipuhwwmz/image/upload/v1766901441/DSC08995_lnmion.jpg" alt="Behind the scenes of Bollywood film making" class="biography__img" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
@@ -394,7 +396,7 @@
                 <div class="tv-featured">
                     <div class="featured-serial">
                         <div class="featured-serial__image">
-                            <img src="https://m.media-amazon.com/images/M/MV5BYzZiY2QyNTMtNTMzMi00ODZkLWEwNWItYmJiM2MyNWJmY2Q5XkEyXkFqcGc@._V1_.jpg" alt="Mahabharat TV Serial Poster" class="featured-img">
+                            <img src="https://m.media-amazon.com/images/M/MV5BYzZiY2QyNTMtNTMzMi00ODZkLWEwNWItYmJiM2MyNWJmY2Q5XkEyXkFqcGc@._V1_.jpg" alt="Mahabharat TV Serial Poster" class="featured-img" loading="lazy" decoding="async">
                         </div>
                         <div class="featured-serial__content">
                             <h3>Mahabharat (1990)</h3>
@@ -526,10 +528,12 @@
         </div>
     </section>
 
+    </main>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Ramesh R Sharma. All rights reserved.</p>
+            <p>&copy; <span id="copyright-year">2026</span> Ramesh R Sharma. All rights reserved.</p>
         </div>
     </footer>
 
