@@ -264,5 +264,59 @@
       chapters.forEach((chapter) => chapter.classList.add('is-chapter-active'));
     }
 
+    // Cinematic scroll progression and scene-by-scene timeline focus.
+    let progressQueued = false;
+    const updateStoryProgress = () => {
+      const root = document.documentElement;
+      const maxScroll = root.scrollHeight - window.innerHeight;
+      const progress = maxScroll > 0 ? Math.min(1, Math.max(0, window.scrollY / maxScroll)) : 0;
+      root.style.setProperty('--story-progress', progress.toFixed(4));
+      const timeline = document.querySelector('.timeline');
+      const timelineContainer = document.querySelector('.timeline__container');
+      if (timeline && timelineContainer) {
+        const rect = timelineContainer.getBoundingClientRect();
+        const visibleTravel = Math.max(1, rect.height);
+        const passed = Math.min(1, Math.max(0, (window.innerHeight * .65 - rect.top) / visibleTravel));
+        timeline.style.setProperty('--timeline-progress', (passed * 100).toFixed(2) + '%');
+      }
+      progressQueued = false;
+    };
+    const queueStoryProgress = () => {
+      if (progressQueued) return;
+      progressQueued = true;
+      window.requestAnimationFrame(updateStoryProgress);
+    };
+    window.addEventListener('scroll', queueStoryProgress, { passive: true });
+    window.addEventListener('resize', queueStoryProgress, { passive: true });
+    updateStoryProgress();
+
+    const timelineItems = Array.from(document.querySelectorAll('.timeline__item'));
+    if (timelineItems.length && !reducedMotion.matches && 'IntersectionObserver' in window) {
+      const timelineObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            timelineItems.forEach((item) => item.classList.toggle('is-scene-active', item === entry.target));
+          }
+        });
+      }, { rootMargin: '-25% 0px -35% 0px', threshold: 0 });
+      timelineItems.forEach((item) => timelineObserver.observe(item));
+    } else {
+      timelineItems.forEach((item) => item.classList.add('is-scene-active'));
+    }
+
+    // Filmography filters animate between archive chapters without hiding the transition.
+    document.querySelectorAll('[data-film-filter]').forEach((filter) => {
+      filter.addEventListener('click', () => {
+        const categories = Array.from(document.querySelectorAll('[data-film-category]'));
+        categories.forEach((category) => {
+          if (!category.hidden) {
+            category.classList.remove('archive-enter');
+            void category.offsetWidth;
+            category.classList.add('archive-enter');
+          }
+        });
+      });
+    });
+
   });
 })();
