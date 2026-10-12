@@ -15,6 +15,8 @@ function scrollToSection(sectionId) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // Mobile Navigation Toggle
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.querySelector('.nav__menu');
@@ -24,6 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (navToggle) {
         navToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', navMenu.classList.contains('active') ? 'true' : 'false');
+            navToggle.setAttribute('aria-label', navMenu.classList.contains('active') ? 'Close navigation menu' : 'Open navigation menu');
             
             // Animate hamburger menu
             const spans = navToggle.querySelectorAll('span');
@@ -43,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
             navMenu.classList.remove('active');
+            if (navToggle) { navToggle.setAttribute('aria-expanded', 'false'); navToggle.setAttribute('aria-label', 'Open navigation menu'); }
             
             // Reset hamburger menu
             if (navToggle) {
@@ -93,10 +98,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const scrollY = window.scrollY;
 
         if (scrollY > 50) {
-            header.style.background = 'rgba(19, 52, 59, 0.98)';
+            header.style.background = 'rgba(9, 10, 11, 0.97)';
             header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
         } else {
-            header.style.background = 'rgba(19, 52, 59, 0.95)';
+            header.style.background = 'rgba(9, 10, 11, 0.90)';
             header.style.boxShadow = 'none';
         }
     }
@@ -195,6 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Loading animation
     function showLoadingComplete() {
+        if (prefersReducedMotion) return;
         document.body.style.opacity = '0';
         document.body.style.transition = 'opacity 0.5s ease';
         
@@ -210,6 +216,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (!isClickInsideNav && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+                navToggle.setAttribute('aria-label', 'Open navigation menu');
                 
                 // Reset hamburger menu
                 const spans = navToggle.querySelectorAll('span');
@@ -224,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const style = document.createElement('style');
     style.textContent = `
         .nav__link.active {
-            color: var(--color-teal-300) !important;
+            color: var(--cinema-gold-light, #e4b08d) !important;
             position: relative;
         }
         
@@ -235,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
             left: 0;
             width: 100%;
             height: 2px;
-            background: var(--color-teal-300);
+            background: var(--cinema-gold, #c46b4f);
             border-radius: 1px;
         }
         
@@ -247,16 +255,49 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(style);
 
+    // Accessible filmography category filters.
+    const filmFilters = document.querySelectorAll('[data-film-filter]');
+    const filmCategories = document.querySelectorAll('[data-film-category]');
+    const filmographyStatus = document.getElementById('filmography-status');
+    filmFilters.forEach(button => {
+        button.addEventListener('click', function() {
+            const selected = this.dataset.filmFilter;
+            let visibleCount = 0;
+            filmFilters.forEach(filter => {
+                const isActive = filter === this;
+                filter.classList.toggle('is-active', isActive);
+                filter.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+            filmCategories.forEach(category => {
+                const visible = selected === 'all' || category.dataset.filmCategory === selected;
+                category.hidden = !visible;
+                if (visible) visibleCount++;
+            });
+            if (filmographyStatus) {
+                filmographyStatus.textContent = selected === 'all'
+                    ? 'Showing all ' + visibleCount + ' categories'
+                    : 'Showing ' + visibleCount + ' ' + (visibleCount === 1 ? 'category' : 'categories');
+            }
+            // Reveal newly shown cards that are already inside the viewport.
+            handleScrollAnimations();
+        });
+    });
+
+    // Keep the copyright year current without manual edits.
+    const copyrightYear = document.getElementById('copyright-year');
+    if (copyrightYear) copyrightYear.textContent = new Date().getFullYear();
+
     // Initialize everything
     function init() {
         showLoadingComplete();
-        initScrollAnimations();
-        animateTimeline();
-        initCardEffects();
-        initSocialEffects();
-        
-        // Start typewriter effect after a delay
-        setTimeout(typewriterEffect, 1000);
+        if (!prefersReducedMotion) {
+            initScrollAnimations();
+            animateTimeline();
+            initCardEffects();
+            initSocialEffects();
+            // Start typewriter effect after a delay
+            setTimeout(typewriterEffect, 1000);
+        }
         
         // Initial scroll position check
         updateActiveNavLink();
@@ -289,6 +330,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Close mobile menu on resize
         if (window.innerWidth > 768 && navMenu) {
             navMenu.classList.remove('active');
+            if (navToggle) { navToggle.setAttribute('aria-expanded', 'false'); navToggle.setAttribute('aria-label', 'Open navigation menu'); }
             
             // Reset hamburger menu
             if (navToggle) {

@@ -5,14 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ramesh Sharma – Director & Filmmaker</title>
     <meta name="google-site-verification" content="aYmQDsbMrPYSjrFcQmcEIbaAyDgG86UAlnyJmtM0cLc" />
-    <meta name="description" content="Official portfolio of Ramesh Sharma, Film Director specializing in short films, music videos and creative storytelling.">
-    <meta name="keywords" content="Ramesh Sharma, Film Director, Filmmaker India, Cinematic Videos, Music Video Director">
+    <meta name="description" content="Explore the career, filmography and television work of Ramesh R. Sharma, Indian film director, writer and assistant director.">
+    <meta name="keywords" content="Ramesh R Sharma, Ramesh Sharma director, Indian film director, B.R. Films, Bollywood, television director, filmography">
     <meta property="og:title" content="Ramesh Sharma – Film Director">
-    <meta property="og:description" content="Filmmaker specializing in short films & music videos.">
+    <meta property="og:description" content="A career across Indian cinema and television. Explore the filmography and work of director Ramesh R. Sharma.">
     <meta property="og:url" content="https://rameshsharma.vercel.app/">
     <meta property="og:type" content="website">
+    <meta name="theme-color" content="#090a0b">
+    <meta property="og:image" content="https://res.cloudinary.com/dipuhwwmz/image/upload/v1766900320/IMG-20210510-WA0031_qj7vcw.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://rameshsharma.vercel.app/">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ramesh R Sharma",
+      "jobTitle": ["Film Director", "Writer", "Assistant Director"],
+      "url": "https://rameshsharma.vercel.app/",
+      "image": "https://res.cloudinary.com/dipuhwwmz/image/upload/v1766900320/IMG-20210510-WA0031_qj7vcw.jpg",
+      "description": "Indian film and television director, writer and assistant director. Explore selected filmography and television credits.",
+      "knowsAbout": ["Indian cinema", "Television serials", "Film direction", "Screenwriting", "Advertising films"],
+      "sameAs": ["https://www.imdb.com/name/nm13643229/"]
+    }
+    </script>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cinematic.css">
     <style>
 /* TIMELINE COMPONENT RE-ENGINEERED */
 .timeline__container {
@@ -114,20 +133,22 @@
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <!-- Header Navigation -->
     <header class="header">
-        <nav class="nav container">
+        <nav class="nav container" aria-label="Main navigation">
             <div class="nav__logo">
                 <h3>Ramesh R Sharma</h3>
             </div>
-            <ul class="nav__menu">
+            <ul class="nav__menu" id="primary-navigation">
                 <li><a href="#home" class="nav__link">Home</a></li>
                 <li><a href="#bio" class="nav__link">Biography</a></li>
                 <li><a href="#filmography" class="nav__link">Filmography</a></li>
+                <li><a href="#directors-cut" class="nav__link">Director’s Cut</a></li>
                 <li><a href="#tv-serials" class="nav__link">TV Serials</a></li>
                 <li><a href="#contact" class="nav__link">Contact</a></li>
             </ul>
-            <button class="nav__toggle" id="nav-toggle">
+            <button class="nav__toggle" id="nav-toggle" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -135,21 +156,69 @@
         </nav>
     </header>
 
+    <main id="main-content">
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero" aria-labelledby="hero-title">
         <div class="hero__content container">
             <div class="hero__text">
-                <h1 class="hero__title">Ramesh R Sharma</h1>
+                <h1 id="hero-title" class="hero__title">Ramesh R Sharma</h1>
                 <h2 class="hero__subtitle">Film Director, Writer, Assistant Director</h2>
                 <p class="hero__tagline">From Assistant to Director - A Journey Through Indian Cinema</p>
                 <p class="hero__description">With decades of experience in Bollywood, connected to the legendary B.R. Films and having worked under B.R. Chopra and Ravi Chopra.</p>
                 <div class="hero__buttons">
-                    <button class="btn btn--primary" onclick="scrollToSection('bio')">Learn More</button>
-                    <button class="btn btn--outline" onclick="scrollToSection('contact')">Get in Touch</button>
+                    <button class="btn btn--primary" onclick="scrollToSection('filmography')">Explore the Credits</button>
+                    <button class="btn btn--outline" onclick="scrollToSection('contact')">Professional Enquiries</button>
                 </div>
             </div>
             <div class="hero__image">
-                <img src="https://res.cloudinary.com/dipuhwwmz/image/upload/v1766900320/IMG-20210510-WA0031_qj7vcw.jpg" alt="Ramesh R Sharma - Professional Portrait" class="hero__img">
+                <img src="https://res.cloudinary.com/dipuhwwmz/image/upload/v1766900320/IMG-20210510-WA0031_qj7vcw.jpg" alt="Ramesh R Sharma - Professional Portrait" class="hero__img" fetchpriority="high" decoding="async">
+            </div>
+        </div>
+    </section>
+
+    <!-- Cinematic credit strip -->
+    <section class="film-reel" aria-label="Creative disciplines">
+        <div class="film-reel__label">A career across</div>
+        <div class="film-reel__item"><span>01</span><strong>Indian Cinema</strong></div>
+        <div class="film-reel__item"><span>02</span><strong>Television Serials</strong></div>
+        <div class="film-reel__item"><span>03</span><strong>Advertising Films</strong></div>
+    </section>
+
+    <!-- Selected directing work / verified reel destination -->
+    <section id="directors-cut" class="directors-cut" aria-labelledby="directors-cut-title">
+        <div class="directors-cut__inner container">
+            <div class="directors-cut__visual">
+                <img src="https://res.cloudinary.com/dipuhwwmz/image/upload/v1766901441/DSC08995_lnmion.jpg"
+                     alt="Behind-the-scenes photograph from Ramesh R Sharma’s filmmaking work"
+                     loading="lazy" decoding="async">
+                <span class="directors-cut__frame-label">ON SET · BEHIND THE FRAME</span>
+            </div>
+            <div class="directors-cut__copy">
+                <p class="eyebrow">SELECTED DIRECTING WORK</p>
+                <h2 id="directors-cut-title">Stories made<br><em>to be seen.</em></h2>
+                <p class="directors-cut__intro">A selection from Ramesh R Sharma’s directing and writing credits, alongside a career across Indian film and television production.</p>
+                <div class="directors-cut__credits">
+                    <a href="https://www.imdb.com/name/nm13643229/" target="_blank" rel="noopener noreferrer">
+                        <span class="directors-cut__number">01</span>
+                        <span><strong>The New Face of India</strong><small>Short film · Director / Writer · 2011</small></span>
+                        <span class="directors-cut__arrow" aria-hidden="true">↗</span>
+                    </a>
+                    <a href="https://www.imdb.com/title/tt20205284/" target="_blank" rel="noopener noreferrer">
+                        <span class="directors-cut__number">02</span>
+                        <span><strong>Awaaz-e-Hind Vande Mataram</strong><small>Television series · Director / Writer · 1997–1998</small></span>
+                        <span class="directors-cut__arrow" aria-hidden="true">↗</span>
+                    </a>
+                    <a href="https://www.imdb.com/name/nm13643229/" target="_blank" rel="noopener noreferrer">
+                        <span class="directors-cut__number">03</span>
+                        <span><strong>The Last Encounter</strong><small>Independent film · Director / Writer</small></span>
+                        <span class="directors-cut__arrow" aria-hidden="true">↗</span>
+                    </a>
+                </div>
+                <a class="directors-cut__reel" href="https://www.imdb.com/name/nm13643229/" target="_blank" rel="noopener noreferrer">
+                    <span class="directors-cut__play" aria-hidden="true">▶</span>
+                    <span><strong>Watch the director’s demo reel</strong><small>Opens the IMDb profile and available video</small></span>
+                    <span aria-hidden="true">↗</span>
+                </a>
             </div>
         </div>
     </section>
@@ -182,7 +251,7 @@
                     </div>
                 </div>
                 <div class="biography__image">
-                    <img src="https://res.cloudinary.com/dipuhwwmz/image/upload/v1766901441/DSC08995_lnmion.jpg" alt="Behind the scenes of Bollywood film making" class="biography__img">
+                    <img src="https://res.cloudinary.com/dipuhwwmz/image/upload/v1766901441/DSC08995_lnmion.jpg" alt="Behind the scenes of Bollywood film making" class="biography__img" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
@@ -272,8 +341,17 @@
     <section id="filmography" class="filmography">
         <div class="container">
             <h2 class="section__title">Filmography</h2>
+            <p class="filmography__intro">A selection of work across film, television, independent direction and advertising.</p>
+            <div class="filmography__filters" role="group" aria-label="Filter filmography by category">
+                <button class="filmography__filter is-active" type="button" data-film-filter="all" aria-pressed="true">All credits</button>
+                <button class="filmography__filter" type="button" data-film-filter="film" aria-pressed="false">Films</button>
+                <button class="filmography__filter" type="button" data-film-filter="television" aria-pressed="false">Television</button>
+                <button class="filmography__filter" type="button" data-film-filter="direction" aria-pressed="false">Directing</button>
+                <button class="filmography__filter" type="button" data-film-filter="advertising" aria-pressed="false">Advertising</button>
+            </div>
+            <p class="filmography__status" id="filmography-status" aria-live="polite">Showing all 4 categories</p>
             
-            <div class="filmography__category">
+            <div class="filmography__category" data-film-category="film">
                 <h3>Films as Assistant Director</h3>
                 <div class="film-grid">
                     <div class="film-card">
@@ -295,7 +373,7 @@
                 </div>
             </div>
 
-            <div class="filmography__category">
+            <div class="filmography__category" data-film-category="television">
                 <h3>TV Serials as Assistant Director</h3>
                 <div class="film-grid">
                     <div class="film-card">
@@ -329,7 +407,7 @@
                 </div>
             </div>
             
-            <div class="filmography__category">
+            <div class="filmography__category" data-film-category="direction">
                 <h3>Independent Direction</h3>
                 <div class="film-grid">
                     <div class="film-card">
@@ -345,7 +423,7 @@
                 </div>
             </div>
 
-            <div class="filmography__category">
+            <div class="filmography__category" data-film-category="advertising">
                 <h3>Advertisement Films</h3>
                 <div class="ad-grid">
                     <div class="ad-card">
@@ -382,7 +460,7 @@
                 <div class="tv-featured">
                     <div class="featured-serial">
                         <div class="featured-serial__image">
-                            <img src="https://m.media-amazon.com/images/M/MV5BYzZiY2QyNTMtNTMzMi00ODZkLWEwNWItYmJiM2MyNWJmY2Q5XkEyXkFqcGc@._V1_.jpg" alt="Mahabharat TV Serial Poster" class="featured-img">
+                            <img src="https://m.media-amazon.com/images/M/MV5BYzZiY2QyNTMtNTMzMi00ODZkLWEwNWItYmJiM2MyNWJmY2Q5XkEyXkFqcGc@._V1_.jpg" alt="Mahabharat TV Serial Poster" class="featured-img" loading="lazy" decoding="async">
                         </div>
                         <div class="featured-serial__content">
                             <h3>Mahabharat (1990)</h3>
@@ -393,7 +471,7 @@
                     
                     <div class="featured-serial">
                         <div class="featured-serial__image">
-                            <img src="https://pplx-res.cloudinary.com/image/upload/v1753508933/pplx_project_search_images/0644cea45d1be72fcff7c935602c0d95c3284a9a.jpg" alt="Jhansi Ki Rani TV Serial Poster" class="featured-img">
+                            <img src="https://pplx-res.cloudinary.com/image/upload/v1753508933/pplx_project_search_images/0644cea45d1be72fcff7c935602c0d95c3284a9a.jpg" alt="Jhansi Ki Rani TV Serial Poster" class="featured-img" loading="lazy" decoding="async">
                         </div>
                         <div class="featured-serial__content">
                             <h3>Jhansi Ki Rani (1995-1996)</h3>
@@ -514,10 +592,12 @@
         </div>
     </section>
 
+    </main>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Ramesh R Sharma. All rights reserved.</p>
+            <p>&copy; <span id="copyright-year">2026</span> Ramesh R Sharma. All rights reserved.</p>
         </div>
     </footer>
 
