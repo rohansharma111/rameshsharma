@@ -1085,3 +1085,127 @@ a:focus-visible, button:focus-visible {
   .tv-serials .serial-item,
   .contact__social .social-link { transition: none !important; }
 }
+
+
+/* 10 — FULL PRODUCTION SET: not a text-only title card.
+   Layered practical-light, camera, film frames, director chair, clapper and reel
+   create a set-like opening while keeping the real portrait available. */
+.hero.hero--production-set {
+  min-height: max(850px, 100svh) !important;
+  display: flex;
+  align-items: center;
+  isolation: isolate;
+  background: #080604 !important;
+}
+.hero--production-set .hero__set-dressing {
+  position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(5,4,3,.05) 0%, rgba(5,4,3,.5) 25%, rgba(5,4,3,.78) 48%, rgba(5,4,3,.15) 100%),
+    linear-gradient(0deg, rgba(4,3,2,.15), rgba(4,3,2,.3)),
+    url("https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=2200&q=90") center 44% / cover no-repeat;
+}
+.hero--production-set .hero__set-dressing::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 9% 25%, rgba(255,167,73,.28), transparent 18%),
+    radial-gradient(ellipse at 82% 86%, rgba(177,91,34,.24), transparent 24%),
+    linear-gradient(90deg, rgba(0,0,0,.12), rgba(0,0,0,.5) 36%, rgba(0,0,0,.08) 72%, rgba(0,0,0,.45));
+}
+.hero--production-set .hero__set-light {
+  position: absolute; left: -3%; top: 12%; width: clamp(150px, 22vw, 340px); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle, #fff3c9 0 7%, #ffd18a 10% 17%, rgba(255,166,69,.55) 23%, rgba(245,127,35,.14) 42%, transparent 68%);
+  filter: blur(2px); opacity: .9;
+}
+.hero--production-set .hero__set-camera {
+  position: absolute; left: -4%; bottom: 13%; width: clamp(180px, 28vw, 390px); height: clamp(220px, 33vw, 470px);
+  background: radial-gradient(ellipse at 60% 14%, #080706 0 12%, #282019 13% 17%, #050505 19% 26%, transparent 27%),
+    linear-gradient(90deg, #030303, #27221c 30%, #050505 66%, #18120c 80%, transparent 82%);
+  clip-path: polygon(12% 0, 72% 0, 83% 12%, 78% 24%, 100% 27%, 93% 58%, 72% 61%, 75% 100%, 3% 100%, 0 26%);
+  opacity: .9; filter: drop-shadow(16px 20px 22px #000);
+}
+.hero--production-set .hero__set-filmstrip {
+  position: absolute; right: -1.5%; top: 4%; width: clamp(115px, 22vw, 310px); height: 68%; padding: 15px 12px;
+  display: flex; flex-direction: column; gap: 10px; background: #0b0907; border: 1px solid rgba(231,190,137,.25);
+  transform: rotate(-9deg); box-shadow: 0 12px 70px #000;
+}
+.hero--production-set .hero__set-filmstrip::before, .hero--production-set .hero__set-filmstrip::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 7px;
+  background: repeating-linear-gradient(180deg, #c7a06a 0 9px, transparent 9px 19px); opacity: .65;
+}
+.hero--production-set .hero__set-filmstrip::before { left: 1px; }
+.hero--production-set .hero__set-filmstrip::after { right: 1px; }
+.hero--production-set .hero__set-filmstrip img {
+  display: block; width: 100%; min-height: 0; flex: 1; object-fit: cover;
+  filter: sepia(.45) brightness(.6) contrast(1.15); border: 1px solid rgba(222,183,127,.2);
+}
+.hero--production-set .hero__set-chair {
+  position: absolute; left: 2%; bottom: 5%; width: clamp(190px, 33vw, 470px); height: clamp(105px, 17vw, 220px);
+  transform: rotate(-4deg); border: 10px solid #100b07; border-bottom-width: 16px;
+  background: linear-gradient(110deg, #080706, #21170f 50%, #070605);
+  box-shadow: 0 16px 28px rgba(0,0,0,.8), inset 0 0 0 1px #79552f;
+}
+.hero--production-set .hero__set-chair::before {
+  content: ""; position: absolute; left: -8px; right: -8px; top: -18px; height: 24px;
+  border: 2px solid #77502b; background: linear-gradient(#302117, #080706);
+}
+.hero--production-set .hero__set-chair span {
+  display: block; padding-top: 22%; color: #b88b58; text-align: center;
+  font: 700 clamp(16px, 2.6vw, 34px)/1 sans-serif; letter-spacing: .14em; transform: rotate(-2deg);
+}
+.hero--production-set .hero__set-clapper {
+  position: absolute; right: 5%; bottom: 12%; width: clamp(170px, 25vw, 360px); padding: 18px 12px 25px;
+  display: flex; justify-content: space-around; color: #d5b58a; background: linear-gradient(160deg, #1d1711, #050505);
+  border: 2px solid #947044; box-shadow: 0 18px 28px rgba(0,0,0,.7); transform: rotate(-8deg); font: italic 11px/1.2 sans-serif;
+}
+.hero--production-set .hero__set-clapper::before {
+  content: ""; position: absolute; left: -2px; right: -2px; top: -17px; height: 18px;
+  background: repeating-linear-gradient(135deg, #d8c7ac 0 15px, #17120d 15px 30px); border: 1px solid #8b6b44;
+}
+.hero--production-set .hero__set-clapper i { position: absolute; left: 0; right: 0; bottom: 10px; height: 1px; background: #8b6b44; }
+.hero--production-set .hero__set-reel {
+  position: absolute; right: 10%; bottom: 5%; width: clamp(120px, 18vw, 260px); aspect-ratio: 1.9; border-radius: 50%;
+  background: radial-gradient(ellipse, transparent 0 13%, #17120d 14% 20%, #a87b44 21% 22%, #090807 23% 43%, #b0834d 44% 46%, #090807 47% 58%, transparent 59%);
+  opacity: .8;
+}
+.hero--production-set .hero__topline {
+  position: absolute; z-index: 3; top: 20px; left: clamp(20px, 4.5vw, 64px); right: clamp(20px, 4.5vw, 64px);
+  display: flex; align-items: center; justify-content: space-between; color: #fff0d9;
+  font: italic clamp(20px, 3vw, 36px)/1.2 "Brush Script MT", "Segoe Script", cursive; text-shadow: 0 2px 12px #000;
+}
+.hero--production-set .hero__menu-mark {
+  width: 70px; height: 70px; border: 1px solid rgba(235,201,156,.7); border-radius: 50%;
+  display: flex; flex-direction: column; justify-content: center; gap: 7px; padding: 0 18px;
+}
+.hero--production-set .hero__menu-mark i { height: 1px; background: #f0d4a9; display: block; }
+.hero--production-set .hero__content.container {
+  z-index: 2; width: min(100% - 36px, 820px); margin-inline: auto; padding-block: 125px 230px; justify-content: center;
+}
+.hero--production-set .hero__text {
+  width: min(100%, 660px); margin-inline: auto; text-align: center; padding: 25px 30px;
+  background: radial-gradient(ellipse, rgba(5,4,3,.76), rgba(5,4,3,.42) 64%, transparent 100%);
+}
+.hero--production-set .hero__text::after { margin-inline: auto; }
+.hero--production-set .hero__title {
+  font-size: clamp(3.7rem, 8vw, 7.6rem) !important; line-height: .9; text-transform: uppercase;
+  letter-spacing: -.04em; text-wrap: balance;
+}
+.hero--production-set .hero__image { display: none !important; }
+.hero--production-set .hero__subtitle { font-size: clamp(10px, 1.2vw, 14px); }
+.hero--production-set .hero__buttons { justify-content: center; }
+.hero--production-set .hero__buttons .btn { min-height: 62px; }
+@media (max-width: 760px) {
+  .hero.hero--production-set { min-height: 100svh !important; }
+  .hero--production-set .hero__content.container { padding: 112px 18px 250px !important; width: 100% !important; }
+  .hero--production-set .hero__text { padding: 18px 8px; background: radial-gradient(ellipse, rgba(5,4,3,.8), rgba(5,4,3,.48) 70%, transparent 100%); }
+  .hero--production-set .hero__title { font-size: clamp(2.8rem, 12vw, 4.2rem) !important; }
+  .hero--production-set .hero__set-camera { left: -13%; bottom: 12%; opacity: .6; }
+  .hero--production-set .hero__set-chair { left: -5%; bottom: 4%; width: 52%; height: 95px; }
+  .hero--production-set .hero__set-chair span { padding-top: 23%; font-size: 14px; }
+  .hero--production-set .hero__set-filmstrip { right: -8%; top: 19%; width: 25%; height: 45%; opacity: .65; }
+  .hero--production-set .hero__set-clapper { right: 1%; bottom: 8%; width: 44%; padding: 14px 8px 20px; }
+  .hero--production-set .hero__set-reel { right: 8%; bottom: 2%; width: 24%; }
+  .hero--production-set .hero__topline { top: 16px; font-size: 22px; }
+  .hero--production-set .hero__menu-mark { width: 48px; height: 48px; padding: 0 12px; gap: 5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero--production-set * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
