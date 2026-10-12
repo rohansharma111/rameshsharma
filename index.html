@@ -60,7 +60,20 @@
 
     <main id="main-content">
     <!-- Hero Section -->
-    <section id="home" class="hero" aria-labelledby="hero-title">
+    <section id="home" class="hero hero--production-set" aria-labelledby="hero-title">
+        <div class="hero__set-dressing" aria-hidden="true">
+            <div class="hero__set-light"></div>
+            <div class="hero__set-camera"></div>
+            <div class="hero__set-filmstrip">
+                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=85" alt="" fetchpriority="high">
+                <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=600&q=85" alt="" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=600&q=85" alt="" loading="lazy">
+            </div>
+            <div class="hero__set-chair"><span>DIRECTOR</span></div>
+            <div class="hero__set-clapper"><span>SCENE</span><span>TAKE</span><span>ROLL</span><i></i></div>
+            <div class="hero__set-reel"></div>
+        </div>
+        <div class="hero__topline" aria-hidden="true"><span>Ramesh R Sharma</span><span class="hero__menu-mark"><i></i><i></i><i></i></span></div>
         <div class="hero__content container">
             <div class="hero__text">
                 <h1 id="hero-title" class="hero__title">Ramesh R Sharma</h1>
@@ -72,8 +85,9 @@
                     <a class="btn btn--outline" href="#contact">Professional Enquiries <span aria-hidden="true">↗</span></a>
                 </div>
             </div>
-            <div class="hero__image">
+            <div class="hero__image hero__portrait-card">
                 <img src="https://res.cloudinary.com/dipuhwwmz/image/upload/v1766900320/IMG-20210510-WA0031_qj7vcw.jpg" alt="Portrait of Ramesh R Sharma" class="hero__img" data-image-fallback="Portrait of Ramesh R Sharma" fetchpriority="high" decoding="async">
+                <span class="hero__portrait-caption">THE DIRECTOR · BEHIND THE FRAME</span>
             </div>
         </div>
     </section>
