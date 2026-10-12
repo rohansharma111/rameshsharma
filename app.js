@@ -354,3 +354,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, 1000);
 });
+
+/* Cinematic reveal choreography: gentle chapter entrances, no scroll hijacking. */
+document.addEventListener('DOMContentLoaded', function initCinematicReveals() {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const targets = document.querySelectorAll(
+        '.section__title, .directors-cut__visual, .directors-cut__copy, .featured-serial, .film-reel__item, .contact__info, .contact__social'
+    );
+    if (reducedMotion || !('IntersectionObserver' in window)) {
+        targets.forEach(element => element.classList.add('is-in-view'));
+        return;
+    }
+    targets.forEach((element, index) => {
+        element.classList.add('cinema-reveal');
+        if (element.matches('.film-reel__item, .featured-serial')) {
+            element.style.transitionDelay = (index % 3) * 90 + 'ms';
+        }
+    });
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-in-view');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.14, rootMargin: '0px 0px -35px 0px' });
+    targets.forEach(element => observer.observe(element));
+});
