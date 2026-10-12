@@ -946,3 +946,142 @@ a:focus-visible, button:focus-visible {
   .tv-serials .serial-item:hover,
   .contact__social .social-link:hover { transform: none; }
 }
+
+
+/* ART-DIRECTION PASS 3 — stronger image-led storytelling and archival composition. */
+
+/* Give real photography and poster artwork the visual weight of an artefact. */
+.directors-cut__visual,
+.tv-serials .featured-serial__image {
+  position: relative;
+}
+.directors-cut__visual img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+.directors-cut__visual::before {
+  content: "PRODUCTION STILL  /  RRS ARCHIVE";
+  letter-spacing: .18em;
+}
+.tv-serials .featured-serial {
+  position: relative;
+}
+.tv-serials .featured-serial__image {
+  isolation: isolate;
+}
+.tv-serials .featured-serial__image::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(231,190,137,.25);
+  pointer-events: none;
+}
+.tv-serials .featured-serial__content h3 {
+  margin-bottom: 12px;
+}
+.tv-serials .featured-serial__content .role-badge {
+  width: fit-content;
+  max-width: 100%;
+}
+
+/* Career milestones read like labeled scenes on a continuous reel. */
+.timeline__year {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+.timeline__year::before {
+  content: "SCENE";
+  display: inline-block;
+  color: #a77c4c;
+  font: 600 7px/1.4 var(--font-sans, sans-serif);
+  letter-spacing: .18em;
+}
+.timeline__content h4 {
+  color: #f2dfc5;
+  text-wrap: balance;
+}
+.timeline__content p {
+  color: #c6b7a3;
+  line-height: 1.8;
+}
+.timeline__item:nth-child(odd) .timeline__content {
+  border-left: 2px solid rgba(217,154,85,.64) !important;
+}
+.timeline__item:nth-child(even) .timeline__content {
+  border-left: 2px solid rgba(197,111,78,.64) !important;
+}
+
+/* A more editorial opening for every archive category. */
+.filmography__category > h3 {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(231,190,137,.2);
+}
+.filmography__category > h3::after {
+  content: "";
+  display: block;
+  flex: 1 1 60px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(231,190,137,.4), transparent);
+}
+.filmography .film-card,
+.filmography .ad-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.filmography .film-card .film-type { margin-top: auto !important; }
+.filmography .film-role { line-height: 1.75; }
+
+/* Contact closes like a credit roll, not a generic two-column footer. */
+.contact .section__title {
+  letter-spacing: -.035em;
+}
+.contact__info > p {
+  max-width: 45ch;
+  color: #cbbba6;
+  line-height: 1.85;
+}
+.contact__details {
+  border-top: 1px solid rgba(231,190,137,.2);
+  margin-top: 24px;
+}
+.contact__item {
+  border-bottom: 1px solid rgba(231,190,137,.16);
+}
+.contact__item strong {
+  display: block;
+  min-width: 0;
+  margin-bottom: 3px;
+  font-size: 9px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+.contact__social h3 {
+  color: #e7c795;
+  letter-spacing: .04em;
+}
+.contact__social .social-link {
+  border-left: 2px solid rgba(217,154,85,.55) !important;
+}
+
+/* Visual detail stays quiet at phone sizes; content always wins. */
+@media (max-width: 760px) {
+  .timeline__year { flex-wrap: wrap; }
+  .timeline__content { padding: 18px 19px !important; }
+  .tv-serials .featured-serial__image::after { inset: 7px; }
+  .filmography__category > h3 { gap: 8px; }
+  .contact__item strong { margin-bottom: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tv-serials .featured-serial,
+  .tv-serials .serial-item,
+  .contact__social .social-link { transition: none !important; }
+}
