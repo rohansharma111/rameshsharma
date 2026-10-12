@@ -374,3 +374,14 @@ document.addEventListener('DOMContentLoaded', function startOpeningShot() {
     document.body.appendChild(gate);
     window.setTimeout(() => gate.remove(), 1400);
 });
+
+/* Television archive resilience: preserve a designed title frame if a remote poster fails. */
+document.addEventListener('DOMContentLoaded', function initPosterFallbacks() {
+    document.querySelectorAll('.featured-serial__image').forEach(frame => {
+        const image = frame.querySelector('img');
+        if (!image) return;
+        const markUnavailable = () => frame.classList.add('poster-unavailable');
+        image.addEventListener('error', markUnavailable, { once: true });
+        if (image.complete && image.naturalWidth === 0) markUnavailable();
+    });
+});
