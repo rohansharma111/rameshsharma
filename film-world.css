@@ -1671,3 +1671,70 @@ body::after {
   .broadcast-intro__bars i { animation:none !important; transform:scaleY(.7); }
   .filmography__filter { transition:none !important; }
 }
+
+
+/* 17 — MOBILE QUALITY PASS: real image frames, readable cards, and an actual camera cue. */
+.filmography__category[data-film-category="advertising"]::before {
+  background-image: linear-gradient(90deg,rgba(7,5,3,.35),rgba(7,5,3,.04) 58%,rgba(7,5,3,.25)),
+    url("https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1400&q=85");
+  background-position:center 48%;
+}
+.filmography__category[data-film-category="direction"]::before {
+  background-image: linear-gradient(90deg,rgba(7,5,3,.3),rgba(7,5,3,.02) 58%,rgba(7,5,3,.28)),
+    url("https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=1400&q=85");
+  background-position:center 45%;
+}
+.filmography__category[data-film-category="film"]::after {
+  top:auto; bottom:calc(100% - 35px); left:12px;
+}
+.filmography__category[data-film-category="film"]::before { background-position:center 28%; }
+.filmography__category[data-film-category="film"]::after,
+.filmography__category[data-film-category="direction"]::after,
+.filmography__category[data-film-category="advertising"]::after {
+  z-index:2; max-width:calc(100% - 24px); white-space:normal;
+}
+.filmography .film-card,
+.filmography .ad-card {
+  padding:clamp(23px,4vw,34px) clamp(24px,5vw,38px) !important;
+}
+.filmography .film-card h4,
+.filmography .ad-card h4 { margin-bottom:12px; }
+.filmography .film-card .film-role,
+.filmography .ad-card p { margin-top:0; line-height:1.65; }
+.timeline__content { padding:clamp(22px,4vw,34px) clamp(24px,5vw,38px) !important; }
+.timeline__content h4 { margin-bottom:12px; }
+.timeline__content p { line-height:1.7; }
+.hero--production-set .hero__set-clapper { transition:transform .28s cubic-bezier(.2,.8,.2,1); }
+.hero.is-rolling .hero__set-clapper { transform:rotate(-18deg) translateY(-14px); }
+.hero.is-rolling::after {
+  content:"REC  ●   TAKE 01   •   RAMESH R SHARMA";
+  position:absolute; z-index:5; left:clamp(20px,5vw,70px); top:clamp(145px,22vh,230px);
+  padding:9px 12px; border:1px solid rgba(220,67,46,.72);
+  color:#f6e6d0; background:rgba(20,5,3,.68);
+  font:700 9px/1.3 var(--font-sans,sans-serif); letter-spacing:.18em;
+  animation:record-overlay-in .35s ease both;
+}
+.hero.is-rolling .hero__set-filmstrip { animation-duration:5s; }
+.hero.is-rolling .hero__set-reel { animation-duration:1.5s; }
+.hero.is-rolling .hero__set-light { animation-duration:.8s; }
+@keyframes record-overlay-in {
+  from { opacity:0; transform:translateY(-8px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@media (max-width:760px) {
+  .filmography__category[data-film-category="film"]::after,
+  .filmography__category[data-film-category="direction"]::after,
+  .filmography__category[data-film-category="advertising"]::after {
+    top: auto; bottom: auto; left:12px; transform:translateY(-100%); margin-top:-10px;
+  }
+  .filmography__category[data-film-category="film"]::after { top:155px; }
+  .filmography__category[data-film-category="direction"]::after,
+  .filmography__category[data-film-category="advertising"]::after { top:155px; }
+  .filmography .film-card,
+  .filmography .ad-card { padding:25px 25px 27px !important; }
+  .timeline__content { padding:22px 24px !important; }
+  .hero.is-rolling::after { top:148px; left:18px; font-size:7px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .hero.is-rolling::after { animation:none; }
+}
