@@ -262,3 +262,40 @@ section { scroll-margin-top: 75px; }
   .highlight-card:last-child { border-bottom: 0; }
   .directors-cut__credits a { grid-template-columns: 25px 1fr 20px; gap: 10px; }
 }
+
+
+/* Reference-match pass: remove legacy template behavior and tighten mobile rhythm */
+.highlights__grid { align-items: stretch; }
+.highlight-card { min-width: 0; }
+.timeline__container { padding: 8px 0 0; }
+.timeline__container::before { background: var(--line); width: 1px; }
+.timeline__item, .timeline__item.right { display: block; }
+.timeline__item::after, .timeline__item.right::after { background: var(--gold); }
+.timeline__year { display: inline-block; padding: 0; min-width: 0; background: transparent; color: var(--gold); box-shadow: none; border-radius: 0; font-size: 10px; letter-spacing: .2em; }
+.timeline__content { margin: 7px 0 0; min-width: 0; max-width: none; border: 0; border-left: 2px solid var(--line); border-radius: 0; background: transparent; color: var(--paper); padding: 2px 0 3px 18px; box-shadow: none; }
+.timeline__content h4 { color: var(--paper); font-weight: 500; }
+.timeline__content p { color: var(--muted); }
+@media (min-width: 761px) {
+  .timeline__item { display: flex; flex-direction: column; }
+  .timeline__item.right { display: flex; flex-direction: column; }
+}
+@media (max-width: 760px) {
+  .highlights__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .highlight-card, .highlight-card:first-child, .highlight-card:nth-child(3) { padding: 20px 14px 22px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .highlight-card:nth-child(2n) { border-right: 0; }
+  .highlight-card:nth-child(3), .highlight-card:nth-child(4) { border-bottom: 0; }
+  .highlight-card__icon { font-size: 20px; margin-bottom: 12px; }
+  .highlight-card h3 { font-size: 1.35rem; line-height: 1.05; }
+  .highlight-card p { font-size: 11px; line-height: 1.65; }
+  .timeline__container::before { left: 5px; }
+  .timeline__item, .timeline__item.right { width: 100%; margin: 0; padding: 0 0 28px 28px; }
+  .timeline__item::after, .timeline__item.right::after { left: 1px; right: auto; }
+  .timeline__content { margin: 7px 0 0; padding: 1px 0 2px 14px; }
+  .timeline__content h4 { font-size: 1.45rem; }
+}
+@media (max-width: 420px) {
+  .highlights__grid { grid-template-columns: 1fr 1fr; }
+  .highlight-card, .highlight-card:first-child, .highlight-card:nth-child(3) { padding: 17px 10px 19px; }
+  .highlight-card h3 { font-size: 1.2rem; }
+  .highlight-card p { font-size: 10px; }
+}
