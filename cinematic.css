@@ -366,3 +366,50 @@ section { scroll-margin-top: 74px; }
   .featured-serial__image.poster-unavailable { min-height: 160px; }
   .featured-serial__image.poster-unavailable::after { inset: 8%; padding: 10px; font-size: 1.2rem; }
 }
+
+/* Phase 5 — graceful image failures and final small-screen refinements. */
+.hero__image.image-unavailable,
+.directors-cut__visual.image-unavailable {
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 50% 38%, rgba(201,160,108,.22), transparent 48%),
+    linear-gradient(145deg, #211b13, #0c0b09 72%);
+}
+.hero__image.image-unavailable .hero__img,
+.directors-cut__visual.image-unavailable img { display: none; }
+.image-fallback {
+  position: absolute;
+  inset: 12px;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  border: 1px solid rgba(231,201,158,.32);
+  color: rgba(244,238,228,.72);
+  font: 500 clamp(1.6rem, 4vw, 3.2rem)/.95 var(--cinema-serif);
+  text-align: center;
+  text-wrap: balance;
+  letter-spacing: .035em;
+}
+.directors-cut__visual.image-unavailable .image-fallback {
+  inset: 16px;
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+}
+@media (max-width: 760px) {
+  .hero__buttons { align-items: stretch; }
+  .hero__buttons .btn { min-width: 0; }
+  .directors-cut__visual.image-unavailable { min-height: 250px; }
+  .image-fallback { inset: 10px; padding: 15px; }
+}
+@media (max-width: 390px) {
+  .hero__title { overflow-wrap: anywhere; }
+  .hero__subtitle { max-width: 100%; line-height: 1.7; }
+  .hero__buttons .btn { justify-content: space-between; }
+  .filmography__filters { align-items: stretch; }
+  .filmography__filter { flex: 1 1 auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__text::before, .hero__title, .hero__subtitle, .hero__image { animation: none !important; }
+  .directors-cut__visual img, .featured-img { transition: none !important; }
+}
