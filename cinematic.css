@@ -516,3 +516,17 @@ section { scroll-margin-top: 75px; }
   .film-card h4, .filmography__card h4, .filmography__item h4 { font-size: 1.28rem; }
   .film-card p, .film-card .film-role, .filmography__card p, .filmography__item p { font-size: 12px; }
 }
+
+
+/* Remove monochrome portrait treatment and retire leftover cyan accents */
+.biography__img { filter: none; }
+.directors-cut__visual img, .directors-cut__visual:hover img { filter: none; }
+.detail-card, .biography__details .detail-card { border-color: rgba(201,154,105,.28); }
+.detail-card h4, .biography__details .detail-card h4 { color: var(--gold-light); }
+.hero__title { color: var(--paper); }
+.hero__title .accent, .hero__title em { color: var(--gold-light); }
+.filmography__category > h3::before { color: var(--gold); }
+@media (max-width: 760px) {
+  .biography__image { margin-top: 4px; }
+  .biography__img { aspect-ratio: 4/3; object-position: center 25%; }
+}
