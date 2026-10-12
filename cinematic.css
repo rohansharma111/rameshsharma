@@ -774,3 +774,55 @@ body { background: #090a0b; }
     scroll-behavior: auto !important;
   }
 }
+
+
+/* Filmography category filters */
+.filmography__intro {
+  max-width: 650px;
+  margin: -18px auto 28px;
+  color: rgba(244,240,232,.66);
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.75;
+}
+.filmography__filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 9px;
+  margin: 0 auto 12px;
+}
+.filmography__filter {
+  appearance: none;
+  border: 1px solid rgba(244,240,232,.22);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--cinema-paper, #f4f0e8);
+  padding: 10px 17px;
+  min-height: 42px;
+  font: 600 11px/1.2 var(--cinema-sans, sans-serif);
+  letter-spacing: .045em;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.filmography__filter:hover,
+.filmography__filter:focus-visible {
+  border-color: var(--cinema-gold-light, #e4b08d);
+}
+.filmography__filter.is-active {
+  background: var(--cinema-gold, #c46b4f);
+  border-color: var(--cinema-gold, #c46b4f);
+  color: #100c0a;
+}
+.filmography__status {
+  margin: 0 0 32px;
+  color: rgba(244,240,232,.45);
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: .08em;
+}
+.filmography__category[hidden] { display: none !important; }
+@media (max-width: 480px) {
+  .filmography__filters { gap: 7px; }
+  .filmography__filter { padding: 9px 13px; }
+}
