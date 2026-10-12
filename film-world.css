@@ -1738,3 +1738,38 @@ body::after {
 @media (prefers-reduced-motion:reduce) {
   .hero.is-rolling::after { animation:none; }
 }
+
+
+/* 18 — PORTRAIT FRAMING: preserve faces in wide archive artwork and bring the director into the hero. */
+.hero--production-set .hero__content { grid-template-columns:minmax(0,1.08fr) minmax(230px,.72fr); align-items:center; gap:clamp(24px,5vw,76px); }
+.hero--production-set .hero__image {
+  display:block !important; position:relative; width:100%; max-width:390px; justify-self:end;
+  margin:34px 10px 20px 0; padding:0 0 18px 18px; align-self:center;
+}
+.hero--production-set .hero__image::before { inset:18px -10px -2px 2px; }
+.hero--production-set .hero__img {
+  display:block; width:100%; height:auto; aspect-ratio:4/5; max-height:540px;
+  object-fit:cover; object-position:center 20%; border:1px solid rgba(225,190,139,.42);
+}
+.hero--production-set .hero__portrait-caption {
+  position:absolute; bottom:0; right:0; z-index:2; padding:7px 10px;
+  color:#f2d8b2; background:rgba(8,6,4,.88); font-size:8px; letter-spacing:.16em;
+}
+.filmography__category[data-film-category="film"]::before {
+  background-position:center 20% !important;
+  background-size:cover;
+}
+@media (min-width:761px) {
+  .hero--production-set .hero__content { padding-top:130px; padding-bottom:86px; }
+  .hero--production-set .hero__text { max-width:680px; }
+}
+@media (max-width:760px) {
+  .hero--production-set .hero__content { display:flex; flex-direction:column; align-items:stretch; gap:25px; }
+  .hero--production-set .hero__image { width:min(78%,330px); max-width:330px; margin:8px auto 26px; padding:0 0 14px 12px; order:2; }
+  .hero--production-set .hero__img { aspect-ratio:4/4.7; max-height:390px; object-position:center 20%; }
+  .hero--production-set .hero__portrait-caption { font-size:7px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .hero--production-set .hero__image,
+  .hero--production-set .hero__img { transition:none !important; }
+}
