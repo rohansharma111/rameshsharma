@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (navToggle) {
         navToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', navMenu.classList.contains('active') ? 'true' : 'false');
+            navToggle.setAttribute('aria-label', navMenu.classList.contains('active') ? 'Close navigation menu' : 'Open navigation menu');
             
             // Animate hamburger menu
             const spans = navToggle.querySelectorAll('span');
@@ -43,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
             navMenu.classList.remove('active');
+            if (navToggle) { navToggle.setAttribute('aria-expanded', 'false'); navToggle.setAttribute('aria-label', 'Open navigation menu'); }
             
             // Reset hamburger menu
             if (navToggle) {
@@ -246,6 +249,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     `;
     document.head.appendChild(style);
+
+    // Keep the copyright year current without manual edits.
+    const copyrightYear = document.getElementById('copyright-year');
+    if (copyrightYear) copyrightYear.textContent = new Date().getFullYear();
 
     // Initialize everything
     function init() {
