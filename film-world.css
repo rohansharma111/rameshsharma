@@ -1583,7 +1583,7 @@ body::after {
 
 
 /* 15 — IMAGE-LED ARCHIVE: each credit department gets a visual frame of its own. */
-.filmography__category[data-film-category="assistant"]::before,
+.filmography__category[data-film-category="film"]::before,
 .filmography__category[data-film-category="direction"]::before,
 .filmography__category[data-film-category="advertising"]::before {
   content:""; display:block; width:100%; height:clamp(110px,16vw,210px); margin:0 0 24px;
@@ -1591,7 +1591,7 @@ body::after {
   background-color:#0b0805; background-position:center; background-size:cover;
   box-shadow:inset 0 0 0 8px rgba(0,0,0,.25);
 }
-.filmography__category[data-film-category="assistant"]::before {
+.filmography__category[data-film-category="film"]::before {
   background-image:linear-gradient(90deg,rgba(7,5,3,.85),rgba(7,5,3,.1) 58%,rgba(7,5,3,.5)),
     url("https://m.media-amazon.com/images/M/MV5BYzZiY2QyNTMtNTMzMi00ODZkLWEwNWItYmJiM2MyNWJmY2Q5XkEyXkFqcGc@._V1_.jpg");
   background-position:center 35%;
@@ -1606,23 +1606,23 @@ body::after {
     url("https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=1400&q=85");
   background-position:center 50%;
 }
-.filmography__category[data-film-category="assistant"]::after,
+.filmography__category[data-film-category="film"]::after,
 .filmography__category[data-film-category="direction"]::after,
 .filmography__category[data-film-category="advertising"]::after {
   position:absolute; top:28px; left:18px; padding:8px 10px;
   color:#f0d4ac; background:rgba(6,4,2,.72); border:1px solid rgba(217,154,85,.35);
   font:600 8px/1.2 var(--font-sans,sans-serif); letter-spacing:.2em;
 }
-.filmography__category[data-film-category="assistant"]::after { content:"ARCHIVE / ASSISTANT DIRECTION"; }
+.filmography__category[data-film-category="film"]::after { content:"ARCHIVE / ASSISTANT DIRECTION"; }
 .filmography__category[data-film-category="direction"]::after { content:"DIRECTOR’S CUT / ORIGINAL WORK"; }
 .filmography__category[data-film-category="advertising"]::after { content:"COMMERCIALS / CAMPAIGN FILMS"; }
 .filmography__category[hidden]::before,
 .filmography__category[hidden]::after { display:none; }
 @media (max-width:760px) {
-  .filmography__category[data-film-category="assistant"]::before,
+  .filmography__category[data-film-category="film"]::before,
   .filmography__category[data-film-category="direction"]::before,
   .filmography__category[data-film-category="advertising"]::before { height:125px; margin-bottom:18px; }
-  .filmography__category[data-film-category="assistant"]::after,
+  .filmography__category[data-film-category="film"]::after,
   .filmography__category[data-film-category="direction"]::after,
   .filmography__category[data-film-category="advertising"]::after { top:16px; left:12px; font-size:7px; }
 }
