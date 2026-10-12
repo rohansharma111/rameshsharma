@@ -1507,3 +1507,12 @@ body::after {
   .directors-cut__visual::after { animation:none !important; }
   .directors-cut__visual img,.highlight-card,.timeline__item,.filmography .film-card,.filmography .ad-card,.featured-serial,.featured-serial__image img { transition:none !important; }
 }
+
+@keyframes archive-chapter-enter {
+  from { opacity:0; transform:translateY(14px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.filmography__category.archive-enter { animation:archive-chapter-enter .45s cubic-bezier(.2,.8,.2,1) both; }
+@media (prefers-reduced-motion:reduce) {
+  .filmography__category.archive-enter { animation:none !important; }
+}
