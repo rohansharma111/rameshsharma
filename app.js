@@ -231,8 +231,21 @@
         if (strong) strong.textContent = rolling ? 'CAMERA ROLLING' : 'ROLL CAMERA';
         if (small) small.textContent = rolling ? 'Tap to cut' : 'Enter the story';
         if (rollStatus) rollStatus.textContent = rolling
-          ? '● REC · THE STORY IS IN MOTION'
+          ? '● REC · TAKE 01 · THE STORY IS IN MOTION'
           : 'STANDBY · READY WHEN YOU ARE';
+        if (rolling) {
+          hero.classList.add('camera-take-started');
+          // Let the recording slate appear, then reveal the next chapter like a film opening.
+          window.setTimeout(() => {
+            const nextChapter = document.querySelector('.story-trailer');
+            if (!nextChapter) return;
+            const headerHeight = header ? header.getBoundingClientRect().height : 0;
+            const targetTop = window.scrollY + nextChapter.getBoundingClientRect().top - headerHeight - 12;
+            window.scrollTo({ top: targetTop, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+          }, 650);
+        } else {
+          hero.classList.remove('camera-take-started');
+        }
       });
 
       // Gentle focus drift on pointer devices only; touch users get the designed default.
