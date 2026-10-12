@@ -465,3 +465,61 @@ section { scroll-margin-top: 74px; }
   .highlight-card:last-child { border-bottom: 0; }
   .featured-serial__image { aspect-ratio: 4 / 3; }
 }
+
+
+/* Phase 7 — fix real-device overflow and restore one coherent brass/ivory palette. */
+@media (max-width: 760px) {
+  /* Keep the biography from sitting beneath the fixed mobile header. */
+  .header, .header.is-scrolled { position: fixed; inset: 0 0 auto; }
+  main { position: relative; }
+  .biography { padding-top: 92px; }
+  .biography .container > .section__title { margin-top: 0; }
+  .biography__intro { font-size: clamp(1.4rem, 5.5vw, 2rem) !important; line-height: 1.28; }
+  .biography__details { grid-template-columns: minmax(0,1fr) !important; gap: 0 !important; }
+  .detail-card { padding: 16px 0 !important; border: 0 !important; border-bottom: 1px solid var(--cinema-line) !important; }
+  .detail-card:last-child { border-bottom: 0 !important; }
+  .detail-card h4 { color: var(--cinema-gold-light) !important; }
+  .detail-card p { font-size: 12px !important; overflow-wrap: anywhere; }
+
+  /* Single-column timeline with consistent left alignment. */
+  .timeline__container { padding: 0 0 0 22px !important; }
+  .timeline__container::before { left: 4px !important; }
+  .timeline__item,
+  .timeline__item.left,
+  .timeline__item.right { display: block !important; padding: 0 0 0 18px !important; margin: 0 0 30px !important; }
+  .timeline__item::before { left: 0 !important; }
+  .timeline__year,
+  .timeline__item.left .timeline__year,
+  .timeline__item.right .timeline__year { display: block !important; padding: 0 !important; margin: 0 0 9px !important; text-align: left !important; font-size: 1.8rem !important; }
+  .timeline__content,
+  .timeline__item.left .timeline__content,
+  .timeline__item.right .timeline__content { margin: 0 !important; padding: 0 0 18px !important; text-align: left !important; }
+  .timeline__content h4 { font-size: 1.5rem !important; }
+  .timeline__content p { font-size: 12px !important; }
+
+  /* Poster and copy must stack, never overlap. */
+  .tv-serials .container { min-width: 0; }
+  .tv-featured { display: grid !important; grid-template-columns: minmax(0,1fr) !important; }
+  .tv-featured > .featured-serial,
+  .tv-serials .featured-serial { display: flex !important; flex-direction: column !important; width: 100% !important; min-width: 0 !important; gap: 0 !important; padding: 12px !important; margin: 0 0 16px !important; overflow: hidden !important; }
+  .tv-serials .featured-serial__image { position: relative !important; display: block !important; width: 100% !important; height: auto !important; min-height: 0 !important; aspect-ratio: 4 / 3 !important; overflow: hidden !important; }
+  .tv-serials .featured-serial__image img,
+  .tv-serials .featured-serial__image .featured-img { position: static !important; display: block !important; width: 100% !important; height: 100% !important; min-height: 0 !important; max-height: none !important; object-fit: contain !important; object-position: center !important; }
+  .tv-serials .featured-serial__content { position: relative !important; display: block !important; width: 100% !important; min-width: 0 !important; padding: 16px 4px 5px !important; overflow-wrap: anywhere !important; }
+  .tv-serials .featured-serial__content h3 { margin: 0 0 10px !important; font-size: 1.55rem !important; line-height: 1.1 !important; color: var(--cinema-paper) !important; }
+  .tv-serials .featured-serial__content p { margin: 0 0 10px !important; font-size: 12px !important; line-height: 1.7 !important; }
+  .tv-serials .role-badge { display: inline-block !important; max-width: 100% !important; white-space: normal !important; padding: 7px 10px !important; border: 1px solid var(--cinema-line) !important; border-radius: 2px !important; background: rgba(201,160,108,.08) !important; color: var(--cinema-gold-light) !important; }
+
+  /* Archive tags are quiet text, not high-contrast coral bars. */
+  .filmography .film-type { display: inline-block !important; width: fit-content !important; max-width: 100% !important; margin-top: 8px !important; padding: 3px 0 !important; background: transparent !important; color: var(--cinema-gold-light) !important; border-radius: 0 !important; font-size: 10px !important; }
+  .filmography .film-card,
+  .filmography .ad-card { border-color: var(--cinema-line) !important; border-left-color: rgba(201,160,108,.65) !important; background: #11100d !important; }
+  .tv-serials .serial-item { border-color: var(--cinema-line) !important; background: #17130e !important; }
+  .tv-serials .serial-item h4 { color: var(--cinema-paper) !important; }
+  .contact .social-link { border-color: var(--cinema-line) !important; background: #11100d !important; color: var(--cinema-paper) !important; }
+  .contact .contact__info h3, .contact .contact__social h3 { color: var(--cinema-paper) !important; }
+}
+@media (max-width: 390px) {
+  .tv-serials .featured-serial__image { aspect-ratio: 1 / 1 !important; }
+  .tv-serials .featured-serial__content h3 { font-size: 1.4rem !important; }
+}
