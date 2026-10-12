@@ -215,5 +215,121 @@
       document.body.appendChild(gate);
       window.setTimeout(() => gate.remove(), 1100);
     }
+
+    // Interactive camera-roll: turn the hero from standby into an active set.
+    const rollButton = document.getElementById('roll-camera');
+    const rollStatus = document.getElementById('roll-status');
+    const hero = document.querySelector('.hero--production-set');
+    if (rollButton && hero) {
+      rollButton.addEventListener('click', () => {
+        const rolling = !hero.classList.contains('is-rolling');
+        hero.classList.toggle('is-rolling', rolling);
+        document.body.classList.toggle('is-camera-rolling', rolling);
+        rollButton.setAttribute('aria-pressed', String(rolling));
+        const strong = rollButton.querySelector('strong');
+        const small = rollButton.querySelector('small');
+        if (strong) strong.textContent = rolling ? 'CAMERA ROLLING' : 'ROLL CAMERA';
+        if (small) small.textContent = rolling ? 'Tap to cut' : 'Enter the story';
+        if (rollStatus) rollStatus.textContent = rolling
+          ? '● REC · TAKE 01 · THE STORY IS IN MOTION'
+          : 'STANDBY · READY WHEN YOU ARE';
+        if (rolling) {
+          hero.classList.add('camera-take-started');
+          // Let the recording slate appear, then reveal the next chapter like a film opening.
+          window.setTimeout(() => {
+            const nextChapter = document.querySelector('.story-trailer');
+            if (!nextChapter) return;
+            const headerHeight = header ? header.getBoundingClientRect().height : 0;
+            const targetTop = window.scrollY + nextChapter.getBoundingClientRect().top - headerHeight - 12;
+            window.scrollTo({ top: targetTop, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+          }, 650);
+        } else {
+          hero.classList.remove('camera-take-started');
+        }
+      });
+
+      // Gentle focus drift on pointer devices only; touch users get the designed default.
+      if (!reducedMotion.matches && window.matchMedia('(pointer:fine)').matches) {
+        hero.addEventListener('pointermove', (event) => {
+          const bounds = hero.getBoundingClientRect();
+          const x = ((event.clientX - bounds.left) / bounds.width - .5) * 5;
+          const y = ((event.clientY - bounds.top) / bounds.height - .5) * 5;
+          hero.style.setProperty('--focus-x', (50 + x) + '%');
+          hero.style.setProperty('--focus-y', (45 + y) + '%');
+        }, { passive: true });
+        hero.addEventListener('pointerleave', () => {
+          hero.style.setProperty('--focus-x', '50%');
+          hero.style.setProperty('--focus-y', '45%');
+        }, { passive: true });
+      }
+    }
+
+    // Give each chapter a subtle active state as it enters the viewer's focus.
+    const chapters = document.querySelectorAll('.production-chapter');
+    if (!reducedMotion.matches && 'IntersectionObserver' in window) {
+      const chapterObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle('is-chapter-active', entry.isIntersecting);
+        });
+      }, { threshold: 0.22 });
+      chapters.forEach((chapter) => chapterObserver.observe(chapter));
+    } else {
+      chapters.forEach((chapter) => chapter.classList.add('is-chapter-active'));
+    }
+
+    // Cinematic scroll progression and scene-by-scene timeline focus.
+    let progressQueued = false;
+    const updateStoryProgress = () => {
+      const root = document.documentElement;
+      const maxScroll = root.scrollHeight - window.innerHeight;
+      const progress = maxScroll > 0 ? Math.min(1, Math.max(0, window.scrollY / maxScroll)) : 0;
+      root.style.setProperty('--story-progress', progress.toFixed(4));
+      const timeline = document.querySelector('.timeline');
+      const timelineContainer = document.querySelector('.timeline__container');
+      if (timeline && timelineContainer) {
+        const rect = timelineContainer.getBoundingClientRect();
+        const visibleTravel = Math.max(1, rect.height);
+        const passed = Math.min(1, Math.max(0, (window.innerHeight * .65 - rect.top) / visibleTravel));
+        timeline.style.setProperty('--timeline-progress', (passed * 100).toFixed(2) + '%');
+      }
+      progressQueued = false;
+    };
+    const queueStoryProgress = () => {
+      if (progressQueued) return;
+      progressQueued = true;
+      window.requestAnimationFrame(updateStoryProgress);
+    };
+    window.addEventListener('scroll', queueStoryProgress, { passive: true });
+    window.addEventListener('resize', queueStoryProgress, { passive: true });
+    updateStoryProgress();
+
+    const timelineItems = Array.from(document.querySelectorAll('.timeline__item'));
+    if (timelineItems.length && !reducedMotion.matches && 'IntersectionObserver' in window) {
+      const timelineObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            timelineItems.forEach((item) => item.classList.toggle('is-scene-active', item === entry.target));
+          }
+        });
+      }, { rootMargin: '-25% 0px -35% 0px', threshold: 0 });
+      timelineItems.forEach((item) => timelineObserver.observe(item));
+    } else {
+      timelineItems.forEach((item) => item.classList.add('is-scene-active'));
+    }
+
+    // Filmography filters animate between archive chapters without hiding the transition.
+    document.querySelectorAll('[data-film-filter]').forEach((filter) => {
+      filter.addEventListener('click', () => {
+        const categories = Array.from(document.querySelectorAll('[data-film-category]'));
+        categories.forEach((category) => {
+          if (!category.hidden) {
+            category.classList.remove('archive-enter');
+            void category.offsetWidth;
+            category.classList.add('archive-enter');
+          }
+        });
+      });
+    });
+
   });
 })();

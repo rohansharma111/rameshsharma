@@ -12,7 +12,7 @@
     <meta property="og:url" content="https://rameshsharma.vercel.app/">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#090908">
-    <meta property="og:image" content="https://res.cloudinary.com/dipuhwwmz/image/upload/v1766900320/IMG-20210510-WA0031_qj7vcw.jpg">
+    <meta property="og:image" content="https://res.cloudinary.com/dipuhwwmz/image/upload/v1766901441/DSC08995_lnmion.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://rameshsharma.vercel.app/">
 
@@ -32,6 +32,7 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="cinematic.css">
+    <link rel="stylesheet" href="film-world.css">
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -59,7 +60,22 @@
 
     <main id="main-content">
     <!-- Hero Section -->
-    <section id="home" class="hero" aria-labelledby="hero-title">
+    <section id="home" class="hero hero--production-set" aria-labelledby="hero-title">
+        <div class="hero__set-dressing" aria-hidden="true">
+            <div class="hero__set-light"></div>
+            <div class="hero__set-camera"></div>
+            <div class="hero__set-filmstrip">
+                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=85" alt="" fetchpriority="high">
+                <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=600&q=85" alt="" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=600&q=85" alt="" loading="lazy">
+            </div>
+            <div class="hero__set-chair"><span>DIRECTOR</span></div>
+            <div class="hero__set-clapper"><span>SCENE</span><span>TAKE</span><span>ROLL</span><i></i></div>
+            <div class="hero__set-reel"></div>
+        </div>
+        <div class="hero__topline" aria-hidden="true"><span>Ramesh R Sharma</span><span class="hero__menu-mark"><i></i><i></i><i></i></span></div>
+        <button class="hero__roll-button" id="roll-camera" type="button" aria-pressed="false"><span class="roll-button__lamp"></span><span class="roll-button__copy"><strong>ROLL CAMERA</strong><small>Enter the story</small></span><span class="roll-button__icon" aria-hidden="true">▶</span></button>
+        <p class="hero__roll-status" id="roll-status" aria-live="polite">STANDBY · READY WHEN YOU ARE</p>
         <div class="hero__content container">
             <div class="hero__text">
                 <h1 id="hero-title" class="hero__title">Ramesh R Sharma</h1>
@@ -71,10 +87,18 @@
                     <a class="btn btn--outline" href="#contact">Professional Enquiries <span aria-hidden="true">↗</span></a>
                 </div>
             </div>
-            <div class="hero__image">
+            <div class="hero__image hero__portrait-card">
                 <img src="https://res.cloudinary.com/dipuhwwmz/image/upload/v1766900320/IMG-20210510-WA0031_qj7vcw.jpg" alt="Portrait of Ramesh R Sharma" class="hero__img" data-image-fallback="Portrait of Ramesh R Sharma" fetchpriority="high" decoding="async">
+                <span class="hero__portrait-caption">THE DIRECTOR · BEHIND THE FRAME</span>
             </div>
         </div>
+    </section>
+
+    <section class="story-trailer" aria-label="A filmmaker’s journey">
+        <div class="story-trailer__track" aria-hidden="true">
+            <span>LIGHT</span><i>✳</i><span>CAMERA</span><i>✳</i><span>STORY</span><i>✳</i><span>DIRECTOR</span><i>✳</i><span>LIGHT</span><i>✳</i><span>CAMERA</span><i>✳</i><span>STORY</span><i>✳</i><span>DIRECTOR</span><i>✳</i>
+        </div>
+        <div class="story-trailer__caption"><span>THE WORK BEHIND THE FRAME</span><span>SCROLL TO EXPLORE <b aria-hidden="true">↓</b></span></div>
     </section>
 
     <!-- Cinematic credit strip -->
@@ -86,7 +110,8 @@
     </section>
 
     <!-- Selected directing work / verified reel destination -->
-    <section id="directors-cut" class="directors-cut" aria-labelledby="directors-cut-title">
+    <section id="directors-cut" class="directors-cut production-chapter production-chapter--edit" aria-labelledby="directors-cut-title">
+        <div class="chapter-art chapter-art--edit" aria-hidden="true"><span>PLAYBACK</span><span>TAKE 02</span></div>
         <div class="directors-cut__inner container">
             <div class="directors-cut__visual">
                 <img src="https://res.cloudinary.com/dipuhwwmz/image/upload/v1766901441/DSC08995_lnmion.jpg"
@@ -126,7 +151,8 @@
     </section>
 
     <!-- Biography Section -->
-    <section id="bio" class="biography">
+    <section id="bio" class="biography production-chapter production-chapter--dossier">
+        <div class="chapter-art chapter-art--dossier" aria-hidden="true"><span>DIRECTOR’S NOTES</span><i></i><i></i><i></i></div>
         <div class="container">
             <p class="eyebrow">BEHIND THE FRAME</p>
             <h2 class="section__title">The filmmaker</h2>
@@ -158,7 +184,8 @@
     </section>
 
     <!-- Career Highlights -->
-    <section class="highlights">
+    <section class="highlights production-chapter production-chapter--crew">
+        <div class="chapter-art chapter-art--crew" aria-hidden="true"><span>THE CRAFT</span></div>
         <div class="container">
             <p class="eyebrow">THE CRAFT, OVER TIME</p>
             <h2 class="section__title">Career highlights</h2>
@@ -187,8 +214,23 @@
         </div>
     </section>
 
+    <section class="on-set-interlude" aria-label="Behind the frame">
+        <div class="on-set-interlude__image">
+            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1400&q=85" alt="Cinema production equipment and a film set between takes" loading="lazy" decoding="async">
+            <span class="on-set-interlude__frame">FRAME 01 · BETWEEN TAKES</span>
+        </div>
+        <div class="on-set-interlude__copy">
+            <p class="eyebrow">BEHIND THE FRAME</p>
+            <h2>Every story begins<br><em>before “action”.</em></h2>
+            <p>Years on set. Countless decisions. A story shaped one scene at a time.</p>
+            <div class="on-set-interlude__sound" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <span class="on-set-interlude__note">A FILMMAKER’S JOURNEY · 1986—PRESENT</span>
+        </div>
+    </section>
+
     <!-- Career Timeline -->
-    <section class="timeline">
+    <section class="timeline production-chapter production-chapter--reel">
+        <div class="chapter-art chapter-art--reel" aria-hidden="true"><span>1986 — PRESENT</span></div>
         <div class="container">
             <p class="eyebrow">1986 — PRESENT</p>
             <h2 class="section__title">A career in chapters</h2>
@@ -240,11 +282,21 @@
     </section>
 
     <!-- Filmography Section -->
-    <section id="filmography" class="filmography">
+    <section id="filmography" class="filmography production-chapter production-chapter--archive">
+        <div class="chapter-art chapter-art--archive" aria-hidden="true"><span>CONTINUITY LOG</span><span>SHOT LIST / 01</span></div>
         <div class="container">
             <p class="eyebrow">SELECTED CREDITS</p>
             <h2 class="section__title">The body of work</h2>
             <p class="filmography__intro">Selected credits across cinema, independent direction and advertising. Television work is explored in its own chapter below.</p>
+            <div class="archive-slate" aria-label="Production archive index">
+                <div class="archive-slate__top"><span>PRODUCTION ARCHIVE</span><span>RRS / 001—019</span></div>
+                <div class="archive-slate__body">
+                    <div class="archive-slate__clap" aria-hidden="true"></div>
+                    <div><span class="archive-slate__label">CAREER SPAN</span><strong>1986 <i>—</i> PRESENT</strong></div>
+                    <div><span class="archive-slate__label">FORMATS</span><strong>FILM <i>·</i> TELEVISION <i>·</i> COMMERCIALS</strong></div>
+                    <span class="archive-slate__stamp">SELECTED WORKS</span>
+                </div>
+            </div>
             <div class="filmography__filters" role="group" aria-label="Filter filmography by category">
                 <button class="filmography__filter is-active" type="button" data-film-filter="all" aria-pressed="true">All credits</button>
                 <button class="filmography__filter" type="button" data-film-filter="film" aria-pressed="false">Films</button>
@@ -320,11 +372,13 @@
     </section>
 
     <!-- TV Serials Showcase -->
-    <section id="tv-serials" class="tv-serials">
+    <section id="tv-serials" class="tv-serials production-chapter production-chapter--broadcast">
+        <div class="chapter-art chapter-art--broadcast" aria-hidden="true"><span>ON AIR</span></div>
         <div class="container">
             <p class="eyebrow">THE SMALL SCREEN</p>
             <h2 class="section__title">A life in television</h2>
             
+            <div class="broadcast-intro" aria-hidden="true"><span>TRANSMISSION LOG</span><div class="broadcast-intro__bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span>ARCHIVE SIGNAL · 01</span></div>
             <div class="tv-showcase">
                 <div class="tv-featured">
                     <div class="featured-serial">
@@ -419,7 +473,8 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact production-chapter production-chapter--credits">
+        <div class="chapter-art chapter-art--credits" aria-hidden="true"><span>ROLL CREDITS</span><i></i></div>
         <div class="container">
             <p class="eyebrow">END CREDITS</p>
             <h2 class="section__title">Let’s make something meaningful</h2>

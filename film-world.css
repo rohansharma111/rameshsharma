@@ -1,0 +1,1775 @@
+/* Immersive Film World — section-specific art direction.
+   Loaded after cinematic.css so this layer can add visual storytelling without replacing semantic content. */
+:root {
+  --fw-black: #080604;
+  --fw-espresso: #171008;
+  --fw-amber: #d99a55;
+  --fw-brass: #b9854d;
+  --fw-ivory: #f5ead8;
+  --fw-muted: #c3b5a2;
+  --fw-rule: rgba(229,190,137,.26);
+  --fw-coral: #c56f4e;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--fw-black);
+  color: var(--fw-ivory);
+  background-image: radial-gradient(ellipse at 12% 12%, rgba(125,67,29,.10), transparent 31%);
+}
+::selection { background: rgba(217,154,85,.38); color: #fff7eb; }
+.eyebrow {
+  color: #d7ad77 !important;
+  letter-spacing: .28em !important;
+}
+.section__title {
+  text-wrap: balance;
+  position: relative;
+}
+.section__title::after {
+  content: "";
+  display: block;
+  width: 58px;
+  height: 2px;
+  margin: 17px auto 0;
+  background: linear-gradient(90deg, #9f542d, #f0d0a0);
+  transform-origin: center;
+}
+
+/* GLOBAL MATERIAL: a very quiet print grain, never placed over text as an image. */
+.hero, .directors-cut, .biography, .highlights, .timeline, .filmography, .tv-serials, .contact {
+  isolation: isolate;
+}
+.directors-cut, .biography, .highlights, .timeline, .filmography, .tv-serials, .contact {
+  position: relative;
+}
+.directors-cut::before, .biography::before, .highlights::before, .timeline::before, .filmography::before, .tv-serials::before, .contact::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .3;
+  background: repeating-linear-gradient(0deg, transparent 0 5px, rgba(255,232,197,.018) 5px 6px);
+}
+
+/* 01 — OPENING STAGE / TITLE CARD */
+.hero {
+  position: relative;
+  overflow: clip;
+  background:
+    radial-gradient(ellipse at 4% 33%, rgba(232,143,57,.28), transparent 27%),
+    radial-gradient(ellipse at 93% 62%, rgba(125,74,37,.24), transparent 32%),
+    linear-gradient(105deg, #171008 0%, #090705 48%, #130d07 100%) !important;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .48;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 5px, rgba(255,226,184,.022) 5px 6px),
+    repeating-linear-gradient(90deg, transparent 0 43px, rgba(200,138,75,.026) 43px 44px),
+    linear-gradient(115deg, transparent 0 15%, rgba(255,173,84,.075) 16%, transparent 28%);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 7% 35%, rgba(247,166,75,.16), transparent 24%),
+    linear-gradient(90deg, rgba(5,4,3,.38), transparent 40%, rgba(5,4,3,.2)),
+    linear-gradient(0deg, #080604 0%, transparent 17%, transparent 78%, rgba(0,0,0,.38) 100%);
+}
+.hero__content { position: relative; }
+.hero__text { position: relative; }
+.hero__text::before {
+  content: "A LIFE IN PICTURES";
+  display: block;
+  color: #e4c18e;
+  font: 600 10px/1.5 var(--font-sans, sans-serif);
+  letter-spacing: .34em;
+  margin: 0 0 25px;
+}
+.hero__text::after {
+  content: "";
+  display: block;
+  width: 86px;
+  height: 1px;
+  margin-top: 22px;
+  background: linear-gradient(90deg, #9b512a, #f1ce99, transparent);
+}
+.hero__title {
+  color: #f7e7d0 !important;
+  text-shadow: 0 4px 36px rgba(222,139,57,.2);
+  letter-spacing: -.045em;
+}
+.hero__subtitle {
+  color: #e3c08a !important;
+  letter-spacing: .2em !important;
+}
+.hero__tagline {
+  color: #f1d9b9 !important;
+  text-wrap: balance;
+}
+.hero__description { color: rgba(247,237,221,.82) !important; }
+.hero__image {
+  position: relative;
+  isolation: isolate;
+}
+.hero__image::before {
+  border-color: rgba(226,173,108,.8) !important;
+  box-shadow: 0 0 36px rgba(199,123,54,.08);
+}
+.hero__image::after {
+  color: #d4a76f !important;
+  letter-spacing: .25em;
+}
+.hero__img {
+  filter: saturate(.86) contrast(1.08);
+  box-shadow: 0 24px 75px rgba(0,0,0,.45);
+}
+.btn--primary {
+  background: linear-gradient(105deg, #d8a66b, #f0d1a0 52%, #c78a4b) !important;
+  border-color: #e6bd86 !important;
+  color: #24170c !important;
+  box-shadow: 0 8px 30px rgba(163,91,37,.16);
+}
+.btn--outline {
+  border-color: rgba(239,208,160,.62) !important;
+  color: #f4ead9 !important;
+}
+.btn--primary:hover, .btn--outline:hover { transform: translateY(-2px); }
+
+/* 02 — PRODUCTION SLATE / FILM EDGE */
+.film-reel {
+  position: relative;
+  overflow: hidden;
+  border-block-color: rgba(231,190,137,.35) !important;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(173,102,45,.12), transparent 65%),
+    linear-gradient(105deg, #090705, #1b120a 54%, #090705) !important;
+}
+.film-reel::before, .film-reel::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  height: 5px;
+  opacity: .65;
+  background: repeating-linear-gradient(90deg, rgba(231,190,137,.8) 0 1px, transparent 1px 12px);
+}
+.film-reel::before { top: 2px; }
+.film-reel::after { bottom: 2px; }
+.film-reel__item { border-left-color: rgba(231,190,137,.28) !important; }
+.film-reel__label { color: #d2a46c !important; }
+
+/* 03 — DIRECTOR'S CUT / EDITING ROOM */
+.directors-cut {
+  background:
+    radial-gradient(ellipse at 15% 52%, rgba(160,85,37,.14), transparent 42%),
+    linear-gradient(110deg, #120c07, #090705 72%) !important;
+}
+.directors-cut__visual {
+  position: relative;
+  border: 1px solid rgba(231,190,137,.36) !important;
+  padding: 12px !important;
+  background: #0b0805;
+  box-shadow: 0 24px 70px rgba(0,0,0,.3);
+}
+.directors-cut__visual::before {
+  content: "FRAME 01  /  SELECTED TAKE";
+  display: block;
+  padding: 0 0 10px;
+  color: #d7ad77;
+  font: 600 8px/1.5 var(--font-sans, sans-serif);
+  letter-spacing: .2em;
+}
+.directors-cut__visual img { display: block; filter: saturate(.82) contrast(1.06); }
+.directors-cut__frame-label {
+  background: linear-gradient(0deg, rgba(5,4,3,.88), transparent) !important;
+  letter-spacing: .24em !important;
+}
+.directors-cut__credits a {
+  position: relative;
+  border-block-end-color: rgba(231,190,137,.24) !important;
+  padding-block: 17px !important;
+}
+.directors-cut__credits a::before {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -1px;
+  height: 1px; width: 0;
+  background: #e7be89;
+  transition: width .35s ease;
+}
+.directors-cut__credits a:hover::before { width: 100%; }
+.directors-cut__number { color: #d6a269 !important; }
+.directors-cut__arrow { color: #e7be89 !important; }
+
+/* 04 — BIOGRAPHY / DIRECTOR'S DOSSIER */
+.biography {
+  background:
+    radial-gradient(ellipse at 90% 15%, rgba(160,91,42,.11), transparent 37%),
+    linear-gradient(110deg, #171009, #100b07 70%) !important;
+  border-block: 1px solid rgba(231,190,137,.18);
+}
+.biography__content { align-items: start; }
+.biography__intro {
+  color: #f0dfc8 !important;
+  text-wrap: pretty;
+}
+.biography__details { gap: 12px !important; }
+.biography .detail-card {
+  position: relative;
+  min-width: 0;
+  padding: 20px 20px 22px !important;
+  border: 1px solid rgba(200,138,75,.38) !important;
+  border-left: 2px solid rgba(220,164,99,.8) !important;
+  background: linear-gradient(135deg, rgba(200,138,75,.09), rgba(13,10,7,.94) 76%) !important;
+  box-shadow: inset 0 1px rgba(255,231,198,.035);
+}
+.biography .detail-card::before {
+  content: "PRODUCTION NOTE";
+  display: block;
+  margin-bottom: 12px;
+  color: #8f6b43;
+  font: 600 7px/1.4 var(--font-sans, sans-serif);
+  letter-spacing: .2em;
+}
+.biography .detail-card h4 { color: #e9c895 !important; margin-bottom: 8px !important; }
+.biography .detail-card p { line-height: 1.75 !important; overflow-wrap: anywhere; }
+
+/* 05 — CAREER HIGHLIGHTS / DEPARTMENTS OF THE CRAFT */
+.highlights {
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(152,79,34,.09), transparent 52%),
+    #0b0806 !important;
+}
+.highlights__grid { gap: 16px !important; }
+.highlight-card {
+  position: relative;
+  overflow: hidden;
+  padding: 28px 24px 30px !important;
+  border: 1px solid rgba(200,138,75,.42) !important;
+  background: linear-gradient(145deg, rgba(43,27,15,.94), rgba(16,11,7,.98) 75%) !important;
+  box-shadow: inset 0 1px rgba(255,226,184,.045), 0 12px 36px rgba(0,0,0,.13);
+  transition: border-color .3s ease, transform .3s ease, background .3s ease;
+}
+.highlight-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(239,208,160,.72), transparent);
+}
+.highlight-card::after {
+  content: "";
+  position: absolute;
+  right: -24px; top: 35px;
+  width: 76px; height: 76px;
+  border: 1px solid rgba(217,154,85,.14);
+  border-radius: 50%;
+  box-shadow: 0 0 0 9px rgba(217,154,85,.025), 0 0 0 19px rgba(217,154,85,.018);
+  pointer-events: none;
+}
+.highlight-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(239,208,160,.72) !important;
+  background: linear-gradient(145deg, rgba(61,35,17,.96), rgba(16,11,7,.98) 75%) !important;
+}
+.highlight-card__icon {
+  color: #d7a66c !important;
+  letter-spacing: .22em !important;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(231,190,137,.2);
+  margin-bottom: 18px;
+}
+
+/* 06 — CAREER TIMELINE / FILM REEL */
+.timeline {
+  background:
+    radial-gradient(ellipse at 7% 25%, rgba(150,81,35,.09), transparent 35%),
+    linear-gradient(115deg, #151009, #0b0806 72%) !important;
+  border-block: 1px solid rgba(231,190,137,.16);
+}
+.timeline__container { position: relative; }
+.timeline__container::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, transparent, #80532d 8%, #d9ad75 50%, #80532d 92%, transparent);
+  opacity: .75;
+}
+.timeline__item { position: relative; }
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  top: 18px; left: 50%;
+  width: 10px; height: 10px;
+  transform: translateX(-50%);
+  border: 2px solid #e0b47b;
+  border-radius: 50%;
+  background: #0c0805;
+  box-shadow: 0 0 0 5px rgba(217,154,85,.08);
+  z-index: 2;
+}
+.timeline__year { color: #e5bd86 !important; letter-spacing: .04em; }
+.timeline__content {
+  position: relative;
+  padding: 24px 26px !important;
+  border: 1px solid rgba(231,190,137,.24) !important;
+  background: linear-gradient(135deg, rgba(44,28,15,.72), rgba(13,10,7,.96) 78%) !important;
+}
+.timeline__content::before {
+  content: "CAREER FRAME";
+  display: block;
+  margin-bottom: 12px;
+  color: #987044;
+  font: 600 7px/1.4 var(--font-sans, sans-serif);
+  letter-spacing: .2em;
+}
+
+/* 07 — FILMOGRAPHY / EDIT DECISION LIST */
+.filmography {
+  background:
+    radial-gradient(ellipse at 90% 5%, rgba(155,85,36,.09), transparent 32%),
+    #0b0806 !important;
+}
+.filmography__filters {
+  padding: 8px;
+  border: 1px solid rgba(231,190,137,.18);
+  background: rgba(10,7,5,.62);
+}
+.filmography__filter {
+  border-color: rgba(239,208,160,.32) !important;
+  background: rgba(22,15,9,.62) !important;
+  color: #ddc9ad !important;
+}
+.filmography__filter[aria-pressed="true"], .filmography__filter.active {
+  background: linear-gradient(105deg, #d6a56e, #efd0a0) !important;
+  color: #21150b !important;
+  border-color: #efd0a0 !important;
+}
+.filmography__category { position: relative; }
+.filmography__category > h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+.filmography__category > h3::before {
+  content: "ARCHIVE";
+  color: #b98a55;
+  font: 600 8px/1.4 var(--font-sans, sans-serif);
+  letter-spacing: .2em;
+}
+.film-grid { gap: 14px !important; }
+.film-card, .ad-card {
+  position: relative;
+  min-width: 0;
+  padding: 24px 26px !important;
+  border: 1px solid rgba(200,138,75,.3) !important;
+  background: linear-gradient(135deg, rgba(38,24,14,.8), rgba(15,11,8,.96) 74%) !important;
+  box-shadow: inset 2px 0 rgba(200,138,75,.52);
+}
+.film-card::before {
+  content: "CREDIT / ARCHIVE";
+  display: block;
+  margin-bottom: 12px;
+  color: #987044;
+  font: 600 7px/1.4 var(--font-sans, sans-serif);
+  letter-spacing: .2em;
+}
+.film-card h4, .ad-card h4 { line-height: 1.25; }
+.film-card .film-role { color: #c8b9a5 !important; }
+.filmography .film-card .film-type {
+  display: inline-flex !important;
+  align-items: center;
+  width: fit-content !important;
+  max-width: 100%;
+  min-height: 28px;
+  margin: 12px 0 0 !important;
+  padding: 5px 12px !important;
+  border: 1px solid rgba(231,174,120,.62) !important;
+  border-radius: 999px !important;
+  background: rgba(200,138,75,.12) !important;
+  color: #f2d6b6 !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  line-height: 1.35;
+}
+
+/* 08 — TELEVISION / BROADCAST ARCHIVE WALL */
+.tv-serials {
+  background:
+    radial-gradient(ellipse at 12% 20%, rgba(153,80,34,.13), transparent 36%),
+    linear-gradient(120deg, #171008, #100b07 70%) !important;
+  border-block: 1px solid rgba(231,190,137,.16);
+}
+.tv-serials .tv-feature-card, .tv-serials .featured-serial {
+  border-color: rgba(200,138,75,.36) !important;
+  background: linear-gradient(145deg, rgba(37,24,14,.92), rgba(10,8,6,.98) 78%) !important;
+  box-shadow: 0 18px 45px rgba(0,0,0,.24);
+}
+.tv-serials img { filter: saturate(.88) contrast(1.04); }
+.tv-serials .serial-item {
+  position: relative;
+  box-sizing: border-box;
+  padding: 18px 20px !important;
+  border: 1px solid rgba(200,138,75,.36) !important;
+  border-left: 2px solid rgba(200,138,75,.72) !important;
+  background: linear-gradient(110deg, rgba(119,62,39,.18), rgba(17,12,8,.98) 78%) !important;
+}
+.tv-serials .serial-item h4 { margin-bottom: 7px !important; color: #f0d9bd !important; }
+.tv-serials .serial-item p { color: #c3b5a2 !important; }
+.tv-serials .serial-item:hover { border-color: rgba(239,208,160,.68) !important; }
+
+/* 09 — END CREDITS / CONTACT SLATE */
+.contact {
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(162,90,39,.14), transparent 50%),
+    linear-gradient(180deg, #100b07, #080604) !important;
+  border-top: 1px solid rgba(231,190,137,.24);
+}
+.contact::after {
+  content: "THE END";
+  position: absolute;
+  right: -8px;
+  bottom: 18px;
+  color: rgba(231,190,137,.035);
+  font: 700 clamp(4rem, 12vw, 10rem)/.8 Georgia, serif;
+  letter-spacing: -.06em;
+  pointer-events: none;
+  z-index: -1;
+}
+.contact__item { border-bottom-color: rgba(231,190,137,.22) !important; }
+.contact__item strong { color: #e4c18e !important; }
+.contact__social .social-link {
+  border-color: rgba(200,138,75,.36) !important;
+  background: linear-gradient(105deg, rgba(38,24,14,.72), rgba(14,10,7,.9)) !important;
+  color: #f0e2cf !important;
+}
+.contact__social .social-link:hover {
+  border-color: rgba(239,208,160,.76) !important;
+  background: rgba(119,68,33,.2) !important;
+}
+
+/* RESPONSIVE ART DIRECTION */
+@media (min-width: 761px) {
+  .hero__text::before { font-size: 10px; }
+  .hero__title { font-size: clamp(4rem, 6.8vw, 7.4rem); }
+  .directors-cut__credits a { gap: 18px; }
+  .highlights__grid { grid-template-columns: repeat(4, minmax(0,1fr)); }
+  .highlight-card { min-height: 270px; }
+  .filmography .film-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .filmography .ad-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .tv-serials .tv-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 760px) {
+  .hero { min-height: auto !important; }
+  .hero__content.container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 560px !important;
+    margin-inline: auto !important;
+    padding: 118px 23px 42px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 30px !important;
+  }
+  .hero__text { width: 100% !important; max-width: none !important; text-align: center; }
+  .hero__text::before { text-align: center; margin-bottom: 22px; }
+  .hero__text::after { margin: 20px auto 0; }
+  .hero__title {
+    color: #f5e9d6 !important;
+    font-size: clamp(3rem, 12vw, 4.4rem) !important;
+    line-height: .88 !important;
+    letter-spacing: -.06em !important;
+    text-align: center !important;
+    text-wrap: balance;
+  }
+  .hero__subtitle { font-size: 9px !important; letter-spacing: .15em !important; line-height: 1.7; }
+  .hero__tagline { max-width: 26ch !important; margin: 16px auto 0 !important; font-size: clamp(1.5rem, 6vw, 1.9rem) !important; line-height: 1.1 !important; }
+  .hero__description { max-width: 37ch !important; margin: 17px auto 0 !important; font-size: 13px !important; line-height: 1.8 !important; }
+  .hero__buttons { width: 100% !important; max-width: 390px !important; margin: 25px auto 0 !important; display: grid !important; grid-template-columns: minmax(0,1fr) !important; gap: 11px !important; }
+  .hero__buttons .btn { width: 100% !important; min-height: 54px !important; white-space: normal !important; }
+  .hero__image { width: min(76%, 320px) !important; max-width: 320px !important; margin: 0 auto !important; padding: 0 0 20px 14px !important; }
+  .hero__img { width: 100% !important; aspect-ratio: 4/4.8 !important; max-height: 390px !important; object-fit: cover !important; object-position: center 22% !important; }
+  .timeline__container::before { left: 9px; transform: none; }
+  .timeline__item::before { left: 9px; transform: translateX(-50%); }
+  .timeline__item, .timeline__item.left, .timeline__item.right { display: grid !important; grid-template-columns: 1fr !important; padding-left: 30px !important; text-align: left !important; }
+  .timeline__year { text-align: left !important; }
+  .timeline__content { padding: 18px 19px !important; }
+  .biography > .container { width: 100%; max-width: 100%; padding-inline: 22px; }
+  .biography__details { grid-template-columns: minmax(0,1fr) !important; gap: 10px !important; }
+  .biography .detail-card { padding: 17px 17px 19px !important; }
+  .highlight-card { padding: 23px 21px 25px !important; }
+  .filmography .film-grid, .filmography .ad-grid { grid-template-columns: minmax(0,1fr) !important; }
+  .film-card, .ad-card { padding: 20px 20px !important; }
+  .filmography__filters { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tv-serials .tv-grid { grid-template-columns: minmax(0,1fr) !important; gap: 26px !important; }
+  .tv-serials .serial-list { display: grid; grid-template-columns: minmax(0,1fr); gap: 11px; }
+  .tv-serials .serial-item { padding: 16px 18px !important; }
+  .contact::after { font-size: 4rem; bottom: 10px; }
+}
+@media (max-width: 390px) {
+  .hero__content.container { padding-inline: 19px !important; padding-top: 110px !important; }
+  .hero__title { font-size: clamp(2.75rem, 11.8vw, 3.2rem) !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+
+/* REFINEMENT PASS — production detail, readable metadata, and layout containment. */
+*, *::before, *::after { box-sizing: border-box; }
+img, video, svg { max-width: 100%; }
+body { overflow-x: clip; }
+main, section, .container, .directors-cut__inner, .hero__content,
+.biography__content, .filmography__category, .tv-showcase, .contact__content {
+  min-width: 0;
+  max-width: 100%;
+}
+p, h1, h2, h3, h4, small, strong, a, span {
+  overflow-wrap: anywhere;
+}
+a:focus-visible, button:focus-visible {
+  outline: 2px solid #f0d0a0 !important;
+  outline-offset: 4px;
+}
+
+/* Hero: make the title read like a lit theatrical title card. */
+.hero__text {
+  z-index: 1;
+}
+.hero__text::before {
+  width: fit-content;
+  margin-inline: auto;
+  padding-inline: 13px;
+  position: relative;
+}
+.hero__text::before::before { content: none; }
+.hero__buttons .btn {
+  min-height: 52px;
+  justify-content: center;
+  align-items: center;
+}
+.hero__image {
+  background: linear-gradient(135deg, rgba(217,154,85,.12), transparent 38%);
+}
+.hero__image::before {
+  content: "";
+  position: absolute;
+  inset: 8px -8px -8px 8px;
+  border: 1px solid rgba(226,173,108,.48);
+  pointer-events: none;
+  z-index: -1;
+}
+.hero__image::after {
+  content: "RRS  /  FRAME 001";
+  position: absolute;
+  right: 0;
+  bottom: -22px;
+  font-size: 8px;
+  line-height: 1.4;
+}
+
+/* Give every chapter an intentional editorial boundary, not a generic box. */
+.directors-cut__inner,
+.biography > .container,
+.highlights > .container,
+.timeline > .container,
+.filmography > .container,
+.tv-serials > .container,
+.contact > .container {
+  position: relative;
+  z-index: 0;
+}
+.directors-cut__copy,
+.biography__text,
+.contact__content { min-width: 0; }
+.directors-cut__intro { max-width: 52ch; }
+.directors-cut__credits a {
+  display: grid;
+  grid-template-columns: 34px minmax(0,1fr) 18px;
+  align-items: center;
+  min-width: 0;
+}
+.directors-cut__credits a > span:nth-child(2) { min-width: 0; }
+.directors-cut__credits small { display: block; line-height: 1.65; }
+
+/* Biography dossier cards: improve the inset so headings never touch their frames. */
+.biography .detail-card {
+  box-sizing: border-box;
+  min-height: 145px;
+  overflow: hidden;
+}
+.biography .detail-card p { margin-bottom: 0; }
+
+/* Film credits: metadata chips stay legible against the dark archive paper. */
+.filmography .film-type,
+.filmography .role-badge,
+.tv-serials .role-badge,
+.role-badge {
+  display: inline-flex !important;
+  width: fit-content;
+  max-width: 100%;
+  align-items: center;
+  padding: 6px 11px !important;
+  border: 1px solid rgba(229,178,122,.56) !important;
+  border-radius: 3px !important;
+  background: rgba(142,77,42,.19) !important;
+  color: #f0d6b8 !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  line-height: 1.5 !important;
+  letter-spacing: .08em;
+  white-space: normal;
+}
+.filmography .film-card,
+.filmography .ad-card {
+  height: 100%;
+  overflow: hidden;
+}
+.filmography__status { color: #d2c1aa !important; }
+.filmography__category + .filmography__category {
+  margin-top: clamp(28px, 4vw, 54px);
+  padding-top: clamp(20px, 3vw, 34px);
+  border-top: 1px solid rgba(231,190,137,.2);
+}
+.filmography__category > h3 {
+  line-height: 1.2;
+  margin-bottom: 22px;
+}
+.filmography .film-card h4 { margin-top: 0; }
+
+/* Television: posters become framed artefacts, while text gets its own quiet panel. */
+.tv-showcase, .tv-featured, .tv-grid, .featured-serial { min-width: 0; }
+.tv-serials .featured-serial {
+  display: grid;
+  grid-template-columns: minmax(120px, .72fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid rgba(200,138,75,.42);
+}
+.tv-serials .featured-serial__image {
+  position: relative;
+  min-width: 0;
+  padding: 10px;
+  background: #0a0705;
+  border-right: 1px solid rgba(200,138,75,.24);
+}
+.tv-serials .featured-serial__image::before {
+  content: "ARCHIVE STILL";
+  display: block;
+  margin-bottom: 8px;
+  color: #bd8e58;
+  font: 600 7px/1.4 var(--font-sans, sans-serif);
+  letter-spacing: .17em;
+}
+.tv-serials .featured-serial__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 190px;
+  object-fit: cover;
+  object-position: center top;
+}
+.tv-serials .featured-serial__content {
+  min-width: 0;
+  padding: clamp(16px, 2vw, 25px) !important;
+  align-self: center;
+}
+.tv-serials .featured-serial__content h3 {
+  text-wrap: balance;
+  line-height: 1.15;
+}
+.tv-serials .featured-serial__content > p:last-child {
+  color: #c9bba8;
+  line-height: 1.8;
+}
+.tv-serials .serial-item { min-width: 0; }
+.tv-serials .serial-item h4 { overflow-wrap: anywhere; }
+
+/* Contact links are end-credit rows, with a visible interaction cue. */
+.contact__content { gap: clamp(24px, 4vw, 60px); }
+.contact__social .social-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 15px 17px !important;
+  min-width: 0;
+}
+.contact__social .social-link::after {
+  content: "↗";
+  flex: 0 0 auto;
+  color: #d6a66c;
+  transition: transform .25s ease;
+}
+.contact__social .social-link:hover::after { transform: translate(3px,-3px); }
+
+/* Tablet and phone compositions: no clipped headings, cards, or oversized two-column layouts. */
+@media (max-width: 900px) {
+  .hero__content { gap: 34px; }
+  .highlights__grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .filmography .film-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .tv-serials .featured-serial { grid-template-columns: minmax(100px,.65fr) minmax(0,1fr); }
+  .timeline__content { min-width: 0; }
+}
+@media (max-width: 600px) {
+  .section__title { max-width: 100%; font-size: clamp(2rem, 8vw, 2.8rem); }
+  .hero__image::before { inset: 6px -5px -6px 5px; }
+  .hero__image::after { right: 0; bottom: -18px; font-size: 7px; }
+  .highlights__grid,
+  .filmography .film-grid,
+  .filmography .ad-grid { grid-template-columns: minmax(0,1fr) !important; }
+  .tv-serials .featured-serial {
+    grid-template-columns: minmax(0,1fr);
+  }
+  .tv-serials .featured-serial__image {
+    border-right: 0;
+    border-bottom: 1px solid rgba(200,138,75,.24);
+  }
+  .tv-serials .featured-serial__image img {
+    height: auto;
+    max-height: 360px;
+    min-height: 0;
+    aspect-ratio: 4/3;
+    object-fit: contain;
+  }
+  .tv-serials .featured-serial__content { padding: 19px !important; }
+  .directors-cut__credits a { grid-template-columns: 28px minmax(0,1fr) 16px; gap: 10px; }
+  .directors-cut__credits strong { line-height: 1.35; }
+  .directors-cut__credits small { font-size: 11px; }
+  .filmography__filters { width: 100%; }
+  .filmography__filter { max-width: 100%; }
+  .biography .detail-card { min-height: 0; }
+  .contact__content { grid-template-columns: minmax(0,1fr) !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .highlight-card:hover { transform: none; }
+  .directors-cut__credits a::before { transition: none; }
+}
+
+
+/* ART-DIRECTION PASS 2 — make the visual metaphor unmistakable section by section. */
+
+/* The chapter number is a consistent editorial device, like scene slates in a film. */
+.directors-cut::after,
+.biography::after,
+.highlights::after,
+.timeline::after,
+.filmography::after,
+.tv-serials::after {
+  position: absolute;
+  top: 22px;
+  right: clamp(18px, 4vw, 60px);
+  color: rgba(225,180,121,.45);
+  font: 600 8px/1.4 var(--font-sans, sans-serif);
+  letter-spacing: .22em;
+  pointer-events: none;
+}
+.directors-cut::after { content: "CHAPTER 01  /  SELECTED SCENES"; }
+.biography::after { content: "CHAPTER 02  /  PRODUCTION NOTES"; }
+.highlights::after { content: "CHAPTER 03  /  THE CRAFT"; }
+.timeline::after { content: "CHAPTER 04  /  CAREER REEL"; }
+.filmography::after { content: "CHAPTER 05  /  CREDIT ARCHIVE"; }
+.tv-serials::after { content: "CHAPTER 06  /  BROADCAST ARCHIVE"; }
+
+/* Selected scenes: use a visible frame edge and a tiny edit-mark motif. */
+.directors-cut__visual {
+  outline: 1px solid rgba(231,190,137,.08);
+  outline-offset: 5px;
+}
+.directors-cut__visual::after {
+  content: "IN  ▸  OUT";
+  display: block;
+  padding-top: 10px;
+  color: #a77c4c;
+  font: 600 7px/1.4 var(--font-sans, sans-serif);
+  letter-spacing: .25em;
+}
+.directors-cut__credits a:hover strong { color: #f3d5ac; }
+
+/* Career cards get four distinct department cues, not four identical boxes. */
+.highlight-card:nth-child(1) { --department-accent: #d2a06a; }
+.highlight-card:nth-child(2) { --department-accent: #b98a59; }
+.highlight-card:nth-child(3) { --department-accent: #e2bf8d; }
+.highlight-card:nth-child(4) { --department-accent: #c87955; }
+.highlight-card__icon {
+  color: var(--department-accent, #d7a66c) !important;
+}
+.highlight-card:nth-child(1)::after {
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 8px rgba(210,160,106,.035), 0 0 0 9px rgba(210,160,106,.025), 0 0 0 19px rgba(210,160,106,.018);
+}
+.highlight-card:nth-child(2)::after { border-radius: 6px; transform: rotate(12deg); }
+.highlight-card:nth-child(3)::after { border-radius: 0; transform: rotate(45deg) scale(.78); }
+.highlight-card:nth-child(4)::after { border-radius: 50% 50% 4px 4px; }
+
+/* Timeline becomes a literal reel edge on wide screens and a film spine on phones. */
+.timeline__container {
+  padding-inline: clamp(0px, 2vw, 24px);
+}
+@media (min-width: 761px) {
+  .timeline__container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 25px);
+    width: 7px;
+    opacity: .3;
+    background: repeating-linear-gradient(to bottom, #d7a66c 0 7px, transparent 7px 22px);
+    pointer-events: none;
+  }
+  .timeline__container::before { z-index: 0; }
+  .timeline__item::before { z-index: 3; }
+  .timeline__content { box-shadow: 0 12px 36px rgba(0,0,0,.16); }
+}
+@media (max-width: 760px) {
+  .timeline__container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 1px;
+    width: 5px;
+    opacity: .32;
+    background: repeating-linear-gradient(to bottom, #d7a66c 0 5px, transparent 5px 18px);
+    pointer-events: none;
+  }
+  .timeline__container::before { left: 3px; }
+  .timeline__item::before { left: 3px; }
+  .timeline__item, .timeline__item.left, .timeline__item.right { padding-left: 25px !important; }
+}
+
+/* Archive typography and numbering distinguish featured direction credits from campaign records. */
+.filmography__category:nth-of-type(1) .film-card { border-left-color: rgba(214,165,110,.78) !important; }
+.filmography__category:nth-of-type(2) .film-card { border-left-color: rgba(226,191,141,.78) !important; }
+.filmography__category .ad-card {
+  background:
+    linear-gradient(135deg, rgba(135,76,42,.12), transparent 55%),
+    #100b07 !important;
+}
+.filmography .ad-card::before {
+  content: "CAMPAIGN / CREDIT";
+  display: block;
+  margin-bottom: 11px;
+  color: #bd8e58;
+  font: 600 7px/1.4 var(--font-sans, sans-serif);
+  letter-spacing: .2em;
+}
+.filmography .film-type {
+  min-height: 0;
+  border-radius: 3px !important;
+  background: rgba(135,76,42,.12) !important;
+  color: #f0d6b8 !important;
+}
+.filmography .film-type::before {
+  content: "FORMAT";
+  margin-right: 8px;
+  color: #c49a6b;
+  font-size: 7px;
+  letter-spacing: .14em;
+}
+
+/* TV archive: preserve poster aspect ratio and avoid text sitting beside a floating image. */
+.tv-serials .featured-serial__image img {
+  object-fit: contain;
+  background: #070504;
+}
+.tv-serials .featured-serial__content .role-badge {
+  margin-block: 8px 12px;
+}
+.tv-serials .serial-list {
+  align-content: start;
+}
+.tv-serials .serial-item::before {
+  content: "CREDIT LOG";
+  display: block;
+  margin-bottom: 8px;
+  color: #a77c4c;
+  font: 600 7px/1.4 var(--font-sans, sans-serif);
+  letter-spacing: .2em;
+}
+.tv-serials .serial-item:hover {
+  transform: translateY(-2px);
+  transition: border-color .25s ease, transform .25s ease;
+}
+
+/* End credits: a measured vertical rhythm and film-credit alignment. */
+.contact__info, .contact__social { min-width: 0; }
+.contact__item {
+  display: block;
+  padding-block: 15px;
+  line-height: 1.75;
+}
+.contact__item strong {
+  display: inline-block;
+  min-width: 105px;
+}
+.contact__social .social-link {
+  min-height: 54px;
+  letter-spacing: .01em;
+}
+.contact__social .social-link:hover { transform: translateX(3px); }
+
+/* Avoid accidental clipped content and overdecorating compact screens. */
+@media (max-width: 600px) {
+  .directors-cut::after,
+  .biography::after,
+  .highlights::after,
+  .timeline::after,
+  .filmography::after,
+  .tv-serials::after {
+    top: 12px;
+    right: 18px;
+    font-size: 6px;
+    letter-spacing: .12em;
+    max-width: 48%;
+    text-align: right;
+  }
+  .directors-cut__visual::after { font-size: 6px; }
+  .highlight-card::after { opacity: .6; }
+  .contact__item strong { min-width: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tv-serials .serial-item:hover,
+  .contact__social .social-link:hover { transform: none; }
+}
+
+
+/* ART-DIRECTION PASS 3 — stronger image-led storytelling and archival composition. */
+
+/* Give real photography and poster artwork the visual weight of an artefact. */
+.directors-cut__visual,
+.tv-serials .featured-serial__image {
+  position: relative;
+}
+.directors-cut__visual img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+.directors-cut__visual::before {
+  content: "PRODUCTION STILL  /  RRS ARCHIVE";
+  letter-spacing: .18em;
+}
+.tv-serials .featured-serial {
+  position: relative;
+}
+.tv-serials .featured-serial__image {
+  isolation: isolate;
+}
+.tv-serials .featured-serial__image::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(231,190,137,.25);
+  pointer-events: none;
+}
+.tv-serials .featured-serial__content h3 {
+  margin-bottom: 12px;
+}
+.tv-serials .featured-serial__content .role-badge {
+  width: fit-content;
+  max-width: 100%;
+}
+
+/* Career milestones read like labeled scenes on a continuous reel. */
+.timeline__year {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+.timeline__year::before {
+  content: "SCENE";
+  display: inline-block;
+  color: #a77c4c;
+  font: 600 7px/1.4 var(--font-sans, sans-serif);
+  letter-spacing: .18em;
+}
+.timeline__content h4 {
+  color: #f2dfc5;
+  text-wrap: balance;
+}
+.timeline__content p {
+  color: #c6b7a3;
+  line-height: 1.8;
+}
+.timeline__item:nth-child(odd) .timeline__content {
+  border-left: 2px solid rgba(217,154,85,.64) !important;
+}
+.timeline__item:nth-child(even) .timeline__content {
+  border-left: 2px solid rgba(197,111,78,.64) !important;
+}
+
+/* A more editorial opening for every archive category. */
+.filmography__category > h3 {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(231,190,137,.2);
+}
+.filmography__category > h3::after {
+  content: "";
+  display: block;
+  flex: 1 1 60px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(231,190,137,.4), transparent);
+}
+.filmography .film-card,
+.filmography .ad-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.filmography .film-card .film-type { margin-top: auto !important; }
+.filmography .film-role { line-height: 1.75; }
+
+/* Contact closes like a credit roll, not a generic two-column footer. */
+.contact .section__title {
+  letter-spacing: -.035em;
+}
+.contact__info > p {
+  max-width: 45ch;
+  color: #cbbba6;
+  line-height: 1.85;
+}
+.contact__details {
+  border-top: 1px solid rgba(231,190,137,.2);
+  margin-top: 24px;
+}
+.contact__item {
+  border-bottom: 1px solid rgba(231,190,137,.16);
+}
+.contact__item strong {
+  display: block;
+  min-width: 0;
+  margin-bottom: 3px;
+  font-size: 9px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+.contact__social h3 {
+  color: #e7c795;
+  letter-spacing: .04em;
+}
+.contact__social .social-link {
+  border-left: 2px solid rgba(217,154,85,.55) !important;
+}
+
+/* Visual detail stays quiet at phone sizes; content always wins. */
+@media (max-width: 760px) {
+  .timeline__year { flex-wrap: wrap; }
+  .timeline__content { padding: 18px 19px !important; }
+  .tv-serials .featured-serial__image::after { inset: 7px; }
+  .filmography__category > h3 { gap: 8px; }
+  .contact__item strong { margin-bottom: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tv-serials .featured-serial,
+  .tv-serials .serial-item,
+  .contact__social .social-link { transition: none !important; }
+}
+
+
+/* 10 — FULL PRODUCTION SET: not a text-only title card.
+   Layered practical-light, camera, film frames, director chair, clapper and reel
+   create a set-like opening while keeping the real portrait available. */
+.hero.hero--production-set {
+  min-height: max(850px, 100svh) !important;
+  display: flex;
+  align-items: center;
+  isolation: isolate;
+  background: #080604 !important;
+}
+.hero--production-set .hero__set-dressing {
+  position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(5,4,3,.05) 0%, rgba(5,4,3,.5) 25%, rgba(5,4,3,.78) 48%, rgba(5,4,3,.15) 100%),
+    linear-gradient(0deg, rgba(4,3,2,.15), rgba(4,3,2,.3)),
+    url("https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=2200&q=90") center 44% / cover no-repeat;
+}
+.hero--production-set .hero__set-dressing::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 9% 25%, rgba(255,167,73,.28), transparent 18%),
+    radial-gradient(ellipse at 82% 86%, rgba(177,91,34,.24), transparent 24%),
+    linear-gradient(90deg, rgba(0,0,0,.12), rgba(0,0,0,.5) 36%, rgba(0,0,0,.08) 72%, rgba(0,0,0,.45));
+}
+.hero--production-set .hero__set-light {
+  position: absolute; left: -3%; top: 12%; width: clamp(150px, 22vw, 340px); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle, #fff3c9 0 7%, #ffd18a 10% 17%, rgba(255,166,69,.55) 23%, rgba(245,127,35,.14) 42%, transparent 68%);
+  filter: blur(2px); opacity: .9;
+}
+.hero--production-set .hero__set-camera {
+  position: absolute; left: -4%; bottom: 13%; width: clamp(180px, 28vw, 390px); height: clamp(220px, 33vw, 470px);
+  background: radial-gradient(ellipse at 60% 14%, #080706 0 12%, #282019 13% 17%, #050505 19% 26%, transparent 27%),
+    linear-gradient(90deg, #030303, #27221c 30%, #050505 66%, #18120c 80%, transparent 82%);
+  clip-path: polygon(12% 0, 72% 0, 83% 12%, 78% 24%, 100% 27%, 93% 58%, 72% 61%, 75% 100%, 3% 100%, 0 26%);
+  opacity: .9; filter: drop-shadow(16px 20px 22px #000);
+}
+.hero--production-set .hero__set-filmstrip {
+  position: absolute; right: -1.5%; top: 4%; width: clamp(115px, 22vw, 310px); height: 68%; padding: 15px 12px;
+  display: flex; flex-direction: column; gap: 10px; background: #0b0907; border: 1px solid rgba(231,190,137,.25);
+  transform: rotate(-9deg); box-shadow: 0 12px 70px #000;
+}
+.hero--production-set .hero__set-filmstrip::before, .hero--production-set .hero__set-filmstrip::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 7px;
+  background: repeating-linear-gradient(180deg, #c7a06a 0 9px, transparent 9px 19px); opacity: .65;
+}
+.hero--production-set .hero__set-filmstrip::before { left: 1px; }
+.hero--production-set .hero__set-filmstrip::after { right: 1px; }
+.hero--production-set .hero__set-filmstrip img {
+  display: block; width: 100%; min-height: 0; flex: 1; object-fit: cover;
+  filter: sepia(.45) brightness(.6) contrast(1.15); border: 1px solid rgba(222,183,127,.2);
+}
+.hero--production-set .hero__set-chair {
+  position: absolute; left: 2%; bottom: 5%; width: clamp(190px, 33vw, 470px); height: clamp(105px, 17vw, 220px);
+  transform: rotate(-4deg); border: 10px solid #100b07; border-bottom-width: 16px;
+  background: linear-gradient(110deg, #080706, #21170f 50%, #070605);
+  box-shadow: 0 16px 28px rgba(0,0,0,.8), inset 0 0 0 1px #79552f;
+}
+.hero--production-set .hero__set-chair::before {
+  content: ""; position: absolute; left: -8px; right: -8px; top: -18px; height: 24px;
+  border: 2px solid #77502b; background: linear-gradient(#302117, #080706);
+}
+.hero--production-set .hero__set-chair span {
+  display: block; padding-top: 22%; color: #b88b58; text-align: center;
+  font: 700 clamp(16px, 2.6vw, 34px)/1 sans-serif; letter-spacing: .14em; transform: rotate(-2deg);
+}
+.hero--production-set .hero__set-clapper {
+  position: absolute; right: 5%; bottom: 12%; width: clamp(170px, 25vw, 360px); padding: 18px 12px 25px;
+  display: flex; justify-content: space-around; color: #d5b58a; background: linear-gradient(160deg, #1d1711, #050505);
+  border: 2px solid #947044; box-shadow: 0 18px 28px rgba(0,0,0,.7); transform: rotate(-8deg); font: italic 11px/1.2 sans-serif;
+}
+.hero--production-set .hero__set-clapper::before {
+  content: ""; position: absolute; left: -2px; right: -2px; top: -17px; height: 18px;
+  background: repeating-linear-gradient(135deg, #d8c7ac 0 15px, #17120d 15px 30px); border: 1px solid #8b6b44;
+}
+.hero--production-set .hero__set-clapper i { position: absolute; left: 0; right: 0; bottom: 10px; height: 1px; background: #8b6b44; }
+.hero--production-set .hero__set-reel {
+  position: absolute; right: 10%; bottom: 5%; width: clamp(120px, 18vw, 260px); aspect-ratio: 1.9; border-radius: 50%;
+  background: radial-gradient(ellipse, transparent 0 13%, #17120d 14% 20%, #a87b44 21% 22%, #090807 23% 43%, #b0834d 44% 46%, #090807 47% 58%, transparent 59%);
+  opacity: .8;
+}
+.hero--production-set .hero__topline {
+  position: absolute; z-index: 3; top: 20px; left: clamp(20px, 4.5vw, 64px); right: clamp(20px, 4.5vw, 64px);
+  display: flex; align-items: center; justify-content: space-between; color: #fff0d9;
+  font: italic clamp(20px, 3vw, 36px)/1.2 "Brush Script MT", "Segoe Script", cursive; text-shadow: 0 2px 12px #000;
+}
+.hero--production-set .hero__menu-mark {
+  width: 70px; height: 70px; border: 1px solid rgba(235,201,156,.7); border-radius: 50%;
+  display: flex; flex-direction: column; justify-content: center; gap: 7px; padding: 0 18px;
+}
+.hero--production-set .hero__menu-mark i { height: 1px; background: #f0d4a9; display: block; }
+.hero--production-set .hero__content.container {
+  z-index: 2; width: min(100% - 36px, 820px); margin-inline: auto; padding-block: 125px 230px; justify-content: center;
+}
+.hero--production-set .hero__text {
+  width: min(100%, 660px); margin-inline: auto; text-align: center; padding: 25px 30px;
+  background: radial-gradient(ellipse, rgba(5,4,3,.76), rgba(5,4,3,.42) 64%, transparent 100%);
+}
+.hero--production-set .hero__text::after { margin-inline: auto; }
+.hero--production-set .hero__title {
+  font-size: clamp(3.7rem, 8vw, 7.6rem) !important; line-height: .9; text-transform: uppercase;
+  letter-spacing: -.04em; text-wrap: balance;
+}
+.hero--production-set .hero__image { display: none !important; }
+.hero--production-set .hero__subtitle { font-size: clamp(10px, 1.2vw, 14px); }
+.hero--production-set .hero__buttons { justify-content: center; }
+.hero--production-set .hero__buttons .btn { min-height: 62px; }
+@media (max-width: 760px) {
+  .hero.hero--production-set { min-height: 100svh !important; }
+  .hero--production-set .hero__content.container { padding: 112px 18px 250px !important; width: 100% !important; }
+  .hero--production-set .hero__text { padding: 18px 8px; background: radial-gradient(ellipse, rgba(5,4,3,.8), rgba(5,4,3,.48) 70%, transparent 100%); }
+  .hero--production-set .hero__title { font-size: clamp(2.8rem, 12vw, 4.2rem) !important; }
+  .hero--production-set .hero__set-camera { left: -13%; bottom: 12%; opacity: .6; }
+  .hero--production-set .hero__set-chair { left: -5%; bottom: 4%; width: 52%; height: 95px; }
+  .hero--production-set .hero__set-chair span { padding-top: 23%; font-size: 14px; }
+  .hero--production-set .hero__set-filmstrip { right: -8%; top: 19%; width: 25%; height: 45%; opacity: .65; }
+  .hero--production-set .hero__set-clapper { right: 1%; bottom: 8%; width: 44%; padding: 14px 8px 20px; }
+  .hero--production-set .hero__set-reel { right: 8%; bottom: 2%; width: 24%; }
+  .hero--production-set .hero__topline { top: 16px; font-size: 22px; }
+  .hero--production-set .hero__menu-mark { width: 48px; height: 48px; padding: 0 12px; gap: 5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero--production-set * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+
+/* 11 — PAGE-WIDE PRODUCTION DESIGN.
+   Each chapter gets a different cinematic environment: edit bay, marked-up
+   director's dossier, crew department, film reel, continuity archive, broadcast
+   monitor wall and rolling end credits. These are visual layers, not content cards. */
+.production-chapter { position: relative; isolation: isolate; overflow: clip; }
+.production-chapter > .container,
+.production-chapter > .directors-cut__inner { position: relative; z-index: 1; }
+.chapter-art {
+  position: absolute; z-index: 0; pointer-events: none; user-select: none;
+  color: rgba(230,187,126,.65); font: 600 9px/1.4 var(--font-sans, sans-serif); letter-spacing: .22em;
+}
+.chapter-art--edit {
+  top: 12%; right: -2%; width: 31%; height: 72%;
+  background:
+    linear-gradient(90deg, transparent 0 8%, rgba(0,0,0,.2) 8% 10%, transparent 10%),
+    url("https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1000&q=85") center/cover;
+  border: 10px solid #090705; outline: 1px solid rgba(217,154,85,.38);
+  transform: rotate(5deg); opacity: .2;
+  box-shadow: 0 0 0 8px rgba(0,0,0,.5), 0 28px 60px #000;
+}
+.chapter-art--edit span { display: block; padding: 10px; background: rgba(0,0,0,.7); }
+.chapter-art--dossier {
+  right: 4%; top: 16%; width: min(27%, 330px); height: 58%; padding: 26px 22px;
+  border: 1px solid rgba(217,154,85,.3);
+  background: linear-gradient(135deg, rgba(65,42,23,.5), rgba(7,6,5,.1)), url("https://images.unsplash.com/photo-1455390582262-044c 인터넷?auto=format&fit=crop&w=800&q=80") center/cover;
+  box-shadow: 12px 16px 0 rgba(0,0,0,.18); transform: rotate(3deg); opacity: .22;
+}
+.chapter-art--dossier i { display:block; height:1px; margin-top:28px; background:rgba(231,190,137,.5); }
+.chapter-art--crew {
+  right: -4%; top: 14%; width: 35%; height: 72%; opacity: .19;
+  background: url("https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=1100&q=85") center/cover no-repeat;
+  filter: sepia(.75) contrast(1.1);
+  mask-image: linear-gradient(90deg, transparent, #000 25%);
+}
+.chapter-art--crew span { position:absolute; right:18%; bottom:12%; font-size: clamp(18px,3vw,42px); writing-mode: vertical-rl; }
+.chapter-art--reel {
+  right: -5%; top: 5%; bottom: 5%; width: 30%; opacity: .2;
+  background: repeating-linear-gradient(180deg, transparent 0 34px, rgba(217,154,85,.6) 34px 36px, transparent 36px 70px),
+    linear-gradient(90deg, transparent 0 10%, #1b120a 10% 90%, transparent 90%);
+  border-inline: 10px solid rgba(217,154,85,.32);
+  transform: rotate(2deg);
+}
+.chapter-art--reel span { position:absolute; inset:45% auto auto 12%; writing-mode:vertical-rl; }
+.chapter-art--archive {
+  top: 12%; right: 3%; width: 25%; height: 64%; padding: 20px;
+  border: 1px solid rgba(217,154,85,.3);
+  background: linear-gradient(rgba(8,6,4,.55),rgba(8,6,4,.75)), url("https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=900&q=85") center/cover;
+  transform: rotate(-4deg); opacity: .22;
+}
+.chapter-art--archive span { display:block; padding: 10px 0; border-bottom: 1px solid rgba(217,154,85,.4); }
+.chapter-art--broadcast {
+  right: -2%; top: 8%; width: 34%; height: 70%;
+  background: url("https://images.unsplash.com/photo-1594909122845-11baa439b7bf?auto=format&fit=crop&w=1100&q=85") center/cover;
+  border: 12px solid #090705; box-shadow: 0 0 0 1px rgba(217,154,85,.35), 0 20px 55px #000;
+  transform: rotate(3deg); opacity: .22; filter: sepia(.65);
+}
+.chapter-art--broadcast span { position:absolute; top:12px; left:12px; padding:8px 10px; background:#a33b28; color:#fff1d9; }
+.chapter-art--credits {
+  left: 5%; top: 12%; width: 25%; height: 75%; opacity: .22;
+  background: repeating-linear-gradient(180deg, transparent 0 34px, rgba(217,154,85,.28) 34px 35px, transparent 35px 70px);
+  border-inline: 1px solid rgba(217,154,85,.4);
+}
+.chapter-art--credits span { position:absolute; top:50%; left:10%; writing-mode:vertical-rl; font-size: clamp(22px,3vw,40px); }
+.chapter-art--credits i { position:absolute; bottom:10%; left:10%; right:10%; height:1px; background:#d99a55; }
+.production-chapter .section__title { position:relative; z-index:1; }
+.production-chapter .eyebrow { position:relative; z-index:1; }
+.directors-cut__visual img { position:relative; z-index:1; }
+.biography__content, .highlights__grid, .timeline__container, .filmography .container, .tv-serials .container, .contact .container { position:relative; z-index:1; }
+@media (min-width: 1000px) {
+  .biography__content { position:relative; }
+  .biography__text { width: min(72%, 880px); }
+  .highlights__grid { position:relative; }
+  .filmography .filmography__category { position:relative; z-index:1; }
+}
+@media (max-width: 760px) {
+  .chapter-art--edit { right:-20%; top:4%; width:55%; height:35%; opacity:.13; }
+  .chapter-art--dossier { right:-12%; top:9%; width:48%; height:34%; opacity:.12; }
+  .chapter-art--crew { width:62%; height:44%; top:auto; bottom:0; opacity:.13; }
+  .chapter-art--reel { right:-18%; width:40%; opacity:.12; }
+  .chapter-art--archive { right:-12%; top:6%; width:48%; height:32%; opacity:.13; }
+  .chapter-art--broadcast { right:-14%; top:4%; width:48%; height:38%; opacity:.13; }
+  .chapter-art--credits { left:-10%; width:30%; opacity:.12; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chapter-art { scroll-behavior:auto; }
+}
+
+
+/* 12 — MOTION DESIGN: the site behaves like a film, not a poster. */
+.hero--production-set { --focus-x: 50%; --focus-y: 45%; }
+.hero--production-set .hero__set-dressing {
+  background-position: center, center, var(--focus-x) var(--focus-y);
+  transition: filter .7s ease, background-position .2s ease-out;
+}
+.hero--production-set::after {
+  content: "";
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  opacity: .16;
+  background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,236,205,.05) 3px 4px);
+  mix-blend-mode: screen;
+}
+.hero--production-set .hero__set-light {
+  animation: practical-light-breathe 5s ease-in-out infinite;
+  transform-origin: center;
+}
+.hero--production-set .hero__set-filmstrip { animation: filmstrip-drift 18s ease-in-out infinite alternate; }
+.hero--production-set .hero__set-chair { transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+.hero--production-set .hero__set-clapper { transform-origin: 20% 100%; transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+.hero--production-set .hero__set-reel { animation: reel-glint 8s linear infinite; }
+.hero__roll-button {
+  position: absolute; z-index: 4; right: clamp(24px, 5vw, 72px); top: 115px;
+  display: flex; align-items: center; gap: 13px; padding: 12px 16px;
+  border: 1px solid rgba(231,190,137,.5); border-radius: 2px;
+  color: #f5e6d0; background: rgba(8,6,4,.65); backdrop-filter: blur(12px);
+  cursor: pointer; text-align: left; transition: background .3s ease, border-color .3s ease, transform .3s ease;
+}
+.hero__roll-button:hover { transform: translateY(-2px); border-color: #f2c78f; background: rgba(57,34,17,.85); }
+.roll-button__lamp { width: 9px; height: 9px; border-radius: 50%; background: #9a4b34; box-shadow: 0 0 0 4px rgba(154,75,52,.15); }
+.roll-button__copy { display: grid; gap: 4px; }
+.roll-button__copy strong { font: 700 9px/1.2 var(--font-sans, sans-serif); letter-spacing: .18em; }
+.roll-button__copy small { color: #bca78b; font: 10px/1.2 var(--font-sans, sans-serif); letter-spacing: .04em; }
+.roll-button__icon { font-size: 10px; color: #d8a66b; }
+.hero__roll-status {
+  position: absolute; z-index: 3; left: 50%; bottom: 27px; transform: translateX(-50%);
+  margin: 0; color: rgba(241,214,177,.75); font: 600 8px/1.4 var(--font-sans, sans-serif);
+  letter-spacing: .24em; text-align: center; white-space: nowrap;
+}
+.hero.is-rolling .hero__set-light { animation-duration: 1.4s; filter: blur(1px) brightness(1.25); }
+.hero.is-rolling .hero__set-clapper { transform: rotate(0deg) translateY(-5px); }
+.hero.is-rolling .hero__set-chair { transform: rotate(-2deg) translateY(-4px); }
+.hero.is-rolling .hero__set-dressing { filter: saturate(1.14) contrast(1.08); }
+.hero.is-rolling .roll-button__lamp { background: #df3c27; box-shadow: 0 0 0 4px rgba(223,60,39,.16), 0 0 18px rgba(223,60,39,.8); animation: record-light 1s steps(2,end) infinite; }
+.story-trailer {
+  position: relative; overflow: hidden; padding: 22px 0 17px;
+  border-block: 1px solid rgba(231,190,137,.2);
+  background: linear-gradient(90deg, #080604, #1b120a 48%, #080604);
+}
+.story-trailer__track {
+  width: max-content; display: flex; align-items: center; gap: clamp(20px,4vw,60px);
+  color: #e9d0aa; font: 500 clamp(20px,3.2vw,42px)/1 Georgia, serif;
+  letter-spacing: .08em; white-space: nowrap;
+  animation: trailer-travel 32s linear infinite;
+}
+.story-trailer__track i { color: #b87b43; font-size: .65em; font-style: normal; }
+.story-trailer__caption {
+  display:flex; justify-content:space-between; gap:20px; padding: 18px clamp(20px,5vw,70px) 0;
+  color:#9f886c; font:600 8px/1.4 var(--font-sans,sans-serif); letter-spacing:.2em;
+}
+.story-trailer__caption b { margin-left:8px; color:#edc58e; }
+body.is-camera-rolling .story-trailer__track { animation-duration: 13s; }
+body.is-camera-rolling .hero__roll-status { color:#f0c48a; }
+.production-chapter .chapter-art { transition: opacity .8s ease, transform 1s cubic-bezier(.2,.8,.2,1); }
+.production-chapter.is-chapter-active .chapter-art { opacity: .28; }
+.production-chapter .chapter-art--edit,
+.production-chapter .chapter-art--archive,
+.production-chapter .chapter-art--broadcast { will-change: transform; }
+@keyframes practical-light-breathe {
+  0%,100% { opacity:.78; filter:blur(2px); }
+  50% { opacity:1; filter:blur(5px); }
+}
+@keyframes filmstrip-drift { from { margin-top:0; } to { margin-top:18px; } }
+@keyframes reel-glint { 0%,100% { filter:brightness(.85); } 50% { filter:brightness(1.3); } }
+@keyframes record-light { to { opacity:.55; } }
+@keyframes trailer-travel { to { transform:translateX(-50%); } }
+@media (max-width:760px) {
+  .hero__roll-button { top:83px; right:18px; gap:9px; padding:9px 11px; }
+  .roll-button__copy strong { font-size:8px; }
+  .roll-button__copy small { font-size:9px; }
+  .hero__roll-status { bottom:17px; font-size:7px; letter-spacing:.16em; }
+  .story-trailer { padding-top:18px; }
+  .story-trailer__caption { padding-top:13px; font-size:7px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .hero--production-set .hero__set-light,
+  .hero--production-set .hero__set-filmstrip,
+  .hero--production-set .hero__set-reel,
+  .story-trailer__track { animation:none !important; }
+  .hero--production-set .hero__set-dressing,
+  .hero--production-set .hero__set-chair,
+  .hero--production-set .hero__set-clapper { transition:none !important; }
+}
+
+
+/* 13 — CINEMATIC STORYTELLING PASS: the portfolio moves from scene to scene. */
+:root { --story-progress: 0; --story-copper: #c88b4e; }
+body::after {
+  content:""; position:fixed; z-index:1000; top:0; left:0; height:2px; width:calc(var(--story-progress) * 100%);
+  background:linear-gradient(90deg,#8e4327,#f4d5a1); box-shadow:0 0 12px rgba(217,154,85,.55);
+  pointer-events:none; transform-origin:left;
+}
+.directors-cut__inner { align-items:center; }
+.directors-cut__visual {
+  position:relative; overflow:hidden; transform:translateZ(0);
+  box-shadow:0 28px 70px rgba(0,0,0,.45);
+}
+.directors-cut__visual::before {
+  content:""; position:absolute; z-index:2; inset:0; pointer-events:none;
+  border:1px solid rgba(240,204,154,.6);
+  background:linear-gradient(135deg,rgba(245,197,125,.12),transparent 30%,transparent 65%,rgba(0,0,0,.38));
+}
+.directors-cut__visual::after {
+  content:""; position:absolute; z-index:2; top:0; bottom:0; left:-35%; width:24%;
+  transform:skewX(-18deg); background:linear-gradient(90deg,transparent,rgba(255,224,177,.24),transparent);
+  animation:frame-light-sweep 8s ease-in-out infinite;
+}
+.directors-cut__visual img { transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter .8s ease; }
+.directors-cut__visual:hover img { transform:scale(1.045); filter:contrast(1.06) saturate(1.08); }
+.directors-cut__frame-label {
+  display:flex; align-items:center; gap:10px;
+  background:rgba(7,5,3,.88); border-top:1px solid rgba(217,154,85,.55);
+}
+.directors-cut__frame-label::before { content:""; width:7px; height:7px; border-radius:50%; background:#d94c32; box-shadow:0 0 12px #d94c32; }
+.directors-cut__credits a { position:relative; overflow:hidden; }
+.directors-cut__credits a::before {
+  content:""; position:absolute; inset:0; transform:translateX(-102%);
+  background:linear-gradient(90deg,transparent,rgba(217,154,85,.09),transparent);
+  transition:transform .55s ease;
+}
+.directors-cut__credits a:hover::before { transform:translateX(102%); }
+.directors-cut__credits a:hover .directors-cut__number { color:#f5d3a2; transform:scale(1.1); }
+.directors-cut__number { display:inline-block; transition:transform .25s ease,color .25s ease; }
+.highlights__grid { perspective:1000px; }
+.highlight-card {
+  position:relative; overflow:hidden; transform:translateZ(0);
+  transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .4s ease,background .4s ease;
+}
+.highlight-card::after {
+  content:""; position:absolute; top:-20%; left:-80%; width:45%; height:140%;
+  transform:rotate(18deg); background:linear-gradient(90deg,transparent,rgba(243,203,148,.12),transparent);
+  transition:left .8s cubic-bezier(.2,.8,.2,1); pointer-events:none;
+}
+.highlight-card:hover { transform:translateY(-8px) rotateX(1deg); border-color:rgba(226,173,108,.65) !important; }
+.highlight-card:hover::after { left:140%; }
+.highlight-card__icon { display:flex; align-items:center; gap:10px; }
+.highlight-card__icon::before { content:""; display:inline-block; width:24px; height:1px; background:#d99a55; }
+.timeline { --timeline-progress:0%; }
+.timeline__container { position:relative; }
+.timeline__container::before {
+  content:""; position:absolute; top:0; bottom:0; left:50%; width:2px;
+  background:linear-gradient(to bottom,#9a5a32 var(--timeline-progress),rgba(217,154,85,.14) var(--timeline-progress));
+  transform:translateX(-50%); z-index:0;
+}
+.timeline__item { position:relative; z-index:1; opacity:.55; filter:saturate(.65); transition:opacity .55s ease,filter .55s ease,transform .55s cubic-bezier(.2,.8,.2,1); }
+.timeline__item.is-scene-active { opacity:1; filter:saturate(1); transform:translateY(-3px); }
+.timeline__item::after {
+  content:""; position:absolute; top:23px; left:calc(50% - 5px); width:10px; height:10px; border-radius:50%;
+  background:#21140b; border:2px solid #b9854d; box-shadow:0 0 0 5px rgba(185,133,77,.12); transition:background .3s ease,box-shadow .3s ease;
+}
+.timeline__item.is-scene-active::after { background:#f2cf9b; box-shadow:0 0 0 8px rgba(185,133,77,.2),0 0 22px rgba(242,207,155,.4); }
+.timeline__content { position:relative; overflow:hidden; }
+.timeline__content::after {
+  content:"SCENE"; position:absolute; top:12px; right:14px; color:rgba(217,154,85,.35);
+  font:600 8px/1 var(--font-sans,sans-serif); letter-spacing:.18em;
+}
+.filmography__category { position:relative; }
+.filmography__category > h3 { font-family:Georgia,serif; letter-spacing:.015em; }
+.filmography .film-card, .filmography .ad-card {
+  position:relative; overflow:hidden; isolation:isolate;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .4s ease,background .4s ease;
+}
+.filmography .film-card::before, .filmography .ad-card::before {
+  content:""; position:absolute; z-index:-1; inset:0;
+  background:linear-gradient(115deg,rgba(195,125,62,.11),transparent 48%),repeating-linear-gradient(90deg,transparent 0 29px,rgba(217,154,85,.035) 29px 30px);
+  opacity:.6; transition:opacity .4s ease;
+}
+.filmography .film-card::after, .filmography .ad-card::after {
+  content:""; position:absolute; top:0; left:0; width:3px; height:100%;
+  background:linear-gradient(#f0d0a0,#8c4329); transform:scaleY(.2); transform-origin:top; transition:transform .4s ease;
+}
+.filmography .film-card:hover, .filmography .ad-card:hover { transform:translateY(-5px); border-color:rgba(217,154,85,.6) !important; }
+.filmography .film-card:hover::before, .filmography .ad-card:hover::before { opacity:1; }
+.filmography .film-card:hover::after, .filmography .ad-card:hover::after { transform:scaleY(1); }
+.featured-serial { transition:transform .55s cubic-bezier(.2,.8,.2,1),filter .5s ease; }
+.featured-serial:hover { transform:translateY(-7px); filter:brightness(1.08); }
+.featured-serial__image { overflow:hidden; }
+.featured-serial__image img { transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .8s ease; }
+.featured-serial:hover .featured-serial__image img { transform:scale(1.045); filter:contrast(1.06); }
+.tv-serials .serial-item { position:relative; transition:padding-left .3s ease,border-color .3s ease; }
+.tv-serials .serial-item:hover { padding-left:18px; border-color:rgba(217,154,85,.6); }
+.contact__social .social-link { position:relative; overflow:hidden; }
+.contact__social .social-link::after {
+  content:"↗"; position:absolute; right:18px; opacity:.3; transform:translate(-5px,5px);
+  transition:opacity .3s ease,transform .3s ease;
+}
+.contact__social .social-link:hover::after { opacity:1; transform:translate(0,0); }
+@keyframes frame-light-sweep { 0%,65% { left:-35%; opacity:0; } 72% { opacity:1; } 100% { left:125%; opacity:0; } }
+@media (max-width:760px) {
+  .timeline__container::before { left:8px; }
+  .timeline__item::after { left:3px; top:21px; }
+  .timeline__content::after { top:10px; right:10px; }
+  .highlight-card:hover { transform:translateY(-3px); }
+}
+@media (prefers-reduced-motion:reduce) {
+  .directors-cut__visual::after { animation:none !important; }
+  .directors-cut__visual img,.highlight-card,.timeline__item,.filmography .film-card,.filmography .ad-card,.featured-serial,.featured-serial__image img { transition:none !important; }
+}
+
+@keyframes archive-chapter-enter {
+  from { opacity:0; transform:translateY(14px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.filmography__category.archive-enter { animation:archive-chapter-enter .45s cubic-bezier(.2,.8,.2,1) both; }
+@media (prefers-reduced-motion:reduce) {
+  .filmography__category.archive-enter { animation:none !important; }
+}
+
+
+/* 14 — EDITORIAL INTERLUDE: a real behind-the-scenes image becomes a scene,
+   with its own frame, visual rhythm and a responsive sound-wave motif. */
+.on-set-interlude {
+  position:relative; isolation:isolate; display:grid; grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);
+  align-items:center; gap:clamp(28px,6vw,100px); padding:clamp(64px,9vw,132px) max(24px,calc((100vw - 1180px)/2));
+  overflow:hidden; background:linear-gradient(115deg,#100b07,#070605 65%,#1c1008);
+}
+.on-set-interlude::before {
+  content:""; position:absolute; z-index:-1; inset:0;
+  background:radial-gradient(ellipse at 72% 48%,rgba(172,96,42,.16),transparent 36%),
+    repeating-linear-gradient(90deg,transparent 0 79px,rgba(217,154,85,.025) 79px 80px);
+}
+.on-set-interlude__image {
+  position:relative; min-height:clamp(300px,40vw,590px); overflow:hidden; background:#080604;
+  border:1px solid rgba(231,190,137,.38); box-shadow:18px 18px 0 rgba(111,67,32,.12),0 28px 65px rgba(0,0,0,.4);
+}
+.on-set-interlude__image::before {
+  content:""; position:absolute; z-index:1; inset:0; pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,0,0,.05),transparent 45%,rgba(0,0,0,.55));
+}
+.on-set-interlude__image::after {
+  content:""; position:absolute; z-index:2; inset:12px; border:1px solid rgba(242,209,164,.34); pointer-events:none;
+}
+.on-set-interlude__image img {
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:sepia(.22) contrast(1.08) brightness(.82);
+  transition:transform 1.4s cubic-bezier(.2,.7,.2,1),filter 1s ease;
+}
+.on-set-interlude__image:hover img { transform:scale(1.04); filter:sepia(.1) contrast(1.08) brightness(.95); }
+.on-set-interlude__frame {
+  position:absolute; z-index:3; bottom:28px; left:30px; color:#f0d3a9;
+  font:600 9px/1.4 var(--font-sans,sans-serif); letter-spacing:.2em;
+}
+.on-set-interlude__copy { max-width:480px; }
+.on-set-interlude__copy h2 {
+  margin:20px 0; color:#f3e4ce; font:400 clamp(2.4rem,5.2vw,5.4rem)/.98 Georgia,serif; letter-spacing:-.045em;
+}
+.on-set-interlude__copy h2 em { color:#d8a46b; font-weight:400; }
+.on-set-interlude__copy > p:not(.eyebrow) { max-width:34ch; color:#bcae9b; font-size:clamp(15px,1.3vw,18px); line-height:1.9; }
+.on-set-interlude__sound {
+  display:flex; align-items:center; gap:4px; height:42px; margin-top:34px; max-width:340px; overflow:hidden;
+  border-block:1px solid rgba(217,154,85,.2);
+}
+.on-set-interlude__sound i {
+  flex:1; height:var(--bar,30%); min-width:2px; background:linear-gradient(#edc18a,#9c5d35);
+  transform-origin:center; animation:sound-wave 1.15s ease-in-out infinite alternate;
+}
+.on-set-interlude__sound i:nth-child(3n) { --bar:82%; animation-delay:-.4s; }
+.on-set-interlude__sound i:nth-child(4n) { --bar:45%; animation-delay:-.8s; }
+.on-set-interlude__sound i:nth-child(5n) { --bar:95%; animation-delay:-.2s; }
+.on-set-interlude__sound i:nth-child(2n) { --bar:60%; animation-delay:-.6s; }
+.on-set-interlude__note { display:block; margin-top:15px; color:#8f7659; font:600 8px/1.6 var(--font-sans,sans-serif); letter-spacing:.19em; }
+@keyframes sound-wave { from { transform:scaleY(.35); opacity:.55; } to { transform:scaleY(1); opacity:1; } }
+@media (max-width:760px) {
+  .on-set-interlude { grid-template-columns:1fr; gap:30px; padding:62px 22px; }
+  .on-set-interlude__image { min-height:310px; }
+  .on-set-interlude__copy { padding:0 4px; }
+  .on-set-interlude__copy h2 { font-size:clamp(2.6rem,12vw,4.2rem); }
+}
+@media (prefers-reduced-motion:reduce) {
+  .on-set-interlude__sound i { animation:none !important; transform:scaleY(.65); }
+  .on-set-interlude__image img { transition:none !important; }
+}
+
+
+/* 15 — IMAGE-LED ARCHIVE: each credit department gets a visual frame of its own. */
+.filmography__category[data-film-category="film"]::before,
+.filmography__category[data-film-category="direction"]::before,
+.filmography__category[data-film-category="advertising"]::before {
+  content:""; display:block; width:100%; height:clamp(110px,16vw,210px); margin:0 0 24px;
+  border:1px solid rgba(217,154,85,.28); position:relative; overflow:hidden;
+  background-color:#0b0805; background-position:center; background-size:cover;
+  box-shadow:inset 0 0 0 8px rgba(0,0,0,.25);
+}
+.filmography__category[data-film-category="film"]::before {
+  background-image:linear-gradient(90deg,rgba(7,5,3,.85),rgba(7,5,3,.1) 58%,rgba(7,5,3,.5)),
+    url("https://m.media-amazon.com/images/M/MV5BYzZiY2QyNTMtNTMzMi00ODZkLWEwNWItYmJiM2MyNWJmY2Q5XkEyXkFqcGc@._V1_.jpg");
+  background-position:center 35%;
+}
+.filmography__category[data-film-category="direction"]::before {
+  background-image:linear-gradient(90deg,rgba(7,5,3,.8),rgba(7,5,3,.15) 60%,rgba(7,5,3,.6)),
+    url("https://res.cloudinary.com/dipuhwwmz/image/upload/v1766901441/DSC08995_lnmion.jpg");
+  background-position:center 45%;
+}
+.filmography__category[data-film-category="advertising"]::before {
+  background-image:linear-gradient(90deg,rgba(7,5,3,.85),rgba(7,5,3,.2) 60%,rgba(7,5,3,.65)),
+    url("https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=1400&q=85");
+  background-position:center 50%;
+}
+.filmography__category[data-film-category="film"]::after,
+.filmography__category[data-film-category="direction"]::after,
+.filmography__category[data-film-category="advertising"]::after {
+  position:absolute; top:28px; left:18px; padding:8px 10px;
+  color:#f0d4ac; background:rgba(6,4,2,.72); border:1px solid rgba(217,154,85,.35);
+  font:600 8px/1.2 var(--font-sans,sans-serif); letter-spacing:.2em;
+}
+.filmography__category[data-film-category="film"]::after { content:"ARCHIVE / ASSISTANT DIRECTION"; }
+.filmography__category[data-film-category="direction"]::after { content:"DIRECTOR’S CUT / ORIGINAL WORK"; }
+.filmography__category[data-film-category="advertising"]::after { content:"COMMERCIALS / CAMPAIGN FILMS"; }
+.filmography__category[hidden]::before,
+.filmography__category[hidden]::after { display:none; }
+@media (max-width:760px) {
+  .filmography__category[data-film-category="film"]::before,
+  .filmography__category[data-film-category="direction"]::before,
+  .filmography__category[data-film-category="advertising"]::before { height:125px; margin-bottom:18px; }
+  .filmography__category[data-film-category="film"]::after,
+  .filmography__category[data-film-category="direction"]::after,
+  .filmography__category[data-film-category="advertising"]::after { top:16px; left:12px; font-size:7px; }
+}
+
+
+/* 16 — PHYSICAL OBJECTS, NOT JUST BACKGROUND PHOTOGRAPHS. */
+.archive-slate {
+  margin:30px 0 42px; padding:12px; max-width:100%; color:#ead5b5;
+  border:1px solid rgba(213,166,105,.42); background:linear-gradient(145deg,#1b130b,#090705 65%);
+  box-shadow:0 18px 38px rgba(0,0,0,.3),inset 0 0 0 3px rgba(0,0,0,.5);
+  transform:rotate(-.6deg); position:relative; overflow:hidden;
+}
+.archive-slate__top { display:flex; justify-content:space-between; gap:15px; padding:5px 8px 12px; border-bottom:1px solid rgba(213,166,105,.3); color:#ae8b62; font:600 8px/1.4 var(--font-sans,sans-serif); letter-spacing:.2em; }
+.archive-slate__body { display:grid; grid-template-columns:minmax(90px,.45fr) 1fr 1.3fr auto; align-items:center; gap:clamp(10px,2vw,28px); padding:20px 8px 14px; }
+.archive-slate__clap { height:43px; width:100%; max-width:115px; position:relative; background:repeating-linear-gradient(135deg,#e2d0b3 0 12px,#1a120b 12px 24px); border:2px solid #c6a06f; box-shadow:0 4px 0 #060504; }
+.archive-slate__clap::after { content:""; position:absolute; top:8px; left:-3px; right:-3px; height:24px; border-block:2px solid #b78d57; background:repeating-linear-gradient(135deg,#e2d0b3 0 12px,#1a120b 12px 24px); transform:translateY(-18px) rotate(-8deg); transform-origin:left; }
+.archive-slate__body > div:not(.archive-slate__clap) { display:grid; gap:7px; }
+.archive-slate__label { color:#967751; font:600 7px/1.4 var(--font-sans,sans-serif); letter-spacing:.2em; }
+.archive-slate__body strong { color:#f1e0c7; font:500 clamp(10px,1.1vw,14px)/1.35 Georgia,serif; }
+.archive-slate__body strong i { color:#c88b4e; font-style:normal; }
+.archive-slate__stamp { padding:7px 9px; border:1px solid rgba(198,120,69,.55); color:#dba36f; font:700 8px/1.3 var(--font-sans,sans-serif); letter-spacing:.15em; transform:rotate(-5deg); }
+.broadcast-intro {
+  display:flex; align-items:center; gap:18px; margin:0 0 26px; padding:13px 0;
+  border-block:1px solid rgba(217,154,85,.22); color:#b39169;
+  font:600 8px/1.4 var(--font-sans,sans-serif); letter-spacing:.2em;
+}
+.broadcast-intro__bars { flex:1; display:flex; align-items:center; justify-content:center; gap:4px; height:28px; overflow:hidden; }
+.broadcast-intro__bars i { width:3px; height:var(--h,35%); background:linear-gradient(#eac48e,#8d4c2c); animation:broadcast-signal 1.1s ease-in-out infinite alternate; }
+.broadcast-intro__bars i:nth-child(3n) { --h:90%; animation-delay:-.3s; }
+.broadcast-intro__bars i:nth-child(4n) { --h:55%; animation-delay:-.7s; }
+.broadcast-intro__bars i:nth-child(5n) { --h:75%; animation-delay:-.5s; }
+@keyframes broadcast-signal { from { transform:scaleY(.4); opacity:.5; } to { transform:scaleY(1); opacity:1; } }
+.filmography__filters { position:relative; z-index:2; }
+.filmography__filter { transition:color .25s ease,background .25s ease,border-color .25s ease,transform .25s ease; }
+.filmography__filter:hover { transform:translateY(-2px); }
+.filmography__filter.is-active { box-shadow:0 0 0 1px rgba(217,154,85,.2),0 5px 18px rgba(0,0,0,.2); }
+@media (max-width:760px) {
+  .archive-slate { margin:24px 0 30px; transform:none; }
+  .archive-slate__body { grid-template-columns:74px 1fr; gap:16px 12px; padding-top:18px; }
+  .archive-slate__clap { grid-row:span 2; height:42px; }
+  .archive-slate__stamp { grid-column:2; justify-self:start; }
+  .archive-slate__top { font-size:7px; }
+  .broadcast-intro { gap:9px; font-size:7px; letter-spacing:.12em; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .broadcast-intro__bars i { animation:none !important; transform:scaleY(.7); }
+  .filmography__filter { transition:none !important; }
+}
+
+
+/* 17 — MOBILE QUALITY PASS: real image frames, readable cards, and an actual camera cue. */
+.filmography__category[data-film-category="advertising"]::before {
+  background-image: linear-gradient(90deg,rgba(7,5,3,.35),rgba(7,5,3,.04) 58%,rgba(7,5,3,.25)),
+    url("https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1400&q=85");
+  background-position:center 48%;
+}
+.filmography__category[data-film-category="direction"]::before {
+  background-image: linear-gradient(90deg,rgba(7,5,3,.3),rgba(7,5,3,.02) 58%,rgba(7,5,3,.28)),
+    url("https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=1400&q=85");
+  background-position:center 45%;
+}
+.filmography__category[data-film-category="film"]::after {
+  top:auto; bottom:calc(100% - 35px); left:12px;
+}
+.filmography__category[data-film-category="film"]::before { background-position:center 28%; }
+.filmography__category[data-film-category="film"]::after,
+.filmography__category[data-film-category="direction"]::after,
+.filmography__category[data-film-category="advertising"]::after {
+  z-index:2; max-width:calc(100% - 24px); white-space:normal;
+}
+.filmography .film-card,
+.filmography .ad-card {
+  padding:clamp(23px,4vw,34px) clamp(24px,5vw,38px) !important;
+}
+.filmography .film-card h4,
+.filmography .ad-card h4 { margin-bottom:12px; }
+.filmography .film-card .film-role,
+.filmography .ad-card p { margin-top:0; line-height:1.65; }
+.timeline__content { padding:clamp(22px,4vw,34px) clamp(24px,5vw,38px) !important; }
+.timeline__content h4 { margin-bottom:12px; }
+.timeline__content p { line-height:1.7; }
+.hero--production-set .hero__set-clapper { transition:transform .28s cubic-bezier(.2,.8,.2,1); }
+.hero.is-rolling .hero__set-clapper { transform:rotate(-18deg) translateY(-14px); }
+.hero.is-rolling::after {
+  content:"REC  ●   TAKE 01   •   RAMESH R SHARMA";
+  position:absolute; z-index:5; left:clamp(20px,5vw,70px); top:clamp(145px,22vh,230px);
+  padding:9px 12px; border:1px solid rgba(220,67,46,.72);
+  color:#f6e6d0; background:rgba(20,5,3,.68);
+  font:700 9px/1.3 var(--font-sans,sans-serif); letter-spacing:.18em;
+  animation:record-overlay-in .35s ease both;
+}
+.hero.is-rolling .hero__set-filmstrip { animation-duration:5s; }
+.hero.is-rolling .hero__set-reel { animation-duration:1.5s; }
+.hero.is-rolling .hero__set-light { animation-duration:.8s; }
+@keyframes record-overlay-in {
+  from { opacity:0; transform:translateY(-8px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@media (max-width:760px) {
+  .filmography__category[data-film-category="film"]::after,
+  .filmography__category[data-film-category="direction"]::after,
+  .filmography__category[data-film-category="advertising"]::after {
+    top: auto; bottom: auto; left:12px; transform:translateY(-100%); margin-top:-10px;
+  }
+  .filmography__category[data-film-category="film"]::after { top:155px; }
+  .filmography__category[data-film-category="direction"]::after,
+  .filmography__category[data-film-category="advertising"]::after { top:155px; }
+  .filmography .film-card,
+  .filmography .ad-card { padding:25px 25px 27px !important; }
+  .timeline__content { padding:22px 24px !important; }
+  .hero.is-rolling::after { top:148px; left:18px; font-size:7px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .hero.is-rolling::after { animation:none; }
+}
+
+
+/* 18 — PORTRAIT FRAMING: preserve faces in wide archive artwork and bring the director into the hero. */
+.hero--production-set .hero__content { grid-template-columns:minmax(0,1.08fr) minmax(230px,.72fr); align-items:center; gap:clamp(24px,5vw,76px); }
+.hero--production-set .hero__image {
+  display:block !important; position:relative; width:100%; max-width:390px; justify-self:end;
+  margin:34px 10px 20px 0; padding:0 0 18px 18px; align-self:center;
+}
+.hero--production-set .hero__image::before { inset:18px -10px -2px 2px; }
+.hero--production-set .hero__img {
+  display:block; width:100%; height:auto; aspect-ratio:4/5; max-height:540px;
+  object-fit:cover; object-position:center 20%; border:1px solid rgba(225,190,139,.42);
+}
+.hero--production-set .hero__portrait-caption {
+  position:absolute; bottom:0; right:0; z-index:2; padding:7px 10px;
+  color:#f2d8b2; background:rgba(8,6,4,.88); font-size:8px; letter-spacing:.16em;
+}
+.filmography__category[data-film-category="film"]::before {
+  background-position:center 20% !important;
+  background-size:cover;
+}
+@media (min-width:761px) {
+  .hero--production-set .hero__content { padding-top:130px; padding-bottom:86px; }
+  .hero--production-set .hero__text { max-width:680px; }
+}
+@media (max-width:760px) {
+  .hero--production-set .hero__content { display:flex; flex-direction:column; align-items:stretch; gap:25px; }
+  .hero--production-set .hero__image { width:min(78%,330px); max-width:330px; margin:8px auto 26px; padding:0 0 14px 12px; order:2; }
+  .hero--production-set .hero__img { aspect-ratio:4/4.7; max-height:390px; object-position:center 20%; }
+  .hero--production-set .hero__portrait-caption { font-size:7px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .hero--production-set .hero__image,
+  .hero--production-set .hero__img { transition:none !important; }
+}
