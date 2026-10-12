@@ -215,5 +215,54 @@
       document.body.appendChild(gate);
       window.setTimeout(() => gate.remove(), 1100);
     }
+
+    // Interactive camera-roll: turn the hero from standby into an active set.
+    const rollButton = document.getElementById('roll-camera');
+    const rollStatus = document.getElementById('roll-status');
+    const hero = document.querySelector('.hero--production-set');
+    if (rollButton && hero) {
+      rollButton.addEventListener('click', () => {
+        const rolling = !hero.classList.contains('is-rolling');
+        hero.classList.toggle('is-rolling', rolling);
+        document.body.classList.toggle('is-camera-rolling', rolling);
+        rollButton.setAttribute('aria-pressed', String(rolling));
+        const strong = rollButton.querySelector('strong');
+        const small = rollButton.querySelector('small');
+        if (strong) strong.textContent = rolling ? 'CAMERA ROLLING' : 'ROLL CAMERA';
+        if (small) small.textContent = rolling ? 'Tap to cut' : 'Enter the story';
+        if (rollStatus) rollStatus.textContent = rolling
+          ? '● REC · THE STORY IS IN MOTION'
+          : 'STANDBY · READY WHEN YOU ARE';
+      });
+
+      // Gentle focus drift on pointer devices only; touch users get the designed default.
+      if (!reducedMotion.matches && window.matchMedia('(pointer:fine)').matches) {
+        hero.addEventListener('pointermove', (event) => {
+          const bounds = hero.getBoundingClientRect();
+          const x = ((event.clientX - bounds.left) / bounds.width - .5) * 5;
+          const y = ((event.clientY - bounds.top) / bounds.height - .5) * 5;
+          hero.style.setProperty('--focus-x', (50 + x) + '%');
+          hero.style.setProperty('--focus-y', (45 + y) + '%');
+        }, { passive: true });
+        hero.addEventListener('pointerleave', () => {
+          hero.style.setProperty('--focus-x', '50%');
+          hero.style.setProperty('--focus-y', '45%');
+        }, { passive: true });
+      }
+    }
+
+    // Give each chapter a subtle active state as it enters the viewer's focus.
+    const chapters = document.querySelectorAll('.production-chapter');
+    if (!reducedMotion.matches && 'IntersectionObserver' in window) {
+      const chapterObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle('is-chapter-active', entry.isIntersecting);
+        });
+      }, { threshold: 0.22 });
+      chapters.forEach((chapter) => chapterObserver.observe(chapter));
+    } else {
+      chapters.forEach((chapter) => chapter.classList.add('is-chapter-active'));
+    }
+
   });
 })();
