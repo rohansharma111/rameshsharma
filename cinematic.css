@@ -643,3 +643,46 @@ section { scroll-margin-top: 74px; }
     overflow-wrap: anywhere;
   }
 }
+
+
+/* Phase 11 — correct mobile viewport overflow and guarantee TV card inset. */
+@media screen and (max-width: 760px) {
+  html, body { width: 100% !important; max-width: 100% !important; overflow-x: hidden !important; }
+  .tv-serials, .tv-serials > .container, .tv-serials .tv-grid,
+  .tv-serials .tv-category, .tv-serials .serial-list {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .tv-serials > .container { padding-inline: 22px !important; }
+  .tv-serials .tv-grid { display: grid !important; grid-template-columns: minmax(0, 1fr) !important; gap: 32px !important; }
+  .tv-serials .tv-category { overflow: hidden !important; }
+  .tv-serials .tv-category > h3 { margin-inline: 0 !important; }
+  .tv-serials .serial-list { display: grid !important; grid-template-columns: minmax(0, 1fr) !important; gap: 12px !important; padding: 0 2px !important; }
+  .tv-serials .tv-category .serial-list > .serial-item,
+  .tv-serials .serial-list .serial-item {
+    box-sizing: border-box !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 18px 20px !important;
+    border: 1px solid rgba(222,126,91,.48) !important;
+    border-radius: 12px !important;
+    background: linear-gradient(110deg, rgba(119,62,39,.25), rgba(23,19,14,.98) 78%) !important;
+    overflow: hidden !important;
+  }
+  .tv-serials .tv-category .serial-list > .serial-item > h4,
+  .tv-serials .tv-category .serial-list > .serial-item > p {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+    overflow-wrap: anywhere !important;
+  }
+  .tv-serials .tv-category .serial-list > .serial-item > h4 { margin-bottom: 7px !important; color: #f0c5ad !important; }
+  .tv-serials .tv-category .serial-list > .serial-item > p { color: var(--cinema-muted) !important; }
+}
