@@ -143,27 +143,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Hero section typing effect
+    // Keep the tagline readable immediately; avoid artificial typing delays.
     function typewriterEffect() {
         const tagline = document.querySelector('.hero__tagline');
-        if (!tagline) return;
-        
-        const text = tagline.textContent;
-        tagline.textContent = '';
-        tagline.style.borderRight = '2px solid #32b8c6';
-        
-        let i = 0;
-        const timer = setInterval(() => {
-            if (i < text.length) {
-                tagline.textContent += text.charAt(i);
-                i++;
-            } else {
-                clearInterval(timer);
-                setTimeout(() => {
-                    tagline.style.borderRight = 'none';
-                }, 1000);
-            }
-        }, 100);
+        if (tagline) tagline.style.borderRight = 'none';
     }
 
     // Card hover effects
@@ -198,15 +181,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Loading animation
+    // Avoid hiding the entire page during startup; the opening shot is decorative only.
     function showLoadingComplete() {
-        if (prefersReducedMotion) return;
-        document.body.style.opacity = '0';
-        document.body.style.transition = 'opacity 0.5s ease';
-        
-        setTimeout(() => {
-            document.body.style.opacity = '1';
-        }, 100);
+        document.body.style.opacity = '1';
     }
 
     // Close mobile menu when clicking outside
@@ -295,8 +272,8 @@ document.addEventListener('DOMContentLoaded', function() {
             animateTimeline();
             initCardEffects();
             initSocialEffects();
-            // Start typewriter effect after a delay
-            setTimeout(typewriterEffect, 1000);
+            // Keep opening copy fully available to screen readers and visitors immediately.
+            typewriterEffect();
         }
         
         // Initial scroll position check
