@@ -321,3 +321,40 @@ section { scroll-margin-top: 74px; }
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .cinema-reveal { opacity: 1; transform: none; }
 }
+
+/* Phase 2 — editorial pacing and resilient archive artwork. */
+.eyebrow + .section__title { margin-top: 0; }
+.directors-cut__visual img { object-position: center 38%; }
+.hero__image { isolation: isolate; }
+.hero__img { object-position: center 20%; }
+.featured-serial__image { position: relative; isolation: isolate; }
+.featured-serial__image::before {
+  content: ""; position: absolute; z-index: -1; inset: 0;
+  background: radial-gradient(ellipse at 50% 24%, #51402b 0%, #252016 36%, #0c0b09 78%);
+}
+.featured-serial__image::after {
+  content: attr(data-poster-title); position: absolute; inset: 12% 8% 9%;
+  display: flex; align-items: center; justify-content: center; padding: 18px;
+  border: 1px solid rgba(231,201,158,.35); color: rgba(244,238,228,.82);
+  font: 500 clamp(1.3rem, 2.8vw, 2.3rem)/.95 var(--cinema-serif);
+  text-align: center; text-wrap: balance; letter-spacing: .025em;
+  opacity: 0; transition: opacity .25s ease;
+}
+.featured-serial__image.poster-unavailable::after { opacity: 1; }
+.featured-serial__image.poster-unavailable .featured-img { display: none; }
+.featured-serial__image.poster-unavailable { min-height: 210px; }
+.filmography__category[hidden] { display: none !important; }
+.filmography__filter:focus-visible, .nav__toggle:focus-visible { outline-offset: 3px; }
+.contact .section__title { max-width: 780px; }
+@media (min-width: 761px) {
+  .featured-serial { transition: transform .35s ease, border-color .35s ease; }
+  .featured-serial:hover { transform: translateY(-4px); border-color: rgba(231,201,158,.45); }
+  .featured-serial:nth-child(2) { margin-top: 28px; }
+  .featured-serial:nth-child(3) { margin-top: 56px; }
+  .tv-showcase { padding-bottom: 22px; }
+}
+@media (max-width: 760px) {
+  .featured-serial:nth-child(2), .featured-serial:nth-child(3) { margin-top: 0; }
+  .featured-serial__image.poster-unavailable { min-height: 160px; }
+  .featured-serial__image.poster-unavailable::after { inset: 8%; padding: 10px; font-size: 1.2rem; }
+}
