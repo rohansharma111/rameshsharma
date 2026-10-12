@@ -1209,3 +1209,91 @@ a:focus-visible, button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .hero--production-set * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+
+/* 11 — PAGE-WIDE PRODUCTION DESIGN.
+   Each chapter gets a different cinematic environment: edit bay, marked-up
+   director's dossier, crew department, film reel, continuity archive, broadcast
+   monitor wall and rolling end credits. These are visual layers, not content cards. */
+.production-chapter { position: relative; isolation: isolate; overflow: clip; }
+.production-chapter > .container,
+.production-chapter > .directors-cut__inner { position: relative; z-index: 1; }
+.chapter-art {
+  position: absolute; z-index: 0; pointer-events: none; user-select: none;
+  color: rgba(230,187,126,.65); font: 600 9px/1.4 var(--font-sans, sans-serif); letter-spacing: .22em;
+}
+.chapter-art--edit {
+  top: 12%; right: -2%; width: 31%; height: 72%;
+  background:
+    linear-gradient(90deg, transparent 0 8%, rgba(0,0,0,.2) 8% 10%, transparent 10%),
+    url("https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1000&q=85") center/cover;
+  border: 10px solid #090705; outline: 1px solid rgba(217,154,85,.38);
+  transform: rotate(5deg); opacity: .2;
+  box-shadow: 0 0 0 8px rgba(0,0,0,.5), 0 28px 60px #000;
+}
+.chapter-art--edit span { display: block; padding: 10px; background: rgba(0,0,0,.7); }
+.chapter-art--dossier {
+  right: 4%; top: 16%; width: min(27%, 330px); height: 58%; padding: 26px 22px;
+  border: 1px solid rgba(217,154,85,.3);
+  background: linear-gradient(135deg, rgba(65,42,23,.5), rgba(7,6,5,.1)), url("https://images.unsplash.com/photo-1455390582262-044c 인터넷?auto=format&fit=crop&w=800&q=80") center/cover;
+  box-shadow: 12px 16px 0 rgba(0,0,0,.18); transform: rotate(3deg); opacity: .22;
+}
+.chapter-art--dossier i { display:block; height:1px; margin-top:28px; background:rgba(231,190,137,.5); }
+.chapter-art--crew {
+  right: -4%; top: 14%; width: 35%; height: 72%; opacity: .19;
+  background: url("https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=1100&q=85") center/cover no-repeat;
+  filter: sepia(.75) contrast(1.1);
+  mask-image: linear-gradient(90deg, transparent, #000 25%);
+}
+.chapter-art--crew span { position:absolute; right:18%; bottom:12%; font-size: clamp(18px,3vw,42px); writing-mode: vertical-rl; }
+.chapter-art--reel {
+  right: -5%; top: 5%; bottom: 5%; width: 30%; opacity: .2;
+  background: repeating-linear-gradient(180deg, transparent 0 34px, rgba(217,154,85,.6) 34px 36px, transparent 36px 70px),
+    linear-gradient(90deg, transparent 0 10%, #1b120a 10% 90%, transparent 90%);
+  border-inline: 10px solid rgba(217,154,85,.32);
+  transform: rotate(2deg);
+}
+.chapter-art--reel span { position:absolute; inset:45% auto auto 12%; writing-mode:vertical-rl; }
+.chapter-art--archive {
+  top: 12%; right: 3%; width: 25%; height: 64%; padding: 20px;
+  border: 1px solid rgba(217,154,85,.3);
+  background: linear-gradient(rgba(8,6,4,.55),rgba(8,6,4,.75)), url("https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=900&q=85") center/cover;
+  transform: rotate(-4deg); opacity: .22;
+}
+.chapter-art--archive span { display:block; padding: 10px 0; border-bottom: 1px solid rgba(217,154,85,.4); }
+.chapter-art--broadcast {
+  right: -2%; top: 8%; width: 34%; height: 70%;
+  background: url("https://images.unsplash.com/photo-1594909122845-11baa439b7bf?auto=format&fit=crop&w=1100&q=85") center/cover;
+  border: 12px solid #090705; box-shadow: 0 0 0 1px rgba(217,154,85,.35), 0 20px 55px #000;
+  transform: rotate(3deg); opacity: .22; filter: sepia(.65);
+}
+.chapter-art--broadcast span { position:absolute; top:12px; left:12px; padding:8px 10px; background:#a33b28; color:#fff1d9; }
+.chapter-art--credits {
+  left: 5%; top: 12%; width: 25%; height: 75%; opacity: .22;
+  background: repeating-linear-gradient(180deg, transparent 0 34px, rgba(217,154,85,.28) 34px 35px, transparent 35px 70px);
+  border-inline: 1px solid rgba(217,154,85,.4);
+}
+.chapter-art--credits span { position:absolute; top:50%; left:10%; writing-mode:vertical-rl; font-size: clamp(22px,3vw,40px); }
+.chapter-art--credits i { position:absolute; bottom:10%; left:10%; right:10%; height:1px; background:#d99a55; }
+.production-chapter .section__title { position:relative; z-index:1; }
+.production-chapter .eyebrow { position:relative; z-index:1; }
+.directors-cut__visual img { position:relative; z-index:1; }
+.biography__content, .highlights__grid, .timeline__container, .filmography .container, .tv-serials .container, .contact .container { position:relative; z-index:1; }
+@media (min-width: 1000px) {
+  .biography__content { position:relative; }
+  .biography__text { width: min(72%, 880px); }
+  .highlights__grid { position:relative; }
+  .filmography .filmography__category { position:relative; z-index:1; }
+}
+@media (max-width: 760px) {
+  .chapter-art--edit { right:-20%; top:4%; width:55%; height:35%; opacity:.13; }
+  .chapter-art--dossier { right:-12%; top:9%; width:48%; height:34%; opacity:.12; }
+  .chapter-art--crew { width:62%; height:44%; top:auto; bottom:0; opacity:.13; }
+  .chapter-art--reel { right:-18%; width:40%; opacity:.12; }
+  .chapter-art--archive { right:-12%; top:6%; width:48%; height:32%; opacity:.13; }
+  .chapter-art--broadcast { right:-14%; top:4%; width:48%; height:38%; opacity:.13; }
+  .chapter-art--credits { left:-10%; width:30%; opacity:.12; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chapter-art { scroll-behavior:auto; }
+}
