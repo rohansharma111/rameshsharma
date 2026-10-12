@@ -93,10 +93,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const scrollY = window.scrollY;
 
         if (scrollY > 50) {
-            header.style.background = 'rgba(19, 52, 59, 0.98)';
+            header.style.background = 'rgba(9, 10, 11, 0.97)';
             header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
         } else {
-            header.style.background = 'rgba(19, 52, 59, 0.95)';
+            header.style.background = 'rgba(9, 10, 11, 0.90)';
             header.style.boxShadow = 'none';
         }
     }
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const style = document.createElement('style');
     style.textContent = `
         .nav__link.active {
-            color: var(--color-teal-300) !important;
+            color: var(--cinema-gold-light, #e4b08d) !important;
             position: relative;
         }
         
@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
             left: 0;
             width: 100%;
             height: 2px;
-            background: var(--color-teal-300);
+            background: var(--cinema-gold, #c46b4f);
             border-radius: 1px;
         }
         
