@@ -758,3 +758,191 @@ a:focus-visible, button:focus-visible {
   .highlight-card:hover { transform: none; }
   .directors-cut__credits a::before { transition: none; }
 }
+
+
+/* ART-DIRECTION PASS 2 — make the visual metaphor unmistakable section by section. */
+
+/* The chapter number is a consistent editorial device, like scene slates in a film. */
+.directors-cut::after,
+.biography::after,
+.highlights::after,
+.timeline::after,
+.filmography::after,
+.tv-serials::after {
+  position: absolute;
+  top: 22px;
+  right: clamp(18px, 4vw, 60px);
+  color: rgba(225,180,121,.45);
+  font: 600 8px/1.4 var(--font-sans, sans-serif);
+  letter-spacing: .22em;
+  pointer-events: none;
+}
+.directors-cut::after { content: "CHAPTER 01  /  SELECTED SCENES"; }
+.biography::after { content: "CHAPTER 02  /  PRODUCTION NOTES"; }
+.highlights::after { content: "CHAPTER 03  /  THE CRAFT"; }
+.timeline::after { content: "CHAPTER 04  /  CAREER REEL"; }
+.filmography::after { content: "CHAPTER 05  /  CREDIT ARCHIVE"; }
+.tv-serials::after { content: "CHAPTER 06  /  BROADCAST ARCHIVE"; }
+
+/* Selected scenes: use a visible frame edge and a tiny edit-mark motif. */
+.directors-cut__visual {
+  outline: 1px solid rgba(231,190,137,.08);
+  outline-offset: 5px;
+}
+.directors-cut__visual::after {
+  content: "IN  ▸  OUT";
+  display: block;
+  padding-top: 10px;
+  color: #a77c4c;
+  font: 600 7px/1.4 var(--font-sans, sans-serif);
+  letter-spacing: .25em;
+}
+.directors-cut__credits a:hover strong { color: #f3d5ac; }
+
+/* Career cards get four distinct department cues, not four identical boxes. */
+.highlight-card:nth-child(1) { --department-accent: #d2a06a; }
+.highlight-card:nth-child(2) { --department-accent: #b98a59; }
+.highlight-card:nth-child(3) { --department-accent: #e2bf8d; }
+.highlight-card:nth-child(4) { --department-accent: #c87955; }
+.highlight-card__icon {
+  color: var(--department-accent, #d7a66c) !important;
+}
+.highlight-card:nth-child(1)::after {
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 8px rgba(210,160,106,.035), 0 0 0 9px rgba(210,160,106,.025), 0 0 0 19px rgba(210,160,106,.018);
+}
+.highlight-card:nth-child(2)::after { border-radius: 6px; transform: rotate(12deg); }
+.highlight-card:nth-child(3)::after { border-radius: 0; transform: rotate(45deg) scale(.78); }
+.highlight-card:nth-child(4)::after { border-radius: 50% 50% 4px 4px; }
+
+/* Timeline becomes a literal reel edge on wide screens and a film spine on phones. */
+.timeline__container {
+  padding-inline: clamp(0px, 2vw, 24px);
+}
+@media (min-width: 761px) {
+  .timeline__container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 25px);
+    width: 7px;
+    opacity: .3;
+    background: repeating-linear-gradient(to bottom, #d7a66c 0 7px, transparent 7px 22px);
+    pointer-events: none;
+  }
+  .timeline__container::before { z-index: 0; }
+  .timeline__item::before { z-index: 3; }
+  .timeline__content { box-shadow: 0 12px 36px rgba(0,0,0,.16); }
+}
+@media (max-width: 760px) {
+  .timeline__container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 1px;
+    width: 5px;
+    opacity: .32;
+    background: repeating-linear-gradient(to bottom, #d7a66c 0 5px, transparent 5px 18px);
+    pointer-events: none;
+  }
+  .timeline__container::before { left: 3px; }
+  .timeline__item::before { left: 3px; }
+  .timeline__item, .timeline__item.left, .timeline__item.right { padding-left: 25px !important; }
+}
+
+/* Archive typography and numbering distinguish featured direction credits from campaign records. */
+.filmography__category:nth-of-type(1) .film-card { border-left-color: rgba(214,165,110,.78) !important; }
+.filmography__category:nth-of-type(2) .film-card { border-left-color: rgba(226,191,141,.78) !important; }
+.filmography__category .ad-card {
+  background:
+    linear-gradient(135deg, rgba(135,76,42,.12), transparent 55%),
+    #100b07 !important;
+}
+.filmography .ad-card::before {
+  content: "CAMPAIGN / CREDIT";
+  display: block;
+  margin-bottom: 11px;
+  color: #bd8e58;
+  font: 600 7px/1.4 var(--font-sans, sans-serif);
+  letter-spacing: .2em;
+}
+.filmography .film-type {
+  min-height: 0;
+  border-radius: 3px !important;
+  background: rgba(135,76,42,.12) !important;
+  color: #f0d6b8 !important;
+}
+.filmography .film-type::before {
+  content: "FORMAT";
+  margin-right: 8px;
+  color: #c49a6b;
+  font-size: 7px;
+  letter-spacing: .14em;
+}
+
+/* TV archive: preserve poster aspect ratio and avoid text sitting beside a floating image. */
+.tv-serials .featured-serial__image img {
+  object-fit: contain;
+  background: #070504;
+}
+.tv-serials .featured-serial__content .role-badge {
+  margin-block: 8px 12px;
+}
+.tv-serials .serial-list {
+  align-content: start;
+}
+.tv-serials .serial-item::before {
+  content: "CREDIT LOG";
+  display: block;
+  margin-bottom: 8px;
+  color: #a77c4c;
+  font: 600 7px/1.4 var(--font-sans, sans-serif);
+  letter-spacing: .2em;
+}
+.tv-serials .serial-item:hover {
+  transform: translateY(-2px);
+  transition: border-color .25s ease, transform .25s ease;
+}
+
+/* End credits: a measured vertical rhythm and film-credit alignment. */
+.contact__info, .contact__social { min-width: 0; }
+.contact__item {
+  display: block;
+  padding-block: 15px;
+  line-height: 1.75;
+}
+.contact__item strong {
+  display: inline-block;
+  min-width: 105px;
+}
+.contact__social .social-link {
+  min-height: 54px;
+  letter-spacing: .01em;
+}
+.contact__social .social-link:hover { transform: translateX(3px); }
+
+/* Avoid accidental clipped content and overdecorating compact screens. */
+@media (max-width: 600px) {
+  .directors-cut::after,
+  .biography::after,
+  .highlights::after,
+  .timeline::after,
+  .filmography::after,
+  .tv-serials::after {
+    top: 12px;
+    right: 18px;
+    font-size: 6px;
+    letter-spacing: .12em;
+    max-width: 48%;
+    text-align: right;
+  }
+  .directors-cut__visual::after { font-size: 6px; }
+  .highlight-card::after { opacity: .6; }
+  .contact__item strong { min-width: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tv-serials .serial-item:hover,
+  .contact__social .social-link:hover { transform: none; }
+}
