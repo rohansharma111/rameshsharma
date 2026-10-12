@@ -341,8 +341,17 @@
     <section id="filmography" class="filmography">
         <div class="container">
             <h2 class="section__title">Filmography</h2>
+            <p class="filmography__intro">A selection of work across film, television, independent direction and advertising.</p>
+            <div class="filmography__filters" role="group" aria-label="Filter filmography by category">
+                <button class="filmography__filter is-active" type="button" data-film-filter="all" aria-pressed="true">All credits</button>
+                <button class="filmography__filter" type="button" data-film-filter="film" aria-pressed="false">Films</button>
+                <button class="filmography__filter" type="button" data-film-filter="television" aria-pressed="false">Television</button>
+                <button class="filmography__filter" type="button" data-film-filter="direction" aria-pressed="false">Directing</button>
+                <button class="filmography__filter" type="button" data-film-filter="advertising" aria-pressed="false">Advertising</button>
+            </div>
+            <p class="filmography__status" id="filmography-status" aria-live="polite">Showing all 4 categories</p>
             
-            <div class="filmography__category">
+            <div class="filmography__category" data-film-category="film">
                 <h3>Films as Assistant Director</h3>
                 <div class="film-grid">
                     <div class="film-card">
@@ -364,7 +373,7 @@
                 </div>
             </div>
 
-            <div class="filmography__category">
+            <div class="filmography__category" data-film-category="television">
                 <h3>TV Serials as Assistant Director</h3>
                 <div class="film-grid">
                     <div class="film-card">
@@ -398,7 +407,7 @@
                 </div>
             </div>
             
-            <div class="filmography__category">
+            <div class="filmography__category" data-film-category="direction">
                 <h3>Independent Direction</h3>
                 <div class="film-grid">
                     <div class="film-card">
@@ -414,7 +423,7 @@
                 </div>
             </div>
 
-            <div class="filmography__category">
+            <div class="filmography__category" data-film-category="advertising">
                 <h3>Advertisement Films</h3>
                 <div class="ad-grid">
                     <div class="ad-card">
