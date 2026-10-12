@@ -381,3 +381,19 @@ document.addEventListener('DOMContentLoaded', function initCinematicReveals() {
     }, { threshold: 0.14, rootMargin: '0px 0px -35px 0px' });
     targets.forEach(element => observer.observe(element));
 });
+
+
+/* Opening shot: a silent camera-gate reveal. It never captures input or delays navigation. */
+document.addEventListener('DOMContentLoaded', function startOpeningShot() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (document.querySelector('.cinema-gate')) return;
+    const gate = document.createElement('div');
+    gate.className = 'cinema-gate';
+    gate.setAttribute('aria-hidden', 'true');
+    const mark = document.createElement('span');
+    mark.className = 'cinema-gate__mark';
+    mark.textContent = 'CAMERA ROLLING  ·  RAMESH R SHARMA';
+    gate.appendChild(mark);
+    document.body.appendChild(gate);
+    window.setTimeout(() => gate.remove(), 1400);
+});
