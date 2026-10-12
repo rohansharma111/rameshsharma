@@ -20,6 +20,7 @@
     const closeMenu = () => {
       if (!navToggle || !navMenu) return;
       navMenu.classList.remove('active');
+      document.body.classList.remove('navigation-open');
       navToggle.setAttribute('aria-expanded', 'false');
       navToggle.setAttribute('aria-label', 'Open navigation menu');
       navToggle.querySelectorAll('span').forEach((span) => {
@@ -31,6 +32,7 @@
     const openMenu = () => {
       if (!navToggle || !navMenu) return;
       navMenu.classList.add('active');
+      document.body.classList.add('navigation-open');
       navToggle.setAttribute('aria-expanded', 'true');
       navToggle.setAttribute('aria-label', 'Close navigation menu');
       const spans = navToggle.querySelectorAll('span');
