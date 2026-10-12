@@ -278,6 +278,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     ? 'Showing all ' + visibleCount + ' categories'
                     : 'Showing ' + visibleCount + ' ' + (visibleCount === 1 ? 'category' : 'categories');
             }
+            // Reveal newly shown cards that are already inside the viewport.
+            handleScrollAnimations();
         });
     });
 
