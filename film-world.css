@@ -1297,3 +1297,98 @@ a:focus-visible, button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .chapter-art { scroll-behavior:auto; }
 }
+
+
+/* 12 — MOTION DESIGN: the site behaves like a film, not a poster. */
+.hero--production-set { --focus-x: 50%; --focus-y: 45%; }
+.hero--production-set .hero__set-dressing {
+  background-position: center, center, var(--focus-x) var(--focus-y);
+  transition: filter .7s ease, background-position .2s ease-out;
+}
+.hero--production-set::after {
+  content: "";
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  opacity: .16;
+  background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,236,205,.05) 3px 4px);
+  mix-blend-mode: screen;
+}
+.hero--production-set .hero__set-light {
+  animation: practical-light-breathe 5s ease-in-out infinite;
+  transform-origin: center;
+}
+.hero--production-set .hero__set-filmstrip { animation: filmstrip-drift 18s ease-in-out infinite alternate; }
+.hero--production-set .hero__set-chair { transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+.hero--production-set .hero__set-clapper { transform-origin: 20% 100%; transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+.hero--production-set .hero__set-reel { animation: reel-glint 8s linear infinite; }
+.hero__roll-button {
+  position: absolute; z-index: 4; right: clamp(24px, 5vw, 72px); top: 115px;
+  display: flex; align-items: center; gap: 13px; padding: 12px 16px;
+  border: 1px solid rgba(231,190,137,.5); border-radius: 2px;
+  color: #f5e6d0; background: rgba(8,6,4,.65); backdrop-filter: blur(12px);
+  cursor: pointer; text-align: left; transition: background .3s ease, border-color .3s ease, transform .3s ease;
+}
+.hero__roll-button:hover { transform: translateY(-2px); border-color: #f2c78f; background: rgba(57,34,17,.85); }
+.roll-button__lamp { width: 9px; height: 9px; border-radius: 50%; background: #9a4b34; box-shadow: 0 0 0 4px rgba(154,75,52,.15); }
+.roll-button__copy { display: grid; gap: 4px; }
+.roll-button__copy strong { font: 700 9px/1.2 var(--font-sans, sans-serif); letter-spacing: .18em; }
+.roll-button__copy small { color: #bca78b; font: 10px/1.2 var(--font-sans, sans-serif); letter-spacing: .04em; }
+.roll-button__icon { font-size: 10px; color: #d8a66b; }
+.hero__roll-status {
+  position: absolute; z-index: 3; left: 50%; bottom: 27px; transform: translateX(-50%);
+  margin: 0; color: rgba(241,214,177,.75); font: 600 8px/1.4 var(--font-sans, sans-serif);
+  letter-spacing: .24em; text-align: center; white-space: nowrap;
+}
+.hero.is-rolling .hero__set-light { animation-duration: 1.4s; filter: blur(1px) brightness(1.25); }
+.hero.is-rolling .hero__set-clapper { transform: rotate(0deg) translateY(-5px); }
+.hero.is-rolling .hero__set-chair { transform: rotate(-2deg) translateY(-4px); }
+.hero.is-rolling .hero__set-dressing { filter: saturate(1.14) contrast(1.08); }
+.hero.is-rolling .roll-button__lamp { background: #df3c27; box-shadow: 0 0 0 4px rgba(223,60,39,.16), 0 0 18px rgba(223,60,39,.8); animation: record-light 1s steps(2,end) infinite; }
+.story-trailer {
+  position: relative; overflow: hidden; padding: 22px 0 17px;
+  border-block: 1px solid rgba(231,190,137,.2);
+  background: linear-gradient(90deg, #080604, #1b120a 48%, #080604);
+}
+.story-trailer__track {
+  width: max-content; display: flex; align-items: center; gap: clamp(20px,4vw,60px);
+  color: #e9d0aa; font: 500 clamp(20px,3.2vw,42px)/1 Georgia, serif;
+  letter-spacing: .08em; white-space: nowrap;
+  animation: trailer-travel 32s linear infinite;
+}
+.story-trailer__track i { color: #b87b43; font-size: .65em; font-style: normal; }
+.story-trailer__caption {
+  display:flex; justify-content:space-between; gap:20px; padding: 18px clamp(20px,5vw,70px) 0;
+  color:#9f886c; font:600 8px/1.4 var(--font-sans,sans-serif); letter-spacing:.2em;
+}
+.story-trailer__caption b { margin-left:8px; color:#edc58e; }
+body.is-camera-rolling .story-trailer__track { animation-duration: 13s; }
+body.is-camera-rolling .hero__roll-status { color:#f0c48a; }
+.production-chapter .chapter-art { transition: opacity .8s ease, transform 1s cubic-bezier(.2,.8,.2,1); }
+.production-chapter.is-chapter-active .chapter-art { opacity: .28; }
+.production-chapter .chapter-art--edit,
+.production-chapter .chapter-art--archive,
+.production-chapter .chapter-art--broadcast { will-change: transform; }
+@keyframes practical-light-breathe {
+  0%,100% { opacity:.78; filter:blur(2px); }
+  50% { opacity:1; filter:blur(5px); }
+}
+@keyframes filmstrip-drift { from { margin-top:0; } to { margin-top:18px; } }
+@keyframes reel-glint { 0%,100% { filter:brightness(.85); } 50% { filter:brightness(1.3); } }
+@keyframes record-light { to { opacity:.55; } }
+@keyframes trailer-travel { to { transform:translateX(-50%); } }
+@media (max-width:760px) {
+  .hero__roll-button { top:83px; right:18px; gap:9px; padding:9px 11px; }
+  .roll-button__copy strong { font-size:8px; }
+  .roll-button__copy small { font-size:9px; }
+  .hero__roll-status { bottom:17px; font-size:7px; letter-spacing:.16em; }
+  .story-trailer { padding-top:18px; }
+  .story-trailer__caption { padding-top:13px; font-size:7px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .hero--production-set .hero__set-light,
+  .hero--production-set .hero__set-filmstrip,
+  .hero--production-set .hero__set-reel,
+  .story-trailer__track { animation:none !important; }
+  .hero--production-set .hero__set-dressing,
+  .hero--production-set .hero__set-chair,
+  .hero--production-set .hero__set-clapper { transition:none !important; }
+}
