@@ -47,7 +47,7 @@ button { font: inherit; }
 .hero { min-height: min(850px, 100svh); min-height: max(700px, 100svh); display: flex; align-items: center; position: relative; isolation: isolate; overflow: hidden; background: #080807; }
 .hero::before { content: ""; position: absolute; z-index: -2; inset: 0; background-image: url("https://res.cloudinary.com/dipuhwwmz/image/upload/v1766901441/DSC08995_lnmion.jpg"); background-size: cover; background-position: center 40%; filter: brightness(.58) saturate(.72); transform: scale(1.025); animation: opening-frame 1.6s ease-out both; }
 .hero::after { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(5,5,4,.97) 0%, rgba(5,5,4,.84) 27%, rgba(5,5,4,.37) 54%, rgba(5,5,4,.1) 78%, rgba(5,5,4,.5) 100%), linear-gradient(0deg, var(--ink) 0%, transparent 22%, transparent 72%, rgba(0,0,0,.22) 100%); }
-.hero__content { display: grid; grid-template-columns: minmax(0, .9fr) minmax(300px, 1.1fr); align-items: center; gap: 5vw; padding-top: 105px; padding-bottom: 95px; }
+.hero__content { display: block; padding-top: 150px; padding-bottom: 110px; }
 .hero__text { max-width: 620px; position: relative; z-index: 2; }
 .hero__text::before { content: "STORIES THAT STAY"; display: block; margin-bottom: 17px; color: var(--gold-light); font-size: 10px; letter-spacing: .48em; font-weight: 500; animation: rise-in .8s .1s both; }
 .hero__title { max-width: 720px; margin: 0 0 8px; font-family: var(--serif); font-size: clamp(4.4rem, 8.6vw, 8.7rem); font-weight: 500; line-height: .76; letter-spacing: -.055em; text-transform: uppercase; text-wrap: balance; animation: rise-in .9s .18s both; }
@@ -61,7 +61,7 @@ button { font: inherit; }
 .btn--primary:hover { background: var(--gold-light); }
 .btn--outline { color: var(--paper); border: 1px solid rgba(240,210,167,.8); background: rgba(0,0,0,.25); }
 .btn--outline:hover { background: var(--gold); color: var(--ink); }
-.hero__image { align-self: stretch; display: flex; align-items: center; justify-content: center; min-height: 320px; }
+.hero__image { display: none; }
 .hero__img { width: min(100%, 460px); max-height: 550px; object-fit: cover; object-position: center 25%; aspect-ratio: 4/5; border-radius: 2px; opacity: .93; filter: saturate(.68) contrast(1.04); box-shadow: 22px 22px 0 rgba(217,177,122,.09); mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%); }
 .hero__image::after { content: "DIRECTOR  /  STORYTELLER"; position: absolute; right: 5vw; bottom: 14%; writing-mode: vertical-rl; color: rgba(245,238,227,.55); font-size: 9px; letter-spacing: .3em; }
 
@@ -154,11 +154,11 @@ section { scroll-margin-top: 75px; }
 .filmography__card p, .filmography__item p { color: var(--muted); font-size: 12px; margin: 0; }
 .tv-serials { padding: clamp(65px, 8vw, 110px) 0; background: #12110f; }
 .tv-serials .container > p { color: var(--muted); }
-.tv-serials .featured-grid, .tv-serials__grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; }
-.tv-serials .featured-card, .tv-serials .serial-card { background: #191815; border: 1px solid var(--line); border-radius: 0; overflow: hidden; }
+.tv-featured { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; }
+.tv-serials .featured-serial, .tv-serials .serial-item { background: #191815; border: 1px solid var(--line); border-radius: 0; overflow: hidden; }
 .tv-serials .featured-img { width: 100%; aspect-ratio: 16/10; object-fit: cover; filter: saturate(.7); transition: transform .5s ease, filter .5s ease; }
-.tv-serials .featured-card:hover .featured-img, .tv-serials .serial-card:hover .featured-img { transform: scale(1.025); filter: saturate(1); }
-.tv-serials .featured-card > div, .tv-serials .serial-card > div, .tv-serials .featured-card__body { padding: 18px; }
+.tv-serials .featured-serial:hover .featured-img { transform: scale(1.025); filter: saturate(1); }
+.tv-serials .featured-serial__content { padding: 20px; }
 .tv-serials h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 500; margin: 0 0 8px; }
 .tv-serials p { color: var(--muted); font-size: 12px; }
 
@@ -188,7 +188,7 @@ section { scroll-margin-top: 75px; }
   .nav { min-height: 82px; }
   .nav__menu { gap: 16px; }
   .nav__link { font-size: 9px; letter-spacing: .1em; }
-  .hero__content { grid-template-columns: 1.1fr .9fr; gap: 3vw; }
+  .hero__content { padding-top: 135px; padding-bottom: 100px; }
   .hero__title { font-size: clamp(4rem, 8vw, 6.8rem); }
   .directors-cut__inner { gap: 4vw; }
   .highlights__grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
@@ -243,7 +243,7 @@ section { scroll-margin-top: 75px; }
   .timeline__container::before { left: 5px; }
   .timeline__item, .timeline__item.right { width: 100%; margin: 0; padding: 0 0 28px 30px; }
   .timeline__item::after, .timeline__item.right::after { left: 1px; right: auto; }
-  .filmography__grid, .filmography__items, .tv-serials .featured-grid, .tv-serials__grid { grid-template-columns: 1fr; }
+  .filmography__grid, .filmography__items, .tv-featured { grid-template-columns: 1fr; }
   .filmography__card, .film-card, .filmography__item { padding: 20px; }
   .contact { padding: 70px 0; }
   .contact__content { grid-template-columns: 1fr; gap: 28px; }
