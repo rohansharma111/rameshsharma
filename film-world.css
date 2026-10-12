@@ -525,3 +525,236 @@ body {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+
+/* REFINEMENT PASS — production detail, readable metadata, and layout containment. */
+*, *::before, *::after { box-sizing: border-box; }
+img, video, svg { max-width: 100%; }
+body { overflow-x: clip; }
+main, section, .container, .directors-cut__inner, .hero__content,
+.biography__content, .filmography__category, .tv-showcase, .contact__content {
+  min-width: 0;
+  max-width: 100%;
+}
+p, h1, h2, h3, h4, small, strong, a, span {
+  overflow-wrap: anywhere;
+}
+a:focus-visible, button:focus-visible {
+  outline: 2px solid #f0d0a0 !important;
+  outline-offset: 4px;
+}
+
+/* Hero: make the title read like a lit theatrical title card. */
+.hero__text {
+  z-index: 1;
+}
+.hero__text::before {
+  width: fit-content;
+  margin-inline: auto;
+  padding-inline: 13px;
+  position: relative;
+}
+.hero__text::before::before { content: none; }
+.hero__buttons .btn {
+  min-height: 52px;
+  justify-content: center;
+  align-items: center;
+}
+.hero__image {
+  background: linear-gradient(135deg, rgba(217,154,85,.12), transparent 38%);
+}
+.hero__image::before {
+  content: "";
+  position: absolute;
+  inset: 8px -8px -8px 8px;
+  border: 1px solid rgba(226,173,108,.48);
+  pointer-events: none;
+  z-index: -1;
+}
+.hero__image::after {
+  content: "RRS  /  FRAME 001";
+  position: absolute;
+  right: 0;
+  bottom: -22px;
+  font-size: 8px;
+  line-height: 1.4;
+}
+
+/* Give every chapter an intentional editorial boundary, not a generic box. */
+.directors-cut__inner,
+.biography > .container,
+.highlights > .container,
+.timeline > .container,
+.filmography > .container,
+.tv-serials > .container,
+.contact > .container {
+  position: relative;
+  z-index: 0;
+}
+.directors-cut__copy,
+.biography__text,
+.contact__content { min-width: 0; }
+.directors-cut__intro { max-width: 52ch; }
+.directors-cut__credits a {
+  display: grid;
+  grid-template-columns: 34px minmax(0,1fr) 18px;
+  align-items: center;
+  min-width: 0;
+}
+.directors-cut__credits a > span:nth-child(2) { min-width: 0; }
+.directors-cut__credits small { display: block; line-height: 1.65; }
+
+/* Biography dossier cards: improve the inset so headings never touch their frames. */
+.biography .detail-card {
+  box-sizing: border-box;
+  min-height: 145px;
+  overflow: hidden;
+}
+.biography .detail-card p { margin-bottom: 0; }
+
+/* Film credits: metadata chips stay legible against the dark archive paper. */
+.filmography .film-type,
+.filmography .role-badge,
+.tv-serials .role-badge,
+.role-badge {
+  display: inline-flex !important;
+  width: fit-content;
+  max-width: 100%;
+  align-items: center;
+  padding: 6px 11px !important;
+  border: 1px solid rgba(229,178,122,.56) !important;
+  border-radius: 3px !important;
+  background: rgba(142,77,42,.19) !important;
+  color: #f0d6b8 !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  line-height: 1.5 !important;
+  letter-spacing: .08em;
+  white-space: normal;
+}
+.filmography .film-card,
+.filmography .ad-card {
+  height: 100%;
+  overflow: hidden;
+}
+.filmography__status { color: #d2c1aa !important; }
+.filmography__category + .filmography__category {
+  margin-top: clamp(28px, 4vw, 54px);
+  padding-top: clamp(20px, 3vw, 34px);
+  border-top: 1px solid rgba(231,190,137,.2);
+}
+.filmography__category > h3 {
+  line-height: 1.2;
+  margin-bottom: 22px;
+}
+.filmography .film-card h4 { margin-top: 0; }
+
+/* Television: posters become framed artefacts, while text gets its own quiet panel. */
+.tv-showcase, .tv-featured, .tv-grid, .featured-serial { min-width: 0; }
+.tv-serials .featured-serial {
+  display: grid;
+  grid-template-columns: minmax(120px, .72fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid rgba(200,138,75,.42);
+}
+.tv-serials .featured-serial__image {
+  position: relative;
+  min-width: 0;
+  padding: 10px;
+  background: #0a0705;
+  border-right: 1px solid rgba(200,138,75,.24);
+}
+.tv-serials .featured-serial__image::before {
+  content: "ARCHIVE STILL";
+  display: block;
+  margin-bottom: 8px;
+  color: #bd8e58;
+  font: 600 7px/1.4 var(--font-sans, sans-serif);
+  letter-spacing: .17em;
+}
+.tv-serials .featured-serial__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 190px;
+  object-fit: cover;
+  object-position: center top;
+}
+.tv-serials .featured-serial__content {
+  min-width: 0;
+  padding: clamp(16px, 2vw, 25px) !important;
+  align-self: center;
+}
+.tv-serials .featured-serial__content h3 {
+  text-wrap: balance;
+  line-height: 1.15;
+}
+.tv-serials .featured-serial__content > p:last-child {
+  color: #c9bba8;
+  line-height: 1.8;
+}
+.tv-serials .serial-item { min-width: 0; }
+.tv-serials .serial-item h4 { overflow-wrap: anywhere; }
+
+/* Contact links are end-credit rows, with a visible interaction cue. */
+.contact__content { gap: clamp(24px, 4vw, 60px); }
+.contact__social .social-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 15px 17px !important;
+  min-width: 0;
+}
+.contact__social .social-link::after {
+  content: "↗";
+  flex: 0 0 auto;
+  color: #d6a66c;
+  transition: transform .25s ease;
+}
+.contact__social .social-link:hover::after { transform: translate(3px,-3px); }
+
+/* Tablet and phone compositions: no clipped headings, cards, or oversized two-column layouts. */
+@media (max-width: 900px) {
+  .hero__content { gap: 34px; }
+  .highlights__grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .filmography .film-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .tv-serials .featured-serial { grid-template-columns: minmax(100px,.65fr) minmax(0,1fr); }
+  .timeline__content { min-width: 0; }
+}
+@media (max-width: 600px) {
+  .section__title { max-width: 100%; font-size: clamp(2rem, 8vw, 2.8rem); }
+  .hero__image::before { inset: 6px -5px -6px 5px; }
+  .hero__image::after { right: 0; bottom: -18px; font-size: 7px; }
+  .highlights__grid,
+  .filmography .film-grid,
+  .filmography .ad-grid { grid-template-columns: minmax(0,1fr) !important; }
+  .tv-serials .featured-serial {
+    grid-template-columns: minmax(0,1fr);
+  }
+  .tv-serials .featured-serial__image {
+    border-right: 0;
+    border-bottom: 1px solid rgba(200,138,75,.24);
+  }
+  .tv-serials .featured-serial__image img {
+    height: auto;
+    max-height: 360px;
+    min-height: 0;
+    aspect-ratio: 4/3;
+    object-fit: contain;
+  }
+  .tv-serials .featured-serial__content { padding: 19px !important; }
+  .directors-cut__credits a { grid-template-columns: 28px minmax(0,1fr) 16px; gap: 10px; }
+  .directors-cut__credits strong { line-height: 1.35; }
+  .directors-cut__credits small { font-size: 11px; }
+  .filmography__filters { width: 100%; }
+  .filmography__filter { max-width: 100%; }
+  .biography .detail-card { min-height: 0; }
+  .contact__content { grid-template-columns: minmax(0,1fr) !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .highlight-card:hover { transform: none; }
+  .directors-cut__credits a::before { transition: none; }
+}
