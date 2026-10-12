@@ -170,7 +170,7 @@
       });
     });
 
-    // Keep remote artwork failures graceful and the year current.
+    // Keep remote artwork failures graceful without substituting unrelated imagery.
     document.querySelectorAll('.featured-serial__image').forEach((frame) => {
       const image = frame.querySelector('img');
       if (!image) return;
@@ -178,6 +178,26 @@
       image.addEventListener('error', markUnavailable, { once: true });
       if (image.complete && image.naturalWidth === 0) markUnavailable();
     });
+
+    document.querySelectorAll('img[data-image-fallback]').forEach((image) => {
+      const markUnavailable = () => {
+        const frame = image.closest('.hero__image, .directors-cut__visual') || image.parentElement;
+        if (!frame) return;
+        frame.classList.add('image-unavailable');
+        const label = image.dataset.imageFallback || image.alt || 'Photograph unavailable';
+        let fallback = frame.querySelector('.image-fallback');
+        if (!fallback) {
+          fallback = document.createElement('div');
+          fallback.className = 'image-fallback';
+          fallback.setAttribute('aria-hidden', 'true');
+          fallback.textContent = label;
+          frame.appendChild(fallback);
+        }
+      };
+      image.addEventListener('error', markUnavailable, { once: true });
+      if (image.complete && image.naturalWidth === 0) markUnavailable();
+    });
+
     const year = document.getElementById('copyright-year');
     if (year) year.textContent = String(new Date().getFullYear());
 
