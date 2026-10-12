@@ -255,6 +255,32 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(style);
 
+    // Accessible filmography category filters.
+    const filmFilters = document.querySelectorAll('[data-film-filter]');
+    const filmCategories = document.querySelectorAll('[data-film-category]');
+    const filmographyStatus = document.getElementById('filmography-status');
+    filmFilters.forEach(button => {
+        button.addEventListener('click', function() {
+            const selected = this.dataset.filmFilter;
+            let visibleCount = 0;
+            filmFilters.forEach(filter => {
+                const isActive = filter === this;
+                filter.classList.toggle('is-active', isActive);
+                filter.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+            filmCategories.forEach(category => {
+                const visible = selected === 'all' || category.dataset.filmCategory === selected;
+                category.hidden = !visible;
+                if (visible) visibleCount++;
+            });
+            if (filmographyStatus) {
+                filmographyStatus.textContent = selected === 'all'
+                    ? 'Showing all ' + visibleCount + ' categories'
+                    : 'Showing ' + visibleCount + ' ' + (visibleCount === 1 ? 'category' : 'categories');
+            }
+        });
+    });
+
     // Keep the copyright year current without manual edits.
     const copyrightYear = document.getElementById('copyright-year');
     if (copyrightYear) copyrightYear.textContent = new Date().getFullYear();
