@@ -299,3 +299,109 @@ section { scroll-margin-top: 75px; }
   .highlight-card h3 { font-size: 1.2rem; }
   .highlight-card p { font-size: 10px; }
 }
+
+
+/* Art-direction reset: cinematic editorial, image-first and phone-first */
+:root { --gold: #c99a69; --gold-light: #e6c7a4; --line: rgba(230,199,164,.2); }
+.header { position: absolute; background: linear-gradient(180deg,rgba(5,5,4,.82),transparent); }
+.nav { min-height: 88px; }
+.nav__logo h3 { font-size: clamp(2.1rem,3vw,3rem); }
+.hero { min-height: 92svh; min-height: min(900px, 100svh); }
+.hero::before { background-image: url("https://res.cloudinary.com/dipuhwwmz/image/upload/v1766900320/IMG-20210510-WA0031_qj7vcw.jpg"); background-position: center 30%; filter: brightness(.48) saturate(.62); }
+.hero::after { background: linear-gradient(90deg,rgba(5,5,4,.92) 0%,rgba(5,5,4,.76) 35%,rgba(5,5,4,.22) 72%,rgba(5,5,4,.28) 100%),linear-gradient(0deg,#090908 0%,transparent 23%,rgba(0,0,0,.12) 100%); }
+.hero__content { max-width: var(--container); padding-top: 175px; padding-bottom: 105px; }
+.hero__text { max-width: 760px; }
+.hero__title { max-width: 790px; font-size: clamp(4.6rem,10.5vw,9.5rem); letter-spacing: -.065em; line-height: .76; }
+.hero__subtitle { margin-top: 30px; }
+.hero__tagline { font-size: clamp(1.55rem,2.7vw,2.5rem); max-width: 620px; }
+.hero__description { font-size: 14px; max-width: 450px; }
+.hero__image { display: none; }
+.hero__buttons { margin-top: 32px; }
+.btn--primary { border: 0; }
+.film-reel { min-height: 84px; }
+.directors-cut { padding-top: 90px; padding-bottom: 90px; }
+.directors-cut__inner { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(32px,6vw,85px); }
+.directors-cut__visual { min-height: 530px; }
+.directors-cut__visual img { min-height: 530px; }
+.directors-cut__copy h2 { font-size: clamp(3.6rem,6.1vw,6.2rem); }
+.biography { padding-top: 90px; padding-bottom: 90px; }
+.biography .container > .section__title { margin-bottom: 42px; }
+.biography__content { gap: clamp(35px,6vw,80px); }
+.biography__intro { font-size: clamp(1.6rem,2.4vw,2.25rem); }
+.highlights { padding-top: 78px; padding-bottom: 78px; background: #0b0b0a; }
+.highlights__grid { border-top: 1px solid var(--line); }
+.highlight-card { padding: 30px 25px; }
+.highlight-card__icon { font-size: 23px; }
+.highlight-card h3 { font-size: clamp(1.4rem,2vw,1.85rem); }
+.highlight-card p { font-size: 12px; }
+.timeline { padding-top: 82px; padding-bottom: 82px; }
+.filmography { padding-top: 90px; padding-bottom: 90px; }
+.filmography__category > h3 { border-bottom: 1px solid var(--line); padding-bottom: 13px; }
+.film-card { position: relative; }
+.tv-serials { padding-top: 90px; padding-bottom: 90px; }
+.tv-featured { gap: 18px; }
+.featured-serial__image { overflow: hidden; }
+.tv-serials .featured-img { aspect-ratio: 4/3; object-position: center; }
+.contact { padding-top: 95px; padding-bottom: 95px; }
+
+/* Real mobile art direction: larger type, fewer stacked text slabs */
+@media (max-width: 760px) {
+  .container { width: calc(100% - 38px); }
+  .nav { min-height: 72px; }
+  .nav__logo h3 { font-size: 2.25rem; }
+  .hero { min-height: 90svh; min-height: max(680px, 90svh); }
+  .hero::before { background-position: 57% 28%; filter: brightness(.43) saturate(.58); }
+  .hero::after { background: linear-gradient(90deg,rgba(5,5,4,.78),rgba(5,5,4,.48)),linear-gradient(0deg,#090908 0%,rgba(9,9,8,.86) 14%,rgba(9,9,8,.18) 58%,rgba(0,0,0,.28)); }
+  .hero__content { padding-top: 150px; padding-bottom: 46px; }
+  .hero__text::before { font-size: 9px; letter-spacing: .34em; margin-bottom: 23px; }
+  .hero__title { max-width: 550px; font-size: clamp(4.2rem,16.8vw,7rem); line-height: .79; }
+  .hero__subtitle { max-width: 340px; margin-top: 22px; font-size: 9px; line-height: 1.8; letter-spacing: .2em; }
+  .hero__tagline { max-width: 420px; font-size: 1.55rem; line-height: 1.12; }
+  .hero__description { max-width: 420px; font-size: 13px; line-height: 1.75; }
+  .hero__buttons { flex-direction: row; align-items: center; gap: 9px; margin-top: 25px; }
+  .btn { width: auto; min-height: 44px; padding: 12px 15px; font-size: 8px; letter-spacing: .09em; }
+  .film-reel { padding: 20px 19px; }
+  .film-reel__item { padding: 10px 0; }
+  .directors-cut, .biography, .highlights, .timeline, .filmography, .tv-serials { padding-top: 62px; padding-bottom: 62px; }
+  .directors-cut__inner { grid-template-columns: 1fr; gap: 27px; }
+  .directors-cut__visual, .directors-cut__visual img { min-height: 0; height: auto; aspect-ratio: 4/3; max-height: none; }
+  .directors-cut__copy h2 { font-size: clamp(3.45rem,14vw,5.2rem); }
+  .directors-cut__intro { font-size: 13px; }
+  .directors-cut__credits a { padding: 14px 0; }
+  .directors-cut__credits strong { font-size: 1.22rem; }
+  .biography__content { gap: 26px; }
+  .biography__intro { font-size: 1.42rem; line-height: 1.38; }
+  .biography__details { grid-template-columns: 1fr 1fr; gap: 0 16px; }
+  .detail-card { padding: 15px 0; }
+  .detail-card p { font-size: 11px; }
+  .biography__image { width: calc(100% - 9px); }
+  .biography__img { aspect-ratio: 5/4; }
+  .highlights__grid { grid-template-columns: 1fr 1fr; }
+  .highlight-card, .highlight-card:first-child, .highlight-card:nth-child(3) { padding: 20px 12px 22px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .highlight-card:nth-child(2n) { border-right: 0; }
+  .highlight-card:nth-child(3), .highlight-card:nth-child(4) { border-bottom: 0; }
+  .highlight-card h3 { font-size: 1.25rem; }
+  .highlight-card p { font-size: 10px; line-height: 1.65; }
+  .timeline__container::before { left: 5px; }
+  .timeline__item, .timeline__item.right { width: 100%; margin: 0; padding: 0 0 26px 28px; }
+  .timeline__item::after, .timeline__item.right::after { left: 1px; right: auto; }
+  .timeline__content { margin: 7px 0 0; padding: 1px 0 2px 14px; }
+  .timeline__content h4 { font-size: 1.4rem; }
+  .filmography__grid, .filmography__items { grid-template-columns: 1fr; }
+  .filmography__filters { gap: 6px; margin-bottom: 28px; }
+  .filmography__filter { padding: 9px 12px; font-size: 8px; }
+  .filmography__category { margin-bottom: 35px; }
+  .filmography__card, .film-card, .filmography__item { padding: 18px; }
+  .tv-featured { grid-template-columns: 1fr; gap: 18px; }
+  .tv-serials .featured-img { aspect-ratio: 16/9; }
+  .contact { padding-top: 65px; padding-bottom: 65px; }
+}
+@media (max-width: 390px) {
+  .container { width: calc(100% - 32px); }
+  .hero__title { font-size: clamp(3.85rem,16.4vw,4.5rem); }
+  .hero__buttons { align-items: flex-start; flex-direction: column; }
+  .hero__buttons .btn { min-width: 205px; }
+  .biography__details { grid-template-columns: 1fr; }
+  .highlight-card, .highlight-card:first-child, .highlight-card:nth-child(3) { padding: 17px 9px 19px; }
+  .highlight-card h3 { font-size: 1.15rem; }
+}
