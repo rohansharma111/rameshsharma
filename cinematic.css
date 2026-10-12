@@ -732,3 +732,25 @@ section { scroll-margin-top: 74px; }
     overflow-wrap: anywhere;
   }
 }
+
+
+/* Phase 13 — high-contrast film-type label for readable text. */
+@media screen and (min-width: 761px) {
+  .filmography .film-card .film-type {
+    background: rgba(222,126,91,.10) !important;
+    border: 1px solid rgba(231,161,132,.62) !important;
+    color: #ffe0d1 !important;
+    font-weight: 600 !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+}
+@media screen and (max-width: 760px) {
+  .filmography .film-card .film-type {
+    background: rgba(222,126,91,.10) !important;
+    border-color: rgba(231,161,132,.62) !important;
+    color: #ffe0d1 !important;
+    font-weight: 600 !important;
+    text-shadow: none !important;
+  }
+}
