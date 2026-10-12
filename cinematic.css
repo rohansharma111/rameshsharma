@@ -686,3 +686,49 @@ section { scroll-margin-top: 74px; }
   .tv-serials .tv-category .serial-list > .serial-item > h4 { margin-bottom: 7px !important; color: #f0c5ad !important; }
   .tv-serials .tv-category .serial-list > .serial-item > p { color: var(--cinema-muted) !important; }
 }
+
+
+/* Phase 12 — desktop-only overflow and film-label cleanup. */
+@media screen and (min-width: 761px) {
+  html, body { max-width: 100%; overflow-x: hidden; }
+  .container { min-width: 0; }
+  .tv-serials .tv-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    align-items: start;
+    gap: clamp(28px, 5vw, 64px) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .tv-serials .tv-category,
+  .tv-serials .serial-list,
+  .tv-serials .serial-item { box-sizing: border-box; min-width: 0 !important; max-width: 100% !important; }
+  .tv-serials .serial-list { display: grid; grid-template-columns: minmax(0,1fr); gap: 12px; }
+  .tv-serials .serial-item { width: 100%; padding: 16px 20px !important; }
+  .tv-serials .serial-item h4,
+  .tv-serials .serial-item p { margin-inline: 0 !important; overflow-wrap: anywhere; }
+  .filmography .film-grid,
+  .filmography .ad-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .filmography .film-card,
+  .filmography .ad-card { min-width: 0; padding: 24px 26px !important; }
+  .filmography .film-card h4,
+  .filmography .ad-card h4 { margin: 0 0 10px !important; }
+  .filmography .film-card .film-role { margin: 0 0 14px !important; }
+  .filmography .film-card .film-type {
+    display: inline-flex !important;
+    align-items: center;
+    width: fit-content !important;
+    max-width: 100%;
+    min-height: 30px;
+    padding: 5px 13px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(222,126,91,.5) !important;
+    border-radius: 999px !important;
+    background: rgba(222,126,91,.12) !important;
+    color: #e7a184 !important;
+    font-size: 11px !important;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+  }
+}
