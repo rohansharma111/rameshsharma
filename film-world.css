@@ -2232,3 +2232,86 @@ html, body { background-color:var(--cinema-ink); }
   .tv-serials .featured-serial__content .role-badge { font-size:10px !important; }
   .tv-serials .featured-serial__content > p:last-child { font-size:14px !important; }
 }
+
+
+/* 22 — DESKTOP LAYOUT REPAIR: the television grid was nested inside a
+   three-column showcase grid, so its own three columns collapsed into one.
+   Make the showcase a single full-width region, then build the cards inside it. */
+@media (min-width:761px) {
+  .tv-serials .tv-showcase {
+    display:block !important;
+    width:100% !important; max-width:none !important;
+    margin:0 0 58px !important;
+  }
+  .tv-serials .tv-featured {
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:clamp(18px,2.3vw,32px) !important;
+    width:100% !important; max-width:none !important;
+  }
+  .tv-serials .featured-serial {
+    width:100% !important; min-width:0 !important; max-width:none !important;
+    margin:0 !important; padding:0 !important;
+    display:flex !important; flex-direction:column !important;
+  }
+  .tv-serials .featured-serial__image {
+    flex:0 0 auto !important; width:100% !important;
+    padding:12px !important; aspect-ratio:4/3 !important;
+    height:auto !important; min-height:0 !important;
+  }
+  .tv-serials .featured-serial__image img {
+    width:100% !important; height:100% !important; min-height:0 !important;
+    aspect-ratio:4/3 !important; object-fit:contain !important;
+  }
+  .tv-serials .featured-serial__content {
+    width:100% !important; padding:24px !important;
+    display:flex !important; flex-direction:column !important;
+    align-items:flex-start !important;
+  }
+  .tv-serials .featured-serial__content h3 {
+    font-size:clamp(1.35rem,1.7vw,1.8rem) !important;
+    line-height:1.2 !important; overflow-wrap:normal !important; word-break:normal !important;
+  }
+  .tv-serials .featured-serial__content p {
+    max-width:none !important; width:100% !important;
+    overflow-wrap:normal !important; word-break:normal !important;
+  }
+
+  /* Make Baghban a composed, full-bleed archive still instead of a small
+     poster floating in an empty box. */
+  .filmography__category[data-film-category="film"] {
+    position:relative !important;
+    padding:clamp(22px,3vw,38px) !important;
+    border-color:rgba(211,162,103,.42) !important;
+    background:linear-gradient(145deg,rgba(22,13,8,.96),rgba(8,6,4,.98)) !important;
+  }
+  .filmography__category[data-film-category="film"]::before {
+    width:100% !important; height:clamp(260px,31vw,410px) !important;
+    margin:0 0 34px !important;
+    background-image:
+      linear-gradient(90deg,rgba(7,5,3,.12) 0%,rgba(7,5,3,.08) 30%,rgba(7,5,3,.42) 56%,rgba(7,5,3,.88) 100%),
+      url("https://upload.wikimedia.org/wikipedia/en/7/73/Baghban_2003_poster.jpg") !important;
+    background-size:cover !important;
+    background-position:center 35% !important;
+    background-repeat:no-repeat !important;
+    border:1px solid rgba(222,176,117,.34) !important;
+    box-shadow:inset 0 0 0 8px rgba(7,5,3,.3),inset 0 0 0 9px rgba(222,176,117,.16) !important;
+  }
+  .filmography__category[data-film-category="film"]::after {
+    top:clamp(44px,6vw,78px) !important;
+    right:clamp(42px,7vw,100px) !important;
+    left:auto !important; bottom:auto !important;
+    transform:none !important;
+    width:min(38%,420px) !important; max-width:38% !important;
+    padding:16px 19px !important;
+    white-space:normal !important;
+    color:#f2dfc2 !important;
+    background:rgba(10,7,5,.76) !important;
+    border-color:rgba(232,190,132,.6) !important;
+    box-shadow:0 12px 36px rgba(0,0,0,.28);
+    font-size:9px !important; line-height:1.8 !important;
+  }
+  .filmography__category[data-film-category="film"] h3 {
+    margin:0 0 28px !important;
+  }
+}
