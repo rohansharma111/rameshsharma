@@ -1876,10 +1876,12 @@ html, body { background-color:var(--cinema-ink); }
 }
 .filmography__category[data-film-category="film"]::before {
   background-image:
-    linear-gradient(90deg,rgba(9,6,4,.08),rgba(9,6,4,.02) 45%,rgba(9,6,4,.18)),
+    linear-gradient(90deg,rgba(9,6,4,.16),rgba(9,6,4,.03) 44%,rgba(9,6,4,.38)),
     url("https://upload.wikimedia.org/wikipedia/en/7/73/Baghban_2003_poster.jpg") !important;
-  background-size:cover !important;
-  background-position:center 31% !important;
+  background-size:cover,auto 142% !important;
+  background-repeat:no-repeat,no-repeat !important;
+  background-position:center,78% 44% !important;
+  background-color:#120b08 !important;
 }
 .filmography__category[data-film-category="film"]::after {
   top:clamp(18px,2.4vw,30px) !important; left:clamp(18px,2.4vw,30px) !important;
