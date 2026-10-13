@@ -1773,3 +1773,192 @@ body::after {
   .hero--production-set .hero__image,
   .hero--production-set .hero__img { transition:none !important; }
 }
+
+
+/* 19 — DIRECTOR'S ARCHIVE PASS: warm film-stock palette, real Baghban poster,
+   correct Jhansi Ki Rani era, and layered editorial craft around the credits. */
+:root {
+  --cinema-ink:#090705;
+  --cinema-wine:#28100e;
+  --cinema-copper:#b86c43;
+  --cinema-gold:#e4c18d;
+  --cinema-ivory:#f2e6d2;
+}
+html, body { background-color:var(--cinema-ink); }
+.header {
+  background:rgba(9,7,5,.94) !important;
+  border-bottom:1px solid rgba(220,174,113,.22);
+}
+.nav__logo h3 { color:var(--cinema-ivory) !important; }
+.nav__link:hover { color:var(--cinema-gold) !important; }
+.hero--production-set {
+  background:
+    radial-gradient(ellipse at 16% 42%,rgba(177,104,54,.22),transparent 36%),
+    radial-gradient(ellipse at 88% 28%,rgba(114,49,35,.2),transparent 32%),
+    linear-gradient(135deg,#100b08 0%,#090706 58%,#1b0d09 100%) !important;
+}
+.hero--production-set .hero__title,
+.hero--production-set h1.hero__title {
+  color:var(--cinema-gold) !important;
+  background:none !important;
+  -webkit-background-clip:initial !important;
+  -webkit-text-fill-color:var(--cinema-gold) !important;
+  text-shadow:0 0 36px rgba(201,139,79,.13);
+}
+.hero--production-set .hero__title::first-letter { color:#f1dfc4; }
+.hero--production-set .hero__subtitle,
+.hero--production-set .hero__tagline { color:#e0c39a !important; }
+.hero--production-set .btn--primary {
+  background:linear-gradient(120deg,#f0d5a6,#d5a36a) !important;
+  color:#21140b !important;
+  box-shadow:0 8px 28px rgba(178,112,55,.18) !important;
+}
+.hero--production-set .btn--outline {
+  border-color:rgba(223,185,132,.72) !important;
+  color:#f0dfc7 !important;
+}
+.hero--production-set .btn--outline:hover {
+  background:rgba(190,125,70,.16) !important;
+  color:#fff1d9 !important;
+}
+.section__title,
+.featured-serial__content h3,
+.contact__info h3,.contact__social h3 { color:var(--cinema-ivory) !important; }
+.section__title::after { background:linear-gradient(90deg,#8e4b31,#e3bd83,#8e4b31) !important; }
+.detail-card h4,.highlight-card h3,.tv-category h3,
+.filmography__category h3 { color:var(--cinema-gold) !important; }
+.featured-serial { border-color:rgba(210,163,106,.34) !important; }
+.role-badge {
+  background:rgba(151,82,48,.2) !important;
+  color:#f0d2a7 !important;
+  border:1px solid rgba(209,155,101,.45);
+}
+.filmography .filmography__filter.is-active {
+  background:linear-gradient(125deg,#f0d3a0,#c88d55) !important;
+  color:#21150d !important;
+  border-color:#e2bd86 !important;
+}
+.filmography__filter { border-color:rgba(219,174,117,.4) !important; color:#e4d2b9 !important; }
+.filmography__filter:hover { border-color:#d6a56d !important; color:#f5dfbd !important; }
+.filmography .film-card,.filmography .ad-card {
+  background:linear-gradient(145deg,rgba(31,22,16,.94),rgba(12,9,7,.96)) !important;
+  border-color:rgba(201,151,96,.38) !important;
+  box-shadow:inset 0 1px 0 rgba(255,226,183,.035),0 14px 32px rgba(0,0,0,.15);
+}
+.filmography .film-card h4 { color:#f0e1cb !important; }
+.filmography .film-card .film-role,.filmography .ad-card p { color:#bcae9c !important; }
+.filmography {
+  background:
+    radial-gradient(ellipse at 92% 12%,rgba(111,51,31,.16),transparent 31%),
+    linear-gradient(180deg,#0b0806 0%,#100a07 48%,#080605 100%) !important;
+}
+.filmography::before {
+  content:""; position:absolute; inset:0; pointer-events:none; z-index:0; opacity:.45;
+  background:
+    repeating-linear-gradient(90deg,transparent 0 79px,rgba(218,167,104,.035) 79px 80px),
+    radial-gradient(ellipse at 50% 0%,rgba(208,143,76,.08),transparent 50%);
+}
+.filmography .container::after {
+  content:"CONTINUITY  •  FRAME / RRS";
+  display:block; width:max-content; max-width:100%; margin:42px auto 0;
+  padding:10px 16px; border:1px solid rgba(205,153,96,.22);
+  color:rgba(219,181,131,.6); font:600 8px/1.4 var(--font-sans,sans-serif);
+  letter-spacing:.24em; text-align:center;
+}
+.filmography__category {
+  padding:clamp(12px,2vw,24px);
+  border:1px solid rgba(206,156,102,.16);
+  background:linear-gradient(135deg,rgba(255,223,175,.025),transparent 45%);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.35);
+}
+.filmography__category::before {
+  box-shadow:inset 0 0 0 7px rgba(7,5,3,.42),inset 0 0 0 8px rgba(222,176,117,.28),0 16px 34px rgba(0,0,0,.22) !important;
+}
+.filmography__category[data-film-category="film"]::before {
+  background-image:
+    linear-gradient(90deg,rgba(9,6,4,.08),rgba(9,6,4,.02) 45%,rgba(9,6,4,.18)),
+    url("https://upload.wikimedia.org/wikipedia/en/7/73/Baghban_2003_poster.jpg") !important;
+  background-size:cover !important;
+  background-position:center 31% !important;
+}
+.filmography__category[data-film-category="film"]::after {
+  top:clamp(18px,2.4vw,30px) !important; left:clamp(18px,2.4vw,30px) !important;
+  padding:10px 13px !important; background:rgba(10,7,5,.86) !important;
+  border-color:rgba(232,190,132,.55) !important;
+  box-shadow:0 6px 24px rgba(0,0,0,.25);
+}
+.filmography__category[data-film-category="film"] h3 {
+  display:flex; align-items:center; gap:14px;
+  font-size:clamp(1.6rem,3.1vw,2.55rem) !important;
+  letter-spacing:-.025em; line-height:1.1;
+}
+.filmography__category[data-film-category="film"] h3::before {
+  content:""; flex:0 0 3px; height:1.4em;
+  background:linear-gradient(#e9c38e,#8e4b31);
+}
+.filmography .film-grid { gap:clamp(14px,2vw,24px) !important; }
+.filmography .film-card { position:relative; overflow:hidden; }
+.filmography .film-card::before {
+  content:""; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,#8e4b31,#e5bd84,transparent 78%);
+}
+.filmography .film-card::after {
+  content:""; position:absolute; top:18px; right:18px; width:24px; height:24px;
+  border:1px solid rgba(214,168,109,.24); border-radius:50%;
+  box-shadow:inset 0 0 0 5px rgba(214,168,109,.035);
+}
+.jhansi-archive-art {
+  position:relative; display:flex; min-height:200px; height:100%; aspect-ratio:1.58/1;
+  flex-direction:column; align-items:center; justify-content:center; gap:12px; overflow:hidden;
+  padding:24px; text-align:center; color:#f0dfc1;
+  background:
+    radial-gradient(ellipse at 50% 35%,rgba(178,104,55,.34),transparent 44%),
+    linear-gradient(135deg,#21100d,#0b0807 58%,#31170f);
+  border:1px solid rgba(226,182,121,.45);
+  box-shadow:inset 0 0 0 7px rgba(0,0,0,.28),inset 0 0 0 8px rgba(226,182,121,.15);
+}
+.jhansi-archive-art::before {
+  content:""; position:absolute; inset:14px; pointer-events:none; opacity:.65;
+  border-block:1px solid rgba(225,179,117,.32);
+  background:repeating-linear-gradient(90deg,transparent 0 30px,rgba(231,188,127,.045) 30px 31px);
+}
+.jhansi-archive-art::after {
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(115deg,transparent 20%,rgba(255,223,176,.09) 48%,transparent 58%);
+}
+.jhansi-archive-art__overline,.jhansi-archive-art small {
+  position:relative; z-index:1; font:600 8px/1.5 var(--font-sans,sans-serif);
+  letter-spacing:.2em; color:#c8a474;
+}
+.jhansi-archive-art strong {
+  position:relative; z-index:1; font-family:Georgia,"Noto Serif Devanagari",serif;
+  font-size:clamp(1.7rem,4.8vw,3.2rem); line-height:1.2; font-weight:500;
+  text-shadow:0 4px 22px rgba(214,145,79,.3);
+}
+.jhansi-archive-art em {
+  position:relative; z-index:1; font:500 clamp(12px,1.8vw,18px)/1.4 Georgia,serif;
+  font-style:normal; letter-spacing:.2em; color:#ead1aa;
+}
+.jhansi-archive-art__rule { position:relative; z-index:1; width:54px; height:1px; background:#b77a49; }
+.featured-serial__image--jhansi { background:#0c0806; overflow:hidden; }
+.featured-serial__image--jhansi .jhansi-archive-art { min-height:100%; }
+@media (min-width:1000px) {
+  .filmography__category[data-film-category="film"]::before { height:clamp(220px,23vw,320px); background-position:center 28% !important; }
+  .filmography__category[data-film-category="film"] { padding:24px 28px 30px; }
+}
+@media (max-width:760px) {
+  .filmography__category[data-film-category="film"]::before {
+    height:clamp(155px,38vw,220px) !important; margin-bottom:28px !important;
+    background-position:center 27% !important;
+  }
+  .filmography__category[data-film-category="film"]::after {
+    top:18px !important; left:18px !important; max-width:calc(100% - 36px);
+    font-size:7px !important; letter-spacing:.13em !important;
+  }
+  .filmography__category[data-film-category="film"] h3 { font-size:1.75rem !important; }
+  .jhansi-archive-art { min-height:240px; }
+  .filmography .container::after { letter-spacing:.12em; font-size:7px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .jhansi-archive-art::after { display:none; }
+}
