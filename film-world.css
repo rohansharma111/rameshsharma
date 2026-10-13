@@ -2121,3 +2121,114 @@ html, body { background-color:var(--cinema-ink); }
 @media (prefers-reduced-motion:reduce) {
   .director-dossier__fact { transition:none !important; }
 }
+
+
+/* 21 — DESKTOP COMPOSITION FIX: use the full width of the archive and TV cards.
+   Avoid the narrow two-column poster/text split that forced words onto every line. */
+@media (min-width:761px) {
+  .filmography__category[data-film-category="film"]::before {
+    background-image:
+      linear-gradient(90deg,rgba(9,6,4,.04) 0%,rgba(9,6,4,.03) 36%,rgba(9,6,4,.8) 100%),
+      url("https://upload.wikimedia.org/wikipedia/en/7/73/Baghban_2003_poster.jpg") !important;
+    background-size:cover,auto 100% !important;
+    background-repeat:no-repeat,no-repeat !important;
+    background-position:center,left center !important;
+    background-color:#100905 !important;
+    height:clamp(270px,27vw,360px) !important;
+    margin-bottom:30px !important;
+  }
+  .filmography__category[data-film-category="film"]::after {
+    left:auto !important; right:clamp(24px,4vw,58px) !important;
+    top:50% !important; transform:translateY(-50%) !important;
+    max-width:42% !important; padding:14px 17px !important;
+    font-size:9px !important; letter-spacing:.2em !important;
+  }
+
+  .tv-serials .tv-showcase { width:100%; max-width:none; }
+  .tv-serials .tv-featured {
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    align-items:stretch !important;
+    gap:clamp(18px,2.3vw,32px) !important;
+    width:100%; max-width:none;
+  }
+  .tv-serials .featured-serial {
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    min-width:0 !important;
+    width:100% !important;
+    height:100%;
+    overflow:hidden;
+    border:1px solid rgba(211,162,103,.38) !important;
+    border-radius:16px;
+    background:linear-gradient(155deg,rgba(38,25,17,.97),rgba(11,8,6,.98)) !important;
+    box-shadow:0 18px 42px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,224,177,.045);
+  }
+  .tv-serials .featured-serial__image {
+    display:flex !important;
+    flex-direction:column;
+    flex:0 0 auto;
+    width:100% !important;
+    height:auto !important;
+    aspect-ratio:4/3;
+    min-height:0 !important;
+    padding:12px !important;
+    border-right:0 !important;
+    border-bottom:1px solid rgba(211,162,103,.26);
+    background:linear-gradient(145deg,#160e09,#080605) !important;
+  }
+  .tv-serials .featured-serial__image::before {
+    flex:0 0 auto;
+    margin-bottom:9px !important;
+    font-size:8px !important;
+    letter-spacing:.18em;
+  }
+  .tv-serials .featured-serial__image img {
+    display:block;
+    width:100% !important;
+    height:auto !important;
+    min-height:0 !important;
+    aspect-ratio:4/3;
+    object-fit:contain !important;
+    object-position:center center !important;
+    background:#080605;
+    border:1px solid rgba(218,171,111,.16);
+  }
+  .tv-serials .featured-serial__image--jhansi {
+    aspect-ratio:4/3;
+  }
+  .tv-serials .featured-serial__image--jhansi .jhansi-archive-art {
+    width:100%; height:100%; min-height:0 !important; aspect-ratio:auto;
+    flex:1; gap:12px; padding:20px;
+  }
+  .tv-serials .featured-serial__content {
+    display:flex; flex:1; flex-direction:column; align-items:flex-start;
+    padding:clamp(20px,2.2vw,30px) !important;
+    width:100% !important; min-width:0 !important;
+  }
+  .tv-serials .featured-serial__content h3 {
+    width:100%; max-width:none !important; margin:0 0 17px !important;
+    font-size:clamp(1.35rem,1.8vw,1.8rem) !important;
+    line-height:1.2 !important; letter-spacing:-.025em;
+    overflow-wrap:normal !important; word-break:normal !important;
+  }
+  .tv-serials .featured-serial__content .role-badge {
+    display:inline-flex; align-self:flex-start; max-width:100%;
+    width:auto !important; white-space:normal;
+    margin:0 0 18px !important; padding:9px 12px !important;
+    line-height:1.4 !important; font-size:11px !important;
+  }
+  .tv-serials .featured-serial__content > p:last-child {
+    width:100%; margin-top:0 !important;
+    font-size:15px !important; line-height:1.8 !important;
+    overflow-wrap:normal !important; word-break:normal !important;
+  }
+}
+@media (min-width:761px) and (max-width:1050px) {
+  .tv-serials .tv-featured { gap:14px !important; }
+  .tv-serials .featured-serial__content { padding:19px !important; }
+  .tv-serials .featured-serial__content h3 { font-size:1.35rem !important; }
+  .tv-serials .featured-serial__content .role-badge { font-size:10px !important; }
+  .tv-serials .featured-serial__content > p:last-child { font-size:14px !important; }
+}
