@@ -48,14 +48,17 @@
 
       navLinks.forEach((link) => {
         link.addEventListener('click', (event) => {
-          const target = document.querySelector(link.getAttribute('href'));
+          const href = link.getAttribute('href');
+          // Only intercept in-page anchors. Cross-page links must navigate normally.
+          if (!href || !href.startsWith('#')) return;
+          const target = document.querySelector(href);
           if (!target) return;
           event.preventDefault();
           closeMenu();
           const headerOffset = header ? header.getBoundingClientRect().height : 0;
           const top = window.scrollY + target.getBoundingClientRect().top - headerOffset - 8;
           window.scrollTo({ top, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
-          if (history.replaceState) history.replaceState(null, '', link.getAttribute('href'));
+          if (history.replaceState) history.replaceState(null, '', href);
         });
       });
 
