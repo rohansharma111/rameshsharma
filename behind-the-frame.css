@@ -119,3 +119,12 @@
 .archive-social-feed__facebook-button span { transition:transform .2s ease; }
 .archive-social-feed__facebook-button:hover span { transform:translate(3px,-3px); }
 @media (prefers-reduced-motion:reduce) { .archive-social-feed__facebook-button span { transition:none; } }
+
+
+/* Replace the recycled-photo gallery with a source-first post archive. */
+.archive-posts-index { padding:clamp(76px,9vw,128px) 0; background:#0d0b09; border-top:1px solid rgba(195,154,102,.18); border-bottom:1px solid rgba(195,154,102,.18); }
+.archive-posts-index__notice { display:grid; grid-template-columns:42px 1fr; gap:18px; align-items:start; margin-top:28px; padding:clamp(20px,3vw,32px); border:1px solid rgba(195,154,102,.25); background:rgba(255,255,255,.02); }
+.archive-posts-index__notice-mark { display:grid; place-items:center; width:36px; height:36px; border:1px solid rgba(195,154,102,.6); border-radius:50%; color:#d7b37d; font:500 18px 'Cormorant Garamond',serif; }
+.archive-posts-index__notice strong { color:#f4eadb; font:500 25px/1.15 'Cormorant Garamond',Georgia,serif; }
+.archive-posts-index__notice p { max-width:850px; margin:10px 0 0; color:#b9ad9d; font:12px/1.85 'DM Sans',sans-serif; }
+@media (max-width:480px) { .archive-posts-index__notice { grid-template-columns:1fr; gap:12px; } }
