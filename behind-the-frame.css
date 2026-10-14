@@ -108,3 +108,14 @@
 .archive-social-feed__frame--facebook iframe { height:620px; }
 @media (max-width:760px) { .archive-social__feeds { grid-template-columns:1fr; } }
 @media (max-width:480px) { .archive-social-feed { padding:14px; }.archive-social-feed__frame--instagram iframe { height:540px; }.archive-social-feed__frame--facebook iframe { height:560px; } }
+
+
+/* Facebook personal profiles cannot be rendered with the Page plugin; use a designed, honest link panel. */
+.archive-social-feed__facebook-card { min-height:390px; padding:clamp(24px,4vw,42px); display:flex; flex-direction:column; align-items:flex-start; justify-content:center; border:1px solid rgba(195,154,102,.22); background:radial-gradient(ellipse at 80% 18%,rgba(195,154,102,.13),transparent 42%),linear-gradient(145deg,#21180f,#0b0a08 76%); }
+.archive-social-feed__facebook-mark { display:grid; place-items:center; width:54px; height:54px; margin-bottom:28px; border:1px solid rgba(195,154,102,.55); border-radius:50%; color:#d7b37d; font:600 32px/1 'DM Sans',sans-serif; }
+.archive-social-feed__facebook-card strong { max-width:390px; color:#f4eadb; font:500 clamp(30px,3.8vw,44px)/1.02 'Cormorant Garamond',Georgia,serif; }
+.archive-social-feed__facebook-card p { max-width:440px; color:#b9ad9d; font:13px/1.85 'DM Sans',sans-serif; }
+.archive-social-feed__facebook-button { display:inline-flex; align-items:center; gap:20px; margin-top:12px; padding:15px 18px; border:1px solid rgba(195,154,102,.58); color:#d7b37d; font:600 10px 'DM Sans',sans-serif; letter-spacing:.12em; }
+.archive-social-feed__facebook-button span { transition:transform .2s ease; }
+.archive-social-feed__facebook-button:hover span { transform:translate(3px,-3px); }
+@media (prefers-reduced-motion:reduce) { .archive-social-feed__facebook-button span { transition:none; } }
