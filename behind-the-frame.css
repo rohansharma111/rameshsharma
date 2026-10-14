@@ -86,3 +86,12 @@
 .archive-still figcaption small { color:#9f9180; font:10px/1.6 'DM Sans',sans-serif; }
 @media (max-width:900px) { .archive-stills__grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.archive-still__image { height:clamp(260px,45vw,430px); } }
 @media (max-width:480px) { .archive-stills__grid { gap:10px; }.archive-still__image { height:245px; }.archive-still figcaption { padding:13px 11px 15px; }.archive-still figcaption strong { font-size:21px; }.archive-still figcaption small { font-size:9px; } }
+
+
+/* Authentic public-post embed: keep the source visible rather than recreating social content as a fake graphic. */
+.archive-post-feature--social { grid-template-columns: .9fr 1.1fr; }
+.archive-post-feature__embed { min-width: 0; }
+.archive-post-feature__embed iframe { display:block; width:100%; max-width:100%; border:1px solid rgba(195,154,102,.28); border-radius:2px; background:#fff; }
+.archive-post-feature__fallback { margin:10px 0 0; color:#9f9180; font:11px/1.7 'DM Sans',sans-serif; }
+.archive-post-feature__fallback a { color:#d2ad77; text-decoration:underline; text-underline-offset:3px; }
+@media (max-width:900px) { .archive-post-feature--social { grid-template-columns:1fr; } }
