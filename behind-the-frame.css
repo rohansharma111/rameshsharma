@@ -70,3 +70,19 @@
 .archive-post-feature__copy h3 em { color:#c39a66; font-weight:400; }
 .archive-post-feature__copy > p:not(.archive-eyebrow) { color:#b9ad9d; font:14px/1.95 'DM Sans',sans-serif; }
 @media (max-width:640px) { .archive-post-feature { grid-template-columns:1fr; padding:18px; gap:24px; }.archive-post-feature__slate { min-height:250px; } }
+
+.archive-stills { padding:clamp(76px,9vw,128px) 0; background:#0d0b09; border-top:1px solid rgba(195,154,102,.18); border-bottom:1px solid rgba(195,154,102,.18); }
+.archive-stills__grid { display:grid; grid-template-columns:1.1fr .9fr .9fr 1.1fr; gap:15px; align-items:stretch; }
+.archive-still { min-width:0; margin:0; display:flex; flex-direction:column; border:1px solid rgba(195,154,102,.25); background:#15110d; }
+.archive-still__image { position:relative; overflow:hidden; height:clamp(220px,30vw,390px); background:#20180f; }
+.archive-still__image:after { content:""; position:absolute; inset:0; background:linear-gradient(0deg,rgba(8,7,5,.4),transparent 45%); pointer-events:none; }
+.archive-still__image img { width:100%; height:100%; display:block; object-fit:cover; transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .5s ease; filter:saturate(.78) contrast(1.04); }
+.archive-still--portrait .archive-still__image img { object-position:center 28%; }
+.archive-still--poster .archive-still__image img { object-fit:contain; padding:14px; background:radial-gradient(ellipse at center,rgba(156,102,47,.17),transparent 70%),#100d09; }
+.archive-still:hover .archive-still__image img { transform:scale(1.045); filter:saturate(1) contrast(1.06); }
+.archive-still figcaption { display:flex; flex-direction:column; align-items:flex-start; padding:17px 16px 19px; gap:7px; }
+.archive-still figcaption span { color:#c39a66; font:9px 'DM Sans',sans-serif; letter-spacing:.13em; }
+.archive-still figcaption strong { color:#f4eadb; font:500 24px/1.05 'Cormorant Garamond',Georgia,serif; }
+.archive-still figcaption small { color:#9f9180; font:10px/1.6 'DM Sans',sans-serif; }
+@media (max-width:900px) { .archive-stills__grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.archive-still__image { height:clamp(260px,45vw,430px); } }
+@media (max-width:480px) { .archive-stills__grid { gap:10px; }.archive-still__image { height:245px; }.archive-still figcaption { padding:13px 11px 15px; }.archive-still figcaption strong { font-size:21px; }.archive-still figcaption small { font-size:9px; } }
