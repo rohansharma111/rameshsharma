@@ -153,6 +153,30 @@
       "alt": "Group photograph from a professional industry gathering"
     },
     {
+      "id": "archival-scene",
+      "kind": "photo",
+      "path": "assets/rrs-career/1405082591658711.jpg",
+      "category": "set",
+      "date": "2026-03-14",
+      "dateContext": "Facebook export photo date; date of the production is unknown",
+      "title": "An archival scene in progress",
+      "alt": "Indoor staged dramatic scene with two seated performers and a standing person gesturing",
+      "originalCaption": null,
+      "sourceNote": "No original Facebook caption was included with this photograph. The export dates the image to 14 March 2026; the production title and shooting date are unconfirmed."
+    },
+    {
+      "id": "archival-ensemble",
+      "kind": "photo",
+      "path": "assets/rrs-career/1405088608324776.jpg",
+      "category": "set",
+      "date": "2026-03-14",
+      "dateContext": "Facebook export photo date; date of the production is unknown",
+      "title": "An ensemble performance, revisited",
+      "alt": "Archival group performance photograph with a large cast in a stage-like setting",
+      "originalCaption": null,
+      "sourceNote": "No original Facebook caption was included with this photograph. Its exact production and shooting date have not been independently identified."
+    },
+    {
       "id": "encounter-briefing",
       "kind": "video",
       "path": "assets/rrs-career/1447602276432880.mp4",
