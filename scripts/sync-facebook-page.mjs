@@ -69,11 +69,11 @@ async function uploadPhoto(url, id) {
   const publicId = createHash('sha256').update(id).digest('hex').slice(0, 30);
   const timestamp = Math.floor(Date.now() / 1000);
   const folder = 'rameshsharma/facebook';
-  const toSign = `folder=${folder}&overwrite=false&public_id=${publicId}&timestamp=${timestamp}${apiSecret}`;
+  const toSign = `folder=${folder}&overwrite=true&public_id=${publicId}&timestamp=${timestamp}${apiSecret}`;
   const signature = createHash('sha1').update(toSign).digest('hex');
   const form = new FormData();
   form.append('file', new Blob([bytes], { type: mime }), `${publicId}.jpg`);
-  for (const [key, value] of Object.entries({ api_key: apiKey, timestamp, signature, folder, public_id: publicId, overwrite: 'false' })) {
+  for (const [key, value] of Object.entries({ api_key: apiKey, timestamp, signature, folder, public_id: publicId, overwrite: 'true' })) {
     form.append(key, String(value));
   }
   const upload = await fetch(`https://api.cloudinary.com/v1_1/${encodeURIComponent(cloudName)}/image/upload`, { method: 'POST', body: form });
@@ -85,10 +85,10 @@ async function uploadPhoto(url, id) {
 const existing = await readCatalog();
 const curation = await readCuration();
 const prior = new Map(existing.items.map(item => [item.id, item]));
-const posts = await graph('posts', 'id,message,created_time,permalink_url,type,full_picture,attachments{type,media,subattachments}');
+const posts = await graph('posts', 'id,message,created_time,permalink_url,is_published,type,full_picture,attachments{type,media,subattachments}');
 const photos = await graph('photos', 'id,name,created_time,link,images');
 const candidates = [
-  ...posts.map(post => ({
+  ...posts.filter(post => post.is_published !== false).map(post => ({
     id: `page-post:${post.id}`, caption: cleanText(post.message),
     createdAt: post.created_time, sourceUrl: facebookLink(post.permalink_url),
     links: attachmentsFor(post)
