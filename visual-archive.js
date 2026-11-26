@@ -12,7 +12,7 @@
       const category = button.dataset.visualFilter;
       let shown = 0;
       for (const card of cards) {
-        const visible = category === 'all' || category === card.dataset.visualCategory;
+        const visible = category === 'all' || (category === 'videos' ? card.dataset.visualKind === 'video' : category === card.dataset.visualCategory);
         card.hidden = !visible;
         if (visible) shown++;
       }
@@ -44,7 +44,7 @@
   source.className = 'rrs-photo-dialog__source';
   source.target = '_blank';
   source.rel = 'noopener noreferrer';
-  source.textContent = 'Open original image ↗';
+  source.textContent = 'View full-size image ↗';
   dialog.append(close, image, caption, source);
   document.body.append(dialog);
   close.addEventListener('click', () => dialog.close());

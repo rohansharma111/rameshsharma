@@ -92,7 +92,7 @@
   .rrs-visual-card__media img,.rrs-visual-card__zoom { transition:none; }
 }
 
-/* AUTHENTIC FACEBOOK EXPORT MEDIA — no stock images or social embeds. */
+/* Curated career photographs and film diary. */
 .rrs-visual-gallery__grid--authentic { grid-template-columns:repeat(12,minmax(0,1fr)); gap:clamp(12px,1.75vw,23px); }
 .rrs-visual-gallery__grid--authentic .rrs-visual-card { grid-column:span 6; }
 .rrs-visual-gallery--archive .rrs-visual-gallery__grid--authentic .rrs-visual-card { grid-column:span 4; }
@@ -131,5 +131,15 @@
  .rrs-visual-gallery--archive .rrs-visual-gallery__grid--authentic .rrs-visual-card__media {height:clamp(280px,95vw,500px)}
 }
 
-/* For archive photographs without original post captions. */
+/* Film and television archive notes. */
 .rrs-visual-card__source-note {margin-top:12px!important;color:#c6b8a3!important;font-size:12px!important;line-height:1.7!important;}
+
+/* Caption-forward career stories */
+.rrs-visual-gallery__grid--authentic .rrs-visual-card__excerpt{margin-top:13px;color:#d7c8b3;font:400 13px/1.75 'DM Sans',sans-serif;white-space:pre-line;overflow-wrap:anywhere}
+.rrs-visual-gallery__grid--authentic .rrs-visual-card__original{margin-top:9px;border:0;padding:0}
+.rrs-visual-gallery__grid--authentic .rrs-visual-card__original summary{display:inline-block;list-style:none;border-bottom:1px solid #af8758;color:#ddbd91;cursor:pointer;font:600 11px/1.5 'DM Sans',sans-serif;letter-spacing:.025em}
+.rrs-visual-gallery__grid--authentic .rrs-visual-card__original summary::-webkit-details-marker{display:none}
+.rrs-visual-gallery__grid--authentic .rrs-visual-card__original p{margin-top:13px;font:400 13px/1.75 'DM Sans',sans-serif;white-space:pre-line}
+.rrs-visual-gallery__grid--authentic .rrs-visual-card--clip .rrs-visual-card__media{aspect-ratio:16/10}
+.rrs-visual-gallery__grid--authentic .rrs-visual-card--clip video{max-width:100%;max-height:100%;background:#0c0c0b}
+.rrs-visual-gallery__grid--authentic .rrs-visual-card__media img{object-fit:contain}
