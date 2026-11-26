@@ -14,6 +14,8 @@
       for (const card of cards) {
         const visible = category === 'all' || (category === 'videos' ? card.dataset.visualKind === 'video' : category === card.dataset.visualCategory);
         card.hidden = !visible;
+        // Filtering out a card must immediately stop its audio, too.
+        if (!visible) card.querySelectorAll('video').forEach(video => video.pause());
         if (visible) shown++;
       }
       for (const choice of filters.querySelectorAll('button[data-visual-filter]')) {
@@ -23,6 +25,60 @@
       }
       if (status) status.textContent = `${shown} visual ${shown === 1 ? 'story' : 'stories'} in this selection`;
     });
+  }
+
+  // A gallery video should never keep playing after the visitor scrolls past it.
+  // Pause rather than rewind, so returning to the clip preserves their position.
+  const videos = [...document.querySelectorAll('.rrs-visual-gallery video')];
+  if (videos.length) {
+    const minimumVisibleRatio = 0.3;
+    const pauseAll = () => videos.forEach(video => {
+      if (!video.paused) video.pause();
+    });
+
+    const visibleEnough = video => {
+      if (video.closest('[hidden]') || document.hidden) return false;
+      const bounds = video.getBoundingClientRect();
+      const visibleWidth = Math.max(0, Math.min(bounds.right, window.innerWidth) - Math.max(bounds.left, 0));
+      const visibleHeight = Math.max(0, Math.min(bounds.bottom, window.innerHeight) - Math.max(bounds.top, 0));
+      const area = bounds.width * bounds.height;
+      return area > 0 && (visibleWidth * visibleHeight) / area >= minimumVisibleRatio;
+    };
+
+    // Starting a new clip also silences the previously playing one.
+    for (const video of videos) {
+      video.addEventListener('play', () => {
+        videos.forEach(other => {
+          if (other !== video && !other.paused) other.pause();
+        });
+        if (!visibleEnough(video)) video.pause();
+      });
+    }
+
+    const pauseOutOfView = () => {
+      videos.forEach(video => {
+        if (!video.paused && !visibleEnough(video)) video.pause();
+      });
+    };
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if ((!entry.isIntersecting || entry.intersectionRatio < minimumVisibleRatio) && !entry.target.paused) {
+            entry.target.pause();
+          }
+        });
+      }, { threshold: [0, minimumVisibleRatio, 1] });
+      videos.forEach(video => observer.observe(video));
+    } else {
+      // Older browsers still get pause-on-scroll behavior.
+      window.addEventListener('scroll', pauseOutOfView, { passive: true });
+    }
+    window.addEventListener('resize', pauseOutOfView, { passive: true });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) pauseAll();
+    });
+    window.addEventListener('pagehide', pauseAll);
   }
 
   if (!('HTMLDialogElement' in window)) return;
