@@ -1,0 +1,56 @@
+name: Sync Ramesh Sharma Facebook archive
+
+# Intentionally manual until the account type, token and storage are verified.
+# After validation, enable a low-frequency schedule if appropriate:
+#   schedule:
+#     - cron: '19 3 * * 1'
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ramesh-facebook-archive
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify required connections
+        env:
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
+          CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+        run: |
+          for name in FACEBOOK_PAGE_ID FACEBOOK_PAGE_ACCESS_TOKEN CLOUDINARY_CLOUD_NAME CLOUDINARY_API_KEY CLOUDINARY_API_SECRET; do
+            if [ -z "${!name}" ]; then
+              echo "Required connection missing: ${name}"
+              exit 1
+            fi
+          done
+      - name: Import Page media
+        env:
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
+          CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+          FACEBOOK_MAX_UPLOADS: '100'
+        run: node scripts/sync-facebook-page.mjs
+      - name: Commit updated public catalogue only
+        run: |
+          if git diff --quiet -- data/facebook-posts.json; then
+            echo "No Facebook archive updates."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- data/facebook-posts.json
+          git commit -m "Update published Facebook photo archive"
+          git push
