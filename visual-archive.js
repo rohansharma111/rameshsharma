@@ -26,7 +26,7 @@
   }
 
   if (!('HTMLDialogElement' in window)) return;
-  const links = [...document.querySelectorAll('.rrs-visual-card__media')];
+  const links = [...document.querySelectorAll('a.rrs-visual-card__media')];
   if (!links.length) return;
   const dialog = document.createElement('dialog');
   dialog.className = 'rrs-photo-dialog';
