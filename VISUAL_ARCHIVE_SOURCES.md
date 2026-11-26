@@ -1,29 +1,23 @@
-# Visual archive — sources and editorial standards
+# Career gallery — image sources and standards
 
-## What the gallery actually shows
+The photo and video gallery is a director's visual portfolio, with **24 selected original photographs and 22 selected video clips**, a total of 46 professionally relevant career records. Its content is based on the director's data export and earlier verified portfolio photographs; the website does not identify the import source in gallery labels or require visitors to leave the site to read captions.
 
-This change replaces the scrollable Facebook and Instagram embeds with a real, responsive image grid and a full-image viewer. It puts a visual gallery on the homepage before the filmography, and a filterable companion gallery on Behind the Frame.
+## Editorial rules
+- Present each career item with its own professional title and caption. Long captions can expand inline with **Read more**.
+- Show only authentic archival photos and video material; do not replace originals with stock imagery or fabricated screenshots.
+- Use neutral descriptions when the source record lacks a caption; do not assign an unverified production title.
+- Preserve original image/video bytes. Where the source export is low-resolution, do not claim it is high-resolution.
+- Treat production statements contained in archival captions as historical first-person recollections, not independent third-party verification.
+- Keep public-facing UI free of "Facebook import," "source file," "read caption on Facebook," or similar provenance instructions.
 
-Only images already included in the portfolio are shown:
+## Site integration
+- `index.html#visual-stories`: 12-image/video homepage showcase.
+- `behind-the-frame.html#visual-archive`: all 46 career moments, category filters and full-image viewer.
+- `data/career-gallery.json`: machine-readable media inventory; fields are editorial metadata.
+- `assets/rrs-career/`: original media.
+- `visual-archive.css` and `visual-archive.js`: presentation, filters, and image viewer.
 
-1. **Behind-the-scenes career photograph** — existing Cloudinary file `DSC08995_lnmion.jpg`, previously displayed in the Director's Cut section; existing site's image description calls it a photograph from Ramesh R Sharma's filmmaking work. No individual Facebook post attribution or original Facebook caption has been verified.
-2. **Portrait** — existing Cloudinary file `IMG-20210510-WA0031_qj7vcw.jpg`, previously used as the homepage hero portrait. No Facebook post caption has been verified.
-3. **Mahabharat** — existing Amazon/IMDb image used as identified television-series artwork in the TV section, **not** described as a photo of Ramesh R Sharma; accompanying role is drawn from the site's current credits.
-4. **Vishnu Puran** — existing Amazon/IMDb artwork as previously displayed in the television section, **not** described as a photo of Ramesh R Sharma.
+The photos and clips have been selected conservatively to exclude obviously unrelated or personal posts; the entire export is not automatically published. Additional archival materials may be curated when their professional relevance can be verified.
 
-Because the site is public, verify permissions to reuse poster artwork. Image URLs are linked to their unaltered source images; there is no new image upscaling or rasterization from a mobile screenshot. Cropping is constrained to display styling, and the viewer opens original source media.
-
-## What it does not claim
-
-- These items are **not** represented as a complete Facebook archive.
-- Editorial text is **not** presented as the original caption of a Facebook post.
-- Casting, awards and other professional photographs are **not** fabricated or filled with photos of unrelated people.
-- Public Facebook profile visibility and a functioning Facebook Page Plugin **do not** provide structured access to all historical photos, high-resolution media or their captions. That requires the underlying original files/posts to be accessible.
-
-## Adding more authentic material
-
-Replace the curated HTML cards with additional images only when the image belongs to Ramesh or a production he worked on and the photo's origin and display rights are known. Keep original Facebook captions separately from portfolio editorial copy. Prefer an original-quality image owned by the photographer/family rather than a screenshot or an embedded-feed thumbnail.
-
-The current gallery design supports flexible numbers of cards in each category. Front-end assets: `visual-archive.css` and `visual-archive.js`. Key website sections: `index.html#visual-stories` and `behind-the-frame.html#visual-archive`.
-
-Live deployment is not automatically triggered by this commit: `vercel.json` disables Git deployments.
+## Delivery
+Code changes can trigger Vercel production deployment from main only; verify release status and real page rendering after merge.
